@@ -14,6 +14,7 @@
 		9E0DCCED1EFC8C35001AB810 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0DCCEB1EFC8C35001AB810 /* LaunchScreen.storyboard */; };
 		9E0DCCF51EFC8CDC001AB810 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0DCCF41EFC8CDC001AB810 /* Colors.swift */; };
 		9E0DCCF81EFC91B0001AB810 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0DCCF71EFC91B0001AB810 /* CoreDataManager.swift */; };
+		9E0DCCFB1EFC9571001AB810 /* MeWork.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E0DCCF91EFC9571001AB810 /* MeWork.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		9E0DCCEE1EFC8C35001AB810 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E0DCCF41EFC8CDC001AB810 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		9E0DCCF71EFC91B0001AB810 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		9E0DCCFA1EFC9571001AB810 /* MeWork.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MeWork.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +60,13 @@
 		9E0DCCE11EFC8C35001AB810 /* MeWork */ = {
 			isa = PBXGroup;
 			children = (
-				9E0DCCF71EFC91B0001AB810 /* CoreDataManager.swift */,
 				9E0DCCE21EFC8C35001AB810 /* AppDelegate.swift */,
 				9E0DCCE41EFC8C35001AB810 /* ViewController.swift */,
 				9E0DCCE61EFC8C35001AB810 /* Main.storyboard */,
 				9E0DCCE91EFC8C35001AB810 /* Assets.xcassets */,
 				9E0DCCEB1EFC8C35001AB810 /* LaunchScreen.storyboard */,
 				9E0DCCEE1EFC8C35001AB810 /* Info.plist */,
+				9E0DCCFC1EFC957D001AB810 /* CoreData */,
 				9E0DCCF61EFC9115001AB810 /* Helpers */,
 			);
 			path = MeWork;
@@ -76,6 +78,15 @@
 				9E0DCCF41EFC8CDC001AB810 /* Colors.swift */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		9E0DCCFC1EFC957D001AB810 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				9E0DCCF71EFC91B0001AB810 /* CoreDataManager.swift */,
+				9E0DCCF91EFC9571001AB810 /* MeWork.xcdatamodeld */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +166,7 @@
 				9E0DCCF51EFC8CDC001AB810 /* Colors.swift in Sources */,
 				9E0DCCF81EFC91B0001AB810 /* CoreDataManager.swift in Sources */,
 				9E0DCCE31EFC8C35001AB810 /* AppDelegate.swift in Sources */,
+				9E0DCCFB1EFC9571001AB810 /* MeWork.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +335,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9E0DCCF91EFC9571001AB810 /* MeWork.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9E0DCCFA1EFC9571001AB810 /* MeWork.xcdatamodel */,
+			);
+			currentVersion = 9E0DCCFA1EFC9571001AB810 /* MeWork.xcdatamodel */;
+			path = MeWork.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9E0DCCD71EFC8C35001AB810 /* Project object */;
 }
