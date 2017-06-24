@@ -22,15 +22,15 @@ enum Color: String {
         
         switch self {
             
-        case .green: return UIColor(red: 153/255, green: 224/255, blue: 139/255, alpha: 1.0)
+        case .green: return UIColor(red: 108/255, green: 204/255, blue: 152/255, alpha: 1.0)
         
         case .red: return UIColor(red: 242/255, green: 99/255, blue: 96/255, alpha: 1.0)
             
         case .pink: return UIColor(red: 255/255, green: 96/255, blue: 152/255, alpha: 1.0)
             
-        case .orange: return UIColor(red: 255/255, green: 170/255, blue: 73/255, alpha: 1.0)
+        case .orange: return UIColor(red: 255/255, green: 173/255, blue: 107/255, alpha: 1.0)
         
-        case .yellow: return UIColor(red: 255/255, green: 233/255, blue: 94/255, alpha: 1.0)
+        case .yellow: return UIColor(red: 244/255, green: 233/255, blue: 132/255, alpha: 1.0)
         
         case .blue: return UIColor(red: 119/255, green: 186/255, blue: 244/255, alpha: 1.0)
             

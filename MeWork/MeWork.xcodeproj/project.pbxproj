@@ -15,6 +15,7 @@
 		9E0DCCF81EFC91B0001AB810 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0DCCF71EFC91B0001AB810 /* CoreDataManager.swift */; };
 		9E0DCCFB1EFC9571001AB810 /* MeWork.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E0DCCF91EFC9571001AB810 /* MeWork.xcdatamodeld */; };
 		9E22ECD31EFD39A200546314 /* TokenBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E22ECD21EFD39A200546314 /* TokenBoard.swift */; };
+		9EF20FEC1EFEEF0C008D7F8C /* UIDevice Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF20FEB1EFEEF0C008D7F8C /* UIDevice Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		9E0DCCF71EFC91B0001AB810 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		9E0DCCFA1EFC9571001AB810 /* MeWork.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MeWork.xcdatamodel; sourceTree = "<group>"; };
 		9E22ECD21EFD39A200546314 /* TokenBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenBoard.swift; sourceTree = "<group>"; };
+		9EF20FEB1EFEEF0C008D7F8C /* UIDevice Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				9E0DCCF41EFC8CDC001AB810 /* Color.swift */,
+				9EF20FEB1EFEEF0C008D7F8C /* UIDevice Extension.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EF20FEC1EFEEF0C008D7F8C /* UIDevice Extension.swift in Sources */,
 				9E22ECD31EFD39A200546314 /* TokenBoard.swift in Sources */,
 				9E0DCCE51EFC8C35001AB810 /* HomeViewController.swift in Sources */,
 				9E0DCCF51EFC8CDC001AB810 /* Color.swift in Sources */,
