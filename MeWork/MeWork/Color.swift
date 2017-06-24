@@ -1,5 +1,5 @@
 //
-//  Colors.swift
+//  Color.swift
 //  MeWork
 //
 //  Created by Joanna Lingenfelter on 6/22/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum Colors: String {
+enum Color: String {
     
     case green
     case red
