@@ -86,7 +86,9 @@ class HomeViewController: UIViewController {
             setupLabelWithConstaints(andFontSize: 180)
             
             // Buttons
-            setButtonConstraints(withLeadingAnchorConstant: 40, trailingAnchorConstant: -40, height: 50, topAnchor: view.centerYAnchor, topConstant: 40)
+            setButtonConstraints(withLeadingAnchorConstant: 80, trailingAnchorConstant: -80, height: 80, topAnchor: view.centerYAnchor, topConstant: 40)
+            createTokenBoardButton.titleLabel?.font = UIFont.systemFont(ofSize: 24)
+            selectTokenBoardButton.titleLabel?.font = UIFont.systemFont(ofSize: 24)
         
         default:
             return
@@ -114,7 +116,7 @@ class HomeViewController: UIViewController {
         NSLayoutConstraint.activate([
             selectTokenBoardButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: withLeadingAnchorConstant),
             selectTokenBoardButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: trailingAnchorConstant),
-            selectTokenBoardButton.topAnchor.constraint(equalTo: createTokenBoardButton.bottomAnchor, constant: 20),
+            selectTokenBoardButton.topAnchor.constraint(equalTo: createTokenBoardButton.bottomAnchor, constant: 30),
             selectTokenBoardButton.heightAnchor.constraint(equalToConstant: height)
             ])
         
