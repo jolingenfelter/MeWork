@@ -39,6 +39,14 @@ class TokenBoardFetchedResultsController: NSFetchedResultsController<NSFetchRequ
         
     }
     
+    func performFetch(withPredicate predicate: NSPredicate) {
+        
+        NSFetchedResultsController<NSFetchRequestResult>.deleteCache(withName: nil)
+        fetchRequest.predicate = predicate
+        executeFetch()
+        
+    }
+    
     // MARK: - NSFetchedResultsControllerDelegate
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
