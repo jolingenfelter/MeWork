@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         
-           self.view.addSubview(label)
+        self.view.addSubview(label)
         
         return label
         

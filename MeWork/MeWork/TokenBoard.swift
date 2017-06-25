@@ -75,24 +75,3 @@ extension TokenBoard {
     @NSManaged public func removeFromChildRewardChoices(_ value: NSSet)
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -50,7 +50,11 @@ class TokenBoardFetchedResultsController: NSFetchedResultsController<NSFetchRequ
     // MARK: - NSFetchedResultsControllerDelegate
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
         tableView.reloadData()
+            
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CheckForZeroTokenBoards"), object: nil)
+        
     }
 
 }

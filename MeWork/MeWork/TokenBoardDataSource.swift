@@ -14,7 +14,7 @@ class TokenBoardDataSource: NSObject {
     let tableView: UITableView
     let fetchedResultsController: TokenBoardFetchedResultsController
     
-    init(fetchRequest: NSFetchRequest<NSFetchRequestResult>, fetchedResultsController: TokenBoardFetchedResultsController, tableView: UITableView) {
+    init(fetchedResultsController: TokenBoardFetchedResultsController, tableView: UITableView) {
         
         self.tableView = tableView
         self.fetchedResultsController = fetchedResultsController
