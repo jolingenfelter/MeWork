@@ -19,6 +19,7 @@ class TokenBoardListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view = tableView
 
         // Do any additional setup after loading the view.
     }
@@ -35,7 +36,7 @@ class TokenBoardListViewController: UIViewController {
 extension TokenBoardListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        <#code#>
+        
     }
     
 }

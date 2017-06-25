@@ -47,6 +47,8 @@ class TokenBoard: NSManagedObject {
     
 }
 
+// MARK: - Attributes
+
 extension TokenBoard {
     
     @NSManaged public var childName: String?
@@ -55,3 +57,42 @@ extension TokenBoard {
     @NSManaged public var tokenNumber: String?
     
 }
+
+// MARK: - Accessors for TokenBoards
+
+extension TokenBoard {
+    
+    @objc(addChildRewardChoiceObject:)
+    @NSManaged public func addToChildRewardChoice(_ value: Reward)
+    
+    @objc(removeChildRewardChoiceObject:)
+    @NSManaged public func removeChildRewardChoice(_ value: Reward)
+    
+    @objc(addChildRewardChoices:)
+    @NSManaged public func addToChildRewardChoices(_ value: NSSet)
+    
+    @objc(removeChildRewardChoices:)
+    @NSManaged public func removeFromChildRewardChoices(_ value: NSSet)
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

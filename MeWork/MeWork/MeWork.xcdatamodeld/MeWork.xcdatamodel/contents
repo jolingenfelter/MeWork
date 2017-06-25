@@ -3,15 +3,17 @@
     <entity name="Reward" representedClassName="Reward" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="tokenBoard" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TokenBoard" inverseName="childRewardChoice" inverseEntity="TokenBoard" syncable="YES"/>
     </entity>
     <entity name="TokenBoard" representedClassName="TokenBoard" syncable="YES">
         <attribute name="backgroundColor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="childName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tokenImageName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tokenNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="childRewardChoice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Reward" inverseName="tokenBoard" inverseEntity="Reward" syncable="YES"/>
     </entity>
     <elements>
-        <element name="TokenBoard" positionX="-63" positionY="-18" width="128" height="105"/>
-        <element name="Reward" positionX="-63" positionY="9" width="128" height="75"/>
+        <element name="Reward" positionX="-63" positionY="9" width="128" height="90"/>
+        <element name="TokenBoard" positionX="-63" positionY="-18" width="128" height="120"/>
     </elements>
 </model>

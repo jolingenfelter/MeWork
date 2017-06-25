@@ -49,6 +49,8 @@ extension TokenBoardDataSource: UITableViewDataSource {
         
         cell.textLabel?.text = tokenBoard.childName
         
+        return cell
+        
     }
     
     

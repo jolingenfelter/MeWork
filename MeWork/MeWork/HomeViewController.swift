@@ -16,8 +16,9 @@ class HomeViewController: UIViewController {
         label.text = "MeWork"
         label.textColor = .white
         label.textAlignment = .center
-        self.view.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
+        
+           self.view.addSubview(label)
         
         return label
         
@@ -97,6 +98,11 @@ class HomeViewController: UIViewController {
         
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     // MARK: - Set Constraints
         // Methods to accommodate different screen sizes
     
@@ -146,6 +152,9 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
     
     func createTokenBoardPressed() {
+        
+        let tokenBoardListViewController = TokenBoardListViewController()
+        navigationController?.pushViewController(tokenBoardListViewController, animated: true)
         
     }
     
