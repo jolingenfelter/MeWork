@@ -106,6 +106,11 @@ extension TokenBoardListViewController {
     
     func addTokenBoardPressed() {
         
+        let childNameViewController = EnterChildNameViewController()
+        let navigationController = UINavigationController(rootViewController: childNameViewController)
+        
+        self.present(navigationController, animated: true, completion: nil)
+        
     }
 }
 
