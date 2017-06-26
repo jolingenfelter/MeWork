@@ -171,7 +171,8 @@ extension NumberOfTokensViewController {
     
     func nextPressed() {
     
-        
+        let chooseImageViewController = ChooseImageViewController(childName: childName!, tokenNumber: selectedNumberOfTokens!)
+        navigationController?.pushViewController(chooseImageViewController, animated: true)
         
     }
     
