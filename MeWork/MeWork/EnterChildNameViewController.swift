@@ -13,7 +13,6 @@ class EnterChildNameViewController: UIViewController {
     lazy var titleLabel: UILabel = {
         
         let label = UILabel()
-        label.text = "What is the name of the child or title of this token board?"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -49,8 +48,6 @@ class EnterChildNameViewController: UIViewController {
     lazy var nextButton: UIButton = {
         
         let button = UIButton()
-        button.setTitle("Next", for: .normal)
-        button.addTarget(self, action: #selector(nextPressed), for: .touchUpInside)
         button.backgroundColor = Color.blue.color()
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
@@ -64,11 +61,18 @@ class EnterChildNameViewController: UIViewController {
     }()
     
     var childName: String?
+    var tokenBoard: TokenBoard?
+    
+    convenience init(tokenBoard: TokenBoard) {
+        self.init()
+        self.tokenBoard = tokenBoard
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Color.green.color()
         navBarSetup()
+        prepareViewController()
 
         // Do any additional setup after loading the view.
     }
@@ -76,6 +80,24 @@ class EnterChildNameViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func prepareViewController() {
+        
+        if tokenBoard != nil {
+            
+            nameTextField.text = tokenBoard?.childName
+            nextButton.setTitle("Save changes", for: .normal)
+            titleLabel.text = "Update the name of this child or token board"
+            
+        } else {
+            
+            titleLabel.text = "What is the name of the child or title of this token board?"
+            nextButton.setTitle("Next", for: .normal)
+            nextButton.addTarget(self, action: #selector(nextPressed), for: .touchUpInside)
+            
+        }
+        
     }
     
     // MARK: - View Layout
@@ -183,6 +205,24 @@ extension EnterChildNameViewController {
         
         childName = nameTextField.text
         
+        let tokensViewController = NumberOfTokensViewController()
+        navigationController?.pushViewController(tokensViewController, animated: true)
+        
+    }
+    
+    func savePressed() {
+        
+        guard nameTextField.text != "" else {
+            
+            showAlert(withTitle: "Oops!", andMessage: "Please enter the name of the child or a name for this tokenBoard")
+            
+            return
+        }
+        
+        tokenBoard?.childName = nameTextField.text
+        CoreDataManager.sharedInstance.saveContext()
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
