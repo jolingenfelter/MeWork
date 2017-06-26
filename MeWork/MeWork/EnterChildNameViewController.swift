@@ -205,7 +205,7 @@ extension EnterChildNameViewController {
         
         childName = nameTextField.text
         
-        let tokensViewController = NumberOfTokensViewController()
+        let tokensViewController = NumberOfTokensViewController(childName: childName!)
         navigationController?.pushViewController(tokensViewController, animated: true)
         
     }
