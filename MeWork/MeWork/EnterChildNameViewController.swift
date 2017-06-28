@@ -84,9 +84,10 @@ class EnterChildNameViewController: UIViewController {
     
     func prepareViewController() {
         
-        if tokenBoard != nil {
+        if let tokenBoard = tokenBoard {
             
-            nameTextField.text = tokenBoard?.childName
+            childName = tokenBoard.childName
+            nameTextField.text = tokenBoard.childName
             nextButton.setTitle("Save changes", for: .normal)
             titleLabel.text = "Update the name of this child or token board"
             
