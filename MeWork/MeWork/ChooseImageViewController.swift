@@ -33,6 +33,11 @@ class ChooseImageViewController: UIViewController {
         
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 5
+        imageView.layer.masksToBounds = true
+        
+        self.view.addSubview(imageView)
         
         return imageView
         
@@ -42,6 +47,7 @@ class ChooseImageViewController: UIViewController {
         
         let button = UIButton()
         button.backgroundColor = Color.blue.color()
+        button.setTitle("Image from the Web", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
@@ -57,6 +63,7 @@ class ChooseImageViewController: UIViewController {
         
         let button = UIButton()
         button.backgroundColor = Color.blue.color()
+        button.setTitle("Image from MeWork Library", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
@@ -72,6 +79,7 @@ class ChooseImageViewController: UIViewController {
         
         let button = UIButton()
         button.backgroundColor = Color.blue.color()
+        button.setTitle("Image from Photos", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
@@ -117,7 +125,7 @@ class ChooseImageViewController: UIViewController {
             
         } else {
             
-            titleLabel.text = "Choose an image for this board's tokens"
+            titleLabel.text = "Choose a token image"
             
         }
         
@@ -139,10 +147,14 @@ class ChooseImageViewController: UIViewController {
         case .pad:
             
             setupLabel(withFontSize: 48)
+            setupImageView(withHeight: 400, andTopAnchorConstant: 60)
+            buttonSetup(withFontSize: 24, height: 60, topAnchorConstant: 60, bottomAnchorConstant: -120)
             
         case .phone:
             
             setupLabel(withFontSize: 24)
+            setupImageView(withHeight: 200, andTopAnchorConstant: 20)
+            buttonSetup(withFontSize: 18, height: 40, topAnchorConstant: 20, bottomAnchorConstant: -40)
             
         default:
             
@@ -159,6 +171,49 @@ class ChooseImageViewController: UIViewController {
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 40)
+            ])
+        
+    }
+    
+    func setupImageView(withHeight: CGFloat, andTopAnchorConstant: CGFloat) {
+        
+        tokenImageView.backgroundColor = .purple
+        
+        NSLayoutConstraint.activate([
+            tokenImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: andTopAnchorConstant),
+            tokenImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            tokenImageView.heightAnchor.constraint(equalToConstant: withHeight),
+            tokenImageView.widthAnchor.constraint(equalTo: tokenImageView.heightAnchor)
+            ])
+        
+    }
+    
+    func buttonSetup(withFontSize: CGFloat, height: CGFloat, topAnchorConstant: CGFloat, bottomAnchorConstant: CGFloat) {
+        
+        let buttonsArray = [imageFromWebButton, imageFromPhotoLibraryButton, imageFromMeWorkLibraryButton]
+        
+        let stackView = UIStackView(arrangedSubviews: buttonsArray)
+        stackView.alignment = .center
+        stackView.distribution = .equalSpacing
+        stackView.axis = UILayoutConstraintAxis.vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackView)
+        
+        for button in buttonsArray {
+            
+            button.titleLabel?.font = UIFont.systemFont(ofSize: withFontSize)
+        
+            NSLayoutConstraint.activate([
+                button.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+                button.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+                button.heightAnchor.constraint(equalToConstant: height)])
+        }
+        
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60),
+            stackView.topAnchor.constraint(equalTo: tokenImageView.bottomAnchor, constant: topAnchorConstant),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: bottomAnchorConstant)
             ])
         
     }
