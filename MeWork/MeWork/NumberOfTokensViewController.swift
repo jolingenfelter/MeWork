@@ -85,19 +85,21 @@ class NumberOfTokensViewController: UIViewController {
     
     func prepareViewController() {
         
-        selectedNumberOfTokens = tokenNumber[pickerView.selectedRow(inComponent: 0)]
-        
-        if tokenBoard != nil {
-            
+        if let tokenBoard = tokenBoard {
+    
+            selectedNumberOfTokens = Int(tokenBoard.tokenNumber!)
+            pickerView.selectRow(tokenNumber[selectedNumberOfTokens!], inComponent: 0, animated: true)
             titleLabel.text = "Edit number of tokens"
             nextButton.setTitle("Save changes", for: .normal)
             nextButton.addTarget(self, action: #selector(savePressed), for: .touchUpInside)
             
         } else {
             
+            selectedNumberOfTokens = tokenNumber[pickerView.selectedRow(inComponent: 0)]
             titleLabel.text = "How many tokens on this board?"
             nextButton.setTitle("Next", for: .normal)
             nextButton.addTarget(self, action: #selector(nextPressed), for: .touchUpInside)
+
             
         }
         

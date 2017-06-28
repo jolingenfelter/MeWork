@@ -15,6 +15,9 @@ class ChooseImageViewController: UIViewController {
     
     var tokenBoard: TokenBoard?
     
+    var tokenImage: UIImage?
+    var tokenImageName: String?
+    
     lazy var titleLabel: UILabel = {
         
         let label = UILabel()
@@ -119,8 +122,9 @@ class ChooseImageViewController: UIViewController {
     
     func prepareViewController() {
         
-        if tokenBoard != nil {
+        if let tokenBoard = tokenBoard {
             
+            tokenImageName = tokenBoard.tokenImageName
             titleLabel.text = "Edit token image"
             
         } else {
@@ -235,6 +239,20 @@ extension ChooseImageViewController {
     
     func donePressed() {
         
+        if tokenBoard == nil {
+            
+            guard let tokenImageName = tokenImageName else {
+                
+                showAlert(withTitle: "Oops!", andMessage: "You must choose an image for your tokens")
+                
+                return
+            }
+            
+        } else {
+            
+            
+            
+        }
         
     }
     
