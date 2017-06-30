@@ -86,6 +86,7 @@
 				9E0DCCE41EFC8C35001AB810 /* HomeViewController.swift */,
 				9EF20FF51EFEFCB4008D7F8C /* TokenBoardList */,
 				9EC7E6941F000805008093E8 /* CreateTokenBoard */,
+				9EFBD84D1F06A70F002BFF1A /* View */,
 				9E0DCCE91EFC8C35001AB810 /* Assets.xcassets */,
 				9E0DCCEB1EFC8C35001AB810 /* LaunchScreen.storyboard */,
 				9E0DCCEE1EFC8C35001AB810 /* Info.plist */,
@@ -136,6 +137,13 @@
 				9EF20FF31EFEFC9F008D7F8C /* TokenBoardDataSource.swift */,
 			);
 			name = TokenBoardList;
+			sourceTree = "<group>";
+		};
+		9EFBD84D1F06A70F002BFF1A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
