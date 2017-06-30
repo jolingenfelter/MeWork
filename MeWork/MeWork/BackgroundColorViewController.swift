@@ -55,6 +55,7 @@ class BackgroundColorViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = Color.green.color()
 
         // Do any additional setup after loading the view.
     }
@@ -63,5 +64,13 @@ class BackgroundColorViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
+    
+    func setupLabel(withFontSize: CGFloat) {
+        
+    }
+    
 }

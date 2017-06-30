@@ -72,6 +72,7 @@ class NumberOfTokensViewController: UIViewController {
         super.viewDidLoad()
         prepareViewController()
         view.backgroundColor = Color.green.color()
+        navBarSetup()
 
         // Do any additional setup after loading the view.
     }
@@ -170,6 +171,20 @@ class NumberOfTokensViewController: UIViewController {
 // MARK: - Navigation 
 
 extension NumberOfTokensViewController {
+    
+    
+    func navBarSetup() {
+        
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelPressed))
+        navigationItem.rightBarButtonItem = cancelButton
+        
+    }
+    
+    func cancelPressed() {
+        
+        self.dismiss(animated: true, completion: nil)
+        
+    }
     
     func nextPressed() {
     
