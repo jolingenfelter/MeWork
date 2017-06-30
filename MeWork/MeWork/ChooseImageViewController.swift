@@ -94,7 +94,7 @@ class ChooseImageViewController: UIViewController {
         
     }()
     
-    convenience init(childName: String, tokenNumber: Int) {
+    convenience init(childName: String, tokenNumber: Int, backgroundColor: Color) {
         
         self.init()
         
@@ -126,6 +126,7 @@ class ChooseImageViewController: UIViewController {
             
             tokenImageName = tokenBoard.tokenImageName
             titleLabel.text = "Edit token image"
+            view.backgroundColor = Color(rawValue: tokenBoard.backgroundColor!)!.color()
             
         } else {
             
