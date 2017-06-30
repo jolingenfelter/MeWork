@@ -24,6 +24,7 @@
 		9EF20FF01EFEF853008D7F8C /* TokenBoardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF20FEF1EFEF853008D7F8C /* TokenBoardListViewController.swift */; };
 		9EF20FF21EFEFC80008D7F8C /* TokenBoardFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF20FF11EFEFC80008D7F8C /* TokenBoardFetchedResultsController.swift */; };
 		9EF20FF41EFEFC9F008D7F8C /* TokenBoardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF20FF31EFEFC9F008D7F8C /* TokenBoardDataSource.swift */; };
+		9EFBD84A1F06A1C1002BFF1A /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFBD8491F06A1C1002BFF1A /* DeviceType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		9EF20FEF1EFEF853008D7F8C /* TokenBoardListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenBoardListViewController.swift; sourceTree = "<group>"; };
 		9EF20FF11EFEFC80008D7F8C /* TokenBoardFetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenBoardFetchedResultsController.swift; sourceTree = "<group>"; };
 		9EF20FF31EFEFC9F008D7F8C /* TokenBoardDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenBoardDataSource.swift; sourceTree = "<group>"; };
+		9EFBD8491F06A1C1002BFF1A /* DeviceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 				9E0DCCF41EFC8CDC001AB810 /* Color.swift */,
 				9EF20FEB1EFEEF0C008D7F8C /* UIDevice Extension.swift */,
 				9EC7E6991F000D6C008093E8 /* UIViewControllerExtension.swift */,
+				9EFBD8491F06A1C1002BFF1A /* DeviceType.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				9EF20FF01EFEF853008D7F8C /* TokenBoardListViewController.swift in Sources */,
 				9EC7E69A1F000D6C008093E8 /* UIViewControllerExtension.swift in Sources */,
 				9EF20FF41EFEFC9F008D7F8C /* TokenBoardDataSource.swift in Sources */,
+				9EFBD84A1F06A1C1002BFF1A /* DeviceType.swift in Sources */,
 				9E0DCCE31EFC8C35001AB810 /* AppDelegate.swift in Sources */,
 				9E0DCCFB1EFC9571001AB810 /* MeWork.xcdatamodeld in Sources */,
 			);

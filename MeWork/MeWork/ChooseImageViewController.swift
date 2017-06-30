@@ -152,7 +152,16 @@ class ChooseImageViewController: UIViewController {
             
             setupLabel(withFontSize: 48)
             setupImageView(withHeight: 400, andTopAnchorConstant: 60)
-            buttonSetup(withFontSize: 24, height: 60, topAnchorConstant: 60, bottomAnchorConstant: -120)
+            
+            if DeviceType.IS_IPAD_PRO_12_9 {
+                
+                buttonSetup(withFontSize: 28, height: 80, topAnchorConstant: 180, bottomAnchorConstant: -180)
+                
+            } else {
+                
+                buttonSetup(withFontSize: 24, height: 60, topAnchorConstant: 80, bottomAnchorConstant: -120)
+                
+            }
             
         case .phone:
             
