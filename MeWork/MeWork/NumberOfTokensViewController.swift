@@ -208,7 +208,7 @@ extension NumberOfTokensViewController {
     
     func nextPressed() {
     
-        let backgroundColorViewController = BackgroundColorViewController()
+        let backgroundColorViewController = BackgroundColorViewController(childName: childName!, numberOfTokens: selectedNumberOfTokens!)
         navigationController?.pushViewController(backgroundColorViewController, animated: true)
         
     }

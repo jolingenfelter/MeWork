@@ -43,6 +43,21 @@ class BackgroundColorViewController: UIViewController {
         
     }()
     
+    lazy var nextButton: UIButton = {
+        
+        let button = UIButton()
+        button.backgroundColor = Color.blue.color()
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 5
+        button.layer.masksToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(button)
+        
+        return button
+        
+    }()
+    
     convenience init(childName: String, numberOfTokens: Int) {
         self.init()
         self.childName = childName
@@ -56,6 +71,7 @@ class BackgroundColorViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navBarSetup()
         
         prepareViewController()
 
@@ -69,11 +85,15 @@ class BackgroundColorViewController: UIViewController {
             titleLabel.text = "Edit background color"
             selectedColor = Color(rawValue: tokenBoard.backgroundColor!)!
             view.backgroundColor = Color(rawValue: tokenBoard.backgroundColor!)!.color()
+            nextButton.setTitle("Save changes", for: .normal)
+            nextButton.addTarget(self, action: #selector(saveChangesPressed), for: .touchUpInside)
             
         } else {
             
             titleLabel.text = "Choose a background color"
             view.backgroundColor = Color.green.color()
+            nextButton.setTitle("Next", for: .normal)
+            nextButton.addTarget(self, action: #selector(nextPressed), for: .touchUpInside)
             
         }
         
@@ -96,11 +116,13 @@ class BackgroundColorViewController: UIViewController {
                 
                 setupLabel(withFontSize: 60)
                 setupCollectionView(withTopConstant: 80, andHeight: 500)
+                setupNextButton(withFontSize: 28, height: 60, andTopConstant: 80)
                 
             } else {
                 
                 setupLabel(withFontSize: 48)
                 setupCollectionView(withTopConstant: 80, andHeight: 400)
+                setupNextButton(withFontSize: 24, height: 60, andTopConstant: 60)
                 
             }
             
@@ -111,11 +133,12 @@ class BackgroundColorViewController: UIViewController {
             if DeviceType.IS_IPHONE_6P || DeviceType.IS_IPHONE_7P {
                 
                 setupCollectionView(withTopConstant: 60, andHeight: 300)
+                setupNextButton(withFontSize: 18, height: 40, andTopConstant: 60)
                 
             } else {
                 
                 setupCollectionView(withTopConstant: 40, andHeight: 250)
-                
+                setupNextButton(withFontSize: 22, height: 40, andTopConstant: 40)
             }
             
         default:
@@ -148,4 +171,71 @@ class BackgroundColorViewController: UIViewController {
 
     }
     
+    func setupNextButton(withFontSize: CGFloat, height: CGFloat, andTopConstant: CGFloat) {
+        
+        nextButton.titleLabel?.font = UIFont.systemFont(ofSize: withFontSize)
+        
+        NSLayoutConstraint.activate([
+            nextButton.topAnchor.constraint(equalTo: colorPaletteView.bottomAnchor, constant: andTopConstant),
+            nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            nextButton.widthAnchor.constraint(equalToConstant: 200),
+            nextButton.heightAnchor.constraint(equalToConstant: height)
+            ])
+        
+    }
+    
 }
+
+// MARK: - Navigation
+
+extension BackgroundColorViewController {
+    
+    func navBarSetup() {
+        
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelPressed))
+        navigationItem.rightBarButtonItem = cancelButton
+        
+    }
+    
+    func cancelPressed() {
+        
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    func nextPressed() {
+        
+        guard let selectedColor = selectedColor else {
+            
+            showAlert(withTitle: "Oops!", andMessage: "Please select a background color for your token board")
+            
+            return
+            
+        }
+        
+        let chooseImageViewController = ChooseImageViewController(childName: childName!, tokenNumber: tokenNumber!, backgroundColor: selectedColor)
+        
+        navigationController?.pushViewController(chooseImageViewController, animated: true)
+        
+    }
+    
+    func saveChangesPressed() {
+        
+        tokenBoard?.backgroundColor = selectedColor?.rawValue
+        CoreDataManager.sharedInstance.saveContext()
+        
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
