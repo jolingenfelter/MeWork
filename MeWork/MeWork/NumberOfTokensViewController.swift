@@ -97,7 +97,7 @@ class NumberOfTokensViewController: UIViewController {
         } else {
             
             selectedNumberOfTokens = tokenNumber[pickerView.selectedRow(inComponent: 0)]
-            titleLabel.text = "How many tokens on this board?"
+            titleLabel.text = "How many tokens?"
             nextButton.setTitle("Next", for: .normal)
             nextButton.addTarget(self, action: #selector(nextPressed), for: .touchUpInside)
 
@@ -113,15 +113,35 @@ class NumberOfTokensViewController: UIViewController {
             
         case .pad:
             
-            setupLabel(withFontSize: 48)
-            setupPickerView()
-            setupNextButton(withFontSize: 24, andHeight: 60)
+            if DeviceType.IS_IPAD_PRO_12_9 {
+                
+                setupLabel(withFontSize: 60)
+                setupPickerView(withTopConstant: 80, andHeight: 500)
+                setupNextButton(withFontSize: 28, height: 60, andTopConstant: 80)
+                
+            } else {
+                
+                setupLabel(withFontSize: 48)
+                setupPickerView(withTopConstant: 80, andHeight: 400)
+                setupNextButton(withFontSize: 24, height: 60, andTopConstant: 60)
+                
+            }
             
         case .phone:
             
             setupLabel(withFontSize: 24)
-            setupPickerView()
-            setupNextButton(withFontSize: 18, andHeight: 40)
+            
+            if DeviceType.IS_IPHONE_7P || DeviceType.IS_IPHONE_6P {
+                
+                setupPickerView(withTopConstant: 60, andHeight: 300)
+                setupNextButton(withFontSize: 22, height: 40, andTopConstant: 60)
+                
+            } else {
+                
+                setupPickerView(withTopConstant: 40, andHeight: 250)
+                setupNextButton(withFontSize: 18, height: 40, andTopConstant: 40)
+                
+            }
             
         default:
             
@@ -142,26 +162,26 @@ class NumberOfTokensViewController: UIViewController {
         
     }
     
-    func setupPickerView() {
+    func setupPickerView(withTopConstant: CGFloat, andHeight: CGFloat) {
         
         NSLayoutConstraint.activate([
-            pickerView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
-            pickerView.bottomAnchor.constraint(equalTo: view.centerYAnchor, constant: 40),
+            pickerView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: withTopConstant),
             pickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            pickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor
-            )])
+            pickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            pickerView.heightAnchor.constraint(equalToConstant: andHeight)
+            ])
         
     }
     
-    func setupNextButton(withFontSize: CGFloat, andHeight: CGFloat) {
+    func setupNextButton(withFontSize: CGFloat, height: CGFloat, andTopConstant: CGFloat) {
         
         nextButton.titleLabel?.font = UIFont.systemFont(ofSize: withFontSize)
         
         NSLayoutConstraint.activate([
             nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            nextButton.topAnchor.constraint(equalTo: pickerView.bottomAnchor, constant: 40),
+            nextButton.topAnchor.constraint(equalTo: pickerView.bottomAnchor, constant: andTopConstant),
             nextButton.widthAnchor.constraint(equalToConstant: 200),
-            nextButton.heightAnchor.constraint(equalToConstant: andHeight)
+            nextButton.heightAnchor.constraint(equalToConstant: height)
             ])
         
     }
