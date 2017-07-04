@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum Color: String {
+enum Color: String, CaseCountable {
     
     case green
     case red
@@ -39,5 +39,7 @@ enum Color: String {
         }
         
     }
+    
+    static var caseCount: Int = Color.caseCount
     
 }
