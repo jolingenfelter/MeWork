@@ -95,12 +95,12 @@ class BackgroundColorViewController: UIViewController {
             if DeviceType.IS_IPAD_PRO_12_9 {
                 
                 setupLabel(withFontSize: 60)
-                setupCollectionView(withTopConstant: 80, andBottomConstant: 200)
+                setupCollectionView(withTopConstant: 80, andHeight: 500)
                 
             } else {
                 
                 setupLabel(withFontSize: 48)
-                setupCollectionView(withTopConstant: 80, andBottomConstant: 120)
+                setupCollectionView(withTopConstant: 80, andHeight: 400)
                 
             }
             
@@ -110,11 +110,11 @@ class BackgroundColorViewController: UIViewController {
             
             if DeviceType.IS_IPHONE_6P || DeviceType.IS_IPHONE_7P {
                 
-                setupCollectionView(withTopConstant: 60, andBottomConstant: 100)
+                setupCollectionView(withTopConstant: 60, andHeight: 300)
                 
             } else {
                 
-                setupCollectionView(withTopConstant: 40, andBottomConstant: 40)
+                setupCollectionView(withTopConstant: 40, andHeight: 250)
                 
             }
             
@@ -137,13 +137,13 @@ class BackgroundColorViewController: UIViewController {
         
     }
     
-    func setupCollectionView(withTopConstant: CGFloat, andBottomConstant: CGFloat) {
+    func setupCollectionView(withTopConstant: CGFloat, andHeight: CGFloat) {
         
         NSLayoutConstraint.activate([
             colorPaletteView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             colorPaletteView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             colorPaletteView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: withTopConstant),
-            colorPaletteView.bottomAnchor.constraint(equalTo: view.centerYAnchor, constant: andBottomConstant)
+            colorPaletteView.heightAnchor.constraint(equalToConstant: andHeight)
             ])
 
     }
