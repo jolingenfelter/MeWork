@@ -107,18 +107,18 @@ class EnterChildNameViewController: UIViewController {
         
         super.viewDidLayoutSubviews()
         
-        setupTextField()
-        
         switch UIDevice.current.userInterfaceIdiom {
             
         case .pad:
             
             setupTitleLabel(withFontSize: 48)
+            setupTextField(withTopConstant: 300)
             setUpButton(withHeight: 60, andFontSize: 24)
         
         case .phone:
             
             setupTitleLabel(withFontSize: 24)
+            setupTextField(withTopConstant: 100)
             setUpButton(withHeight: 40, andFontSize: 18)
             
         default: break
@@ -138,11 +138,11 @@ class EnterChildNameViewController: UIViewController {
         
     }
     
-    func setupTextField() {
+    func setupTextField(withTopConstant: CGFloat) {
         
         NSLayoutConstraint.activate([
             nameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            nameTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -80),
+            nameTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: withTopConstant),
             nameTextField.widthAnchor.constraint(equalToConstant: 300),
             nameTextField.heightAnchor.constraint(equalToConstant: 50)
             ])
