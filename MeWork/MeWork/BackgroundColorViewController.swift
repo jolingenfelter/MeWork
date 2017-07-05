@@ -32,10 +32,37 @@ class BackgroundColorViewController: UIViewController {
     lazy var colorPaletteView: UICollectionView = {
         
         let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumLineSpacing = 20
+        
+        switch UIDevice.current.userInterfaceIdiom {
+            
+        case .pad:
+            
+            if DeviceType.IS_IPAD_PRO_12_9 {
+                
+                flowLayout.estimatedItemSize = CGSize(width: 200, height: 200)
+                
+            } else {
+                
+                flowLayout.estimatedItemSize = CGSize(width: 150, height: 150)
+                
+            }
+            
+        case .phone:
+            
+            flowLayout.estimatedItemSize = CGSize(width: 60, height: 60)
+            
+        default:
+            
+            break
+            
+        }
+        
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .white
         collectionView.isScrollEnabled = false
+        collectionView.contentInset = UIEdgeInsets(top: 40, left: 20, bottom: 20, right: 20)
         
         self.view.addSubview(collectionView)
         
@@ -46,7 +73,7 @@ class BackgroundColorViewController: UIViewController {
     lazy var nextButton: UIButton = {
         
         let button = UIButton()
-        button.backgroundColor = Color.blue.color()
+        button.backgroundColor = Color.navBarBlue.color()
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
@@ -74,8 +101,13 @@ class BackgroundColorViewController: UIViewController {
         navBarSetup()
         
         prepareViewController()
+        
+        // Register CollectionViewCell
+        colorPaletteView.register(ColorCell.self, forCellWithReuseIdentifier: ColorCell.reuseIdentifier)
+        
+        colorPaletteView.dataSource = self
+        colorPaletteView.delegate = self
 
-        // Do any additional setup after loading the view.
     }
     
     func prepareViewController() {
@@ -229,9 +261,43 @@ extension BackgroundColorViewController {
     }
 }
 
-// MARK: - UICollectionViewDelegate
+// MARK: - UICollectionViewDataSource
 
-//MARK: - UICollectionViewDataSource
+extension BackgroundColorViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return Color.allColors.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = colorPaletteView.dequeueReusableCell(withReuseIdentifier: ColorCell.reuseIdentifier, for: indexPath) as! ColorCell
+        let color = Color.allColors[indexPath.row]
+        cell.configureCell(forColor: color)
+        
+        return cell
+    }
+    
+}
+
+//MARK: - UICollectionViewDelegate
+
+extension BackgroundColorViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        selectedColor = Color.allColors[indexPath.row]
+        
+        view.backgroundColor = selectedColor?.color()
+        
+    }
+    
+}
+
 
 
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum Color: String, CaseCountable {
+enum Color: String {
     
     case green
     case red
@@ -17,6 +17,7 @@ enum Color: String, CaseCountable {
     case yellow
     case blue
     case purple
+    case navBarBlue
     
     func color() -> UIColor {
         
@@ -36,10 +37,12 @@ enum Color: String, CaseCountable {
             
         case .purple: return UIColor(red: 178/255, green: 164/255, blue: 252/255, alpha: 1.0)
             
+        case .navBarBlue: return UIColor(red: 70/255, green: 156/255, blue: 227/255, alpha: 1.0)
+            
         }
         
     }
     
-    static var caseCount: Int = Color.caseCount
+    static let allColors = [green, red, pink, orange, yellow, blue, purple]
     
 }

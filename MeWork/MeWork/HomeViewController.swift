@@ -28,7 +28,7 @@ class HomeViewController: UIViewController {
         
         let button = UIButton()
         button.setTitle("Create or Edit Token Board", for: .normal)
-        button.backgroundColor = Color.blue.color()
+        button.backgroundColor = Color.navBarBlue.color()
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
@@ -45,7 +45,7 @@ class HomeViewController: UIViewController {
         
         let button = UIButton()
         button.setTitle("Select Token Board", for: .normal)
-        button.backgroundColor = Color.blue.color()
+        button.backgroundColor = Color.navBarBlue.color()
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true

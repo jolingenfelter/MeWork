@@ -49,7 +49,7 @@ class ChooseImageViewController: UIViewController {
     lazy var imageFromWebButton: UIButton = {
         
         let button = UIButton()
-        button.backgroundColor = Color.blue.color()
+        button.backgroundColor = Color.navBarBlue.color()
         button.setTitle("Image from the Web", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
@@ -65,7 +65,7 @@ class ChooseImageViewController: UIViewController {
     lazy var imageFromMeWorkLibraryButton: UIButton = {
         
         let button = UIButton()
-        button.backgroundColor = Color.blue.color()
+        button.backgroundColor = Color.navBarBlue.color()
         button.setTitle("Image from MeWork Library", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
@@ -81,7 +81,7 @@ class ChooseImageViewController: UIViewController {
     lazy var imageFromPhotoLibraryButton: UIButton = {
         
         let button = UIButton()
-        button.backgroundColor = Color.blue.color()
+        button.backgroundColor = Color.navBarBlue.color()
         button.setTitle("Image from Photos", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5

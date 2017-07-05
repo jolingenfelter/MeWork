@@ -48,7 +48,7 @@ class EnterChildNameViewController: UIViewController {
     lazy var nextButton: UIButton = {
         
         let button = UIButton()
-        button.backgroundColor = Color.blue.color()
+        button.backgroundColor = Color.navBarBlue.color()
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
