@@ -278,7 +278,8 @@ extension BackgroundColorViewController: UICollectionViewDataSource {
         let cell = colorPaletteView.dequeueReusableCell(withReuseIdentifier: ColorCell.reuseIdentifier, for: indexPath) as! ColorCell
         let color = Color.allColors[indexPath.row]
         cell.configureCell(forColor: color)
-        
+        cell.colorSample.addTarget(self, action: #selector(toggleSelection(sender:)), for: .touchUpInside)
+    
         return cell
     }
     
@@ -288,12 +289,33 @@ extension BackgroundColorViewController: UICollectionViewDataSource {
 
 extension BackgroundColorViewController: UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func toggleSelection(sender: UIButton) {
         
-        selectedColor = Color.allColors[indexPath.row]
+        let point = sender.convert(CGPoint.zero, to: colorPaletteView)
         
-        view.backgroundColor = selectedColor?.color()
+        guard let selectedIndexPath = colorPaletteView.indexPathForItem(at: point) else {
+            return
+        }
         
+        let cell = colorPaletteView.cellForItem(at: selectedIndexPath) as! ColorCell
+        
+        let color = Color.allColors[selectedIndexPath.row]
+        view.backgroundColor = color.color()
+        
+        if cell.colorIsSelected == true {
+            
+            cell.colorSample.layer.borderWidth = 0
+            
+        } else {
+
+            cell.colorSample.layer.borderWidth = 4
+            cell.colorSample.layer.borderColor = UIColor.lightGray.cgColor
+            
+        }
+        
+        cell.toggleSelection()
+        selectedColor = Color.allColors[selectedIndexPath.row]
+    
     }
     
 }

@@ -11,7 +11,8 @@ import UIKit
 class ColorCell: UICollectionViewCell {
     
     static let reuseIdentifier = "ColorCell"
-    let colorSample = UIView()
+    let colorSample = UIButton()
+    var colorIsSelected: Bool = false
     
     override func layoutSubviews() {
         
@@ -32,6 +33,16 @@ class ColorCell: UICollectionViewCell {
         colorSample.backgroundColor = color.color()
         colorSample.layer.cornerRadius = 15
         colorSample.layer.masksToBounds = true
+        
+    }
+    
+    func toggleSelection() {
+        
+        if colorIsSelected == true {
+            colorIsSelected = false
+        } else {
+            colorIsSelected = true
+        }
         
     }
     
