@@ -13,6 +13,7 @@ class BackgroundColorViewController: UIViewController {
     var childName: String?
     var tokenNumber: Int?
     var selectedColor: Color?
+    var selectedColors: [ColorCell]?
     var tokenBoard: TokenBoard?
     
     lazy var titleLabel: UILabel = {
@@ -299,22 +300,24 @@ extension BackgroundColorViewController: UICollectionViewDelegate {
         
         let cell = colorPaletteView.cellForItem(at: selectedIndexPath) as! ColorCell
         
+        cell.colorSample.layer.borderWidth = 4
+        cell.colorSample.layer.borderColor = UIColor.lightGray.cgColor
+        
         let color = Color.allColors[selectedIndexPath.row]
         view.backgroundColor = color.color()
         
-        if cell.colorIsSelected == true {
-            
-            cell.colorSample.layer.borderWidth = 0
-            
-        } else {
-
-            cell.colorSample.layer.borderWidth = 4
-            cell.colorSample.layer.borderColor = UIColor.lightGray.cgColor
-            
-        }
+        selectedColor = color
         
-        cell.toggleSelection()
-        selectedColor = Color.allColors[selectedIndexPath.row]
+        let allCells = colorPaletteView.visibleCells as! [ColorCell]
+        
+        for cell in allCells {
+            
+            if cell.color != color {
+                
+                cell.colorSample.layer.borderWidth = 0
+                
+            }
+        }
     
     }
     
