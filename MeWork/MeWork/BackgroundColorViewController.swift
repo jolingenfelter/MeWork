@@ -107,7 +107,6 @@ class BackgroundColorViewController: UIViewController {
         colorPaletteView.register(ColorCell.self, forCellWithReuseIdentifier: ColorCell.reuseIdentifier)
         
         colorPaletteView.dataSource = self
-        colorPaletteView.delegate = self
 
     }
     
@@ -288,7 +287,7 @@ extension BackgroundColorViewController: UICollectionViewDataSource {
 
 //MARK: - UICollectionViewDelegate
 
-extension BackgroundColorViewController: UICollectionViewDelegate {
+extension BackgroundColorViewController {
     
     func toggleSelection(sender: UIButton) {
         

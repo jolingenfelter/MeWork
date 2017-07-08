@@ -12,6 +12,7 @@ class ChooseImageViewController: UIViewController {
     
     var childName: String?
     var tokenNumber: Int?
+    var backgroundColor: Color?
     
     var tokenBoard: TokenBoard?
     
@@ -37,7 +38,7 @@ class ChooseImageViewController: UIViewController {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 5
+        imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
         
         self.view.addSubview(imageView)
@@ -52,6 +53,7 @@ class ChooseImageViewController: UIViewController {
         button.backgroundColor = Color.navBarBlue.color()
         button.setTitle("Image from the Web", for: .normal)
         button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(imageFromWeb), for: .touchUpInside)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -100,6 +102,7 @@ class ChooseImageViewController: UIViewController {
         
         self.childName = childName
         self.tokenNumber = tokenNumber
+        self.backgroundColor = backgroundColor
         
     }
     
@@ -131,6 +134,7 @@ class ChooseImageViewController: UIViewController {
         } else {
             
             titleLabel.text = "Choose a token image"
+            view.backgroundColor = backgroundColor!.color()
             
         }
         
@@ -249,19 +253,26 @@ extension ChooseImageViewController {
     
     func donePressed() {
         
-        if tokenBoard == nil {
+        guard let tokenImageName = tokenImageName else {
             
-            guard let tokenImageName = tokenImageName else {
-                
-                showAlert(withTitle: "Oops!", andMessage: "You must choose an image for your tokens")
-                
-                return
-            }
+            showAlert(withTitle: "Oops!", andMessage: "You must choose an image for your tokens")
             
-        } else {
+            return
+        }
+        
+       if let tokenBoard = tokenBoard {
+        
+            tokenBoard.tokenImageName = tokenImageName
+            CoreDataManager.sharedInstance.saveContext()
             
-            
-            
+        
+       } else {
+        
+        
+            tokenBoard = TokenBoard.tokenBoard(withName: childName!, backgroundColor: (backgroundColor?.rawValue)!, tokenImageName: tokenImageName, andTokenNumber: tokenNumber!)
+            CoreDataManager.sharedInstance.saveContext()
+        
+        
         }
         
     }
@@ -269,6 +280,14 @@ extension ChooseImageViewController {
     func cancelPressed() {
         
         self.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    func imageFromWeb() {
+        
+        let getImageViewController = GetWebImageViewController()
+        let navigationController = UINavigationController(rootViewController: getImageViewController)
+        self.present(navigationController, animated: true, completion: nil)
         
     }
 }

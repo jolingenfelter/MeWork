@@ -14,6 +14,7 @@
 		9E0DCCF51EFC8CDC001AB810 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0DCCF41EFC8CDC001AB810 /* Color.swift */; };
 		9E0DCCF81EFC91B0001AB810 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0DCCF71EFC91B0001AB810 /* CoreDataManager.swift */; };
 		9E0DCCFB1EFC9571001AB810 /* MeWork.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E0DCCF91EFC9571001AB810 /* MeWork.xcdatamodeld */; };
+		9E0FC9161F103C58003985C0 /* GetWebImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0FC9151F103C58003985C0 /* GetWebImageViewController.swift */; };
 		9E22ECD31EFD39A200546314 /* TokenBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E22ECD21EFD39A200546314 /* TokenBoard.swift */; };
 		9E918F4B1EFF2F5900466251 /* Reward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E918F4A1EFF2F5900466251 /* Reward.swift */; };
 		9EB8C4871F019A3100F0D2BD /* ChooseImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB8C4861F019A3100F0D2BD /* ChooseImageViewController.swift */; };
@@ -39,6 +40,7 @@
 		9E0DCCF41EFC8CDC001AB810 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		9E0DCCF71EFC91B0001AB810 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		9E0DCCFA1EFC9571001AB810 /* MeWork.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MeWork.xcdatamodel; sourceTree = "<group>"; };
+		9E0FC9151F103C58003985C0 /* GetWebImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetWebImageViewController.swift; sourceTree = "<group>"; };
 		9E22ECD21EFD39A200546314 /* TokenBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenBoard.swift; sourceTree = "<group>"; };
 		9E918F4A1EFF2F5900466251 /* Reward.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reward.swift; sourceTree = "<group>"; };
 		9EB8C4861F019A3100F0D2BD /* ChooseImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseImageViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				9E0DCCE41EFC8C35001AB810 /* HomeViewController.swift */,
 				9EF20FF51EFEFCB4008D7F8C /* TokenBoardList */,
 				9EC7E6941F000805008093E8 /* CreateTokenBoard */,
+				9E0FC9141F103BEC003985C0 /* GetImages */,
 				9E0DCCE91EFC8C35001AB810 /* Assets.xcassets */,
 				9E0DCCEB1EFC8C35001AB810 /* LaunchScreen.storyboard */,
 				9E0DCCEE1EFC8C35001AB810 /* Info.plist */,
@@ -117,6 +120,14 @@
 				9E0DCCF91EFC9571001AB810 /* MeWork.xcdatamodeld */,
 			);
 			name = "CoreData & Model";
+			sourceTree = "<group>";
+		};
+		9E0FC9141F103BEC003985C0 /* GetImages */ = {
+			isa = PBXGroup;
+			children = (
+				9E0FC9151F103C58003985C0 /* GetWebImageViewController.swift */,
+			);
+			name = GetImages;
 			sourceTree = "<group>";
 		};
 		9EC7E6941F000805008093E8 /* CreateTokenBoard */ = {
@@ -221,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E0FC9161F103C58003985C0 /* GetWebImageViewController.swift in Sources */,
 				9EF0AAE51F0C2AC500E2BBA8 /* ColorCell.swift in Sources */,
 				9EF20FEC1EFEEF0C008D7F8C /* UIDevice Extension.swift in Sources */,
 				9E22ECD31EFD39A200546314 /* TokenBoard.swift in Sources */,
