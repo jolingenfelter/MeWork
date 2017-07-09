@@ -12,6 +12,7 @@ class GetWebImageViewController: UIViewController {
     
     let webView = UIWebView()
     let progressView = UIProgressView()
+    var loadTimer = Timer()
     let longPressRecognizer = UILongPressGestureRecognizer()
     var webViewIsLoaded = false
     
@@ -105,6 +106,7 @@ class GetWebImageViewController: UIViewController {
     
     func webViewSetup() {
         
+        webView.delegate = self
         webView.scalesPageToFit = true
         let url = URL(string: "http://www.google.com")
         let request = URLRequest(url: url!)
@@ -178,6 +180,40 @@ class GetWebImageViewController: UIViewController {
 
         
     }
+    
+    // MARK: - Timer
+    
+    func timerCallBack() {
+        
+        if webViewIsLoaded == true {
+            
+            if progressView.progress >= 1 {
+                
+                loadTimer.invalidate()
+                
+            } else {
+                
+                progressView.progress += 0.1
+                
+            }
+        } else {
+            
+            progressView.progress += 0.05
+            
+            if progressView.progress >= 0.95 {
+                progressView.progress = 0.95
+            }
+            
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        
+        super.viewDidDisappear(true)
+        
+        webView.loadHTMLString("", baseURL: nil)
+        
+    }
 
 }
 
@@ -223,3 +259,55 @@ extension GetWebImageViewController {
     }
     
 }
+
+// MARK: - UIWebViewDelegate
+
+extension GetWebImageViewController: UIWebViewDelegate {
+    
+    func webViewDidStartLoad(_ webView: UIWebView) {
+       
+        progressView.isHidden = false
+        progressView.progress = 0.0
+        webViewIsLoaded = false
+        loadTimer = Timer.scheduledTimer(timeInterval: 0.01667, target: self, selector: #selector(timerCallBack), userInfo: nil, repeats: true)
+        updateButtons()
+        
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        
+        self.urlTextField.text = webView.request?.url?.absoluteString
+        webViewIsLoaded = true
+        progressView.isHidden = true
+        updateButtons()
+        
+        // Disable user text selection
+        webView.stringByEvaluatingJavaScript(from: "document.documentElement.style.webkitUserSelect='none';")
+        webView.stringByEvaluatingJavaScript(from: "document.documentElement.style.webkitTouchCallout='none';")
+        
+    }
+    
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+        
+        webViewIsLoaded = true
+        progressView.isHidden = true
+        updateButtons()
+        
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
