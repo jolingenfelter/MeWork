@@ -36,6 +36,7 @@ class GetWebImageViewController: UIViewController {
         textField.layer.cornerRadius = 5
         textField.layer.masksToBounds = true
         
+        textField.delegate = self
         textField.returnKeyType = .go
         textField.keyboardType = .webSearch
         textField.autocorrectionType = .no
@@ -293,6 +294,57 @@ extension GetWebImageViewController: UIWebViewDelegate {
         progressView.isHidden = true
         updateButtons()
         
+    }
+    
+}
+
+extension GetWebImageViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        urlTextField.resignFirstResponder()
+        
+        if var urlString = urlTextField.text {
+            
+            if urlString.contains(" ") {
+                let searchString = urlString.replacingOccurrences(of: " ", with: "+")
+                urlString = "google.com/search?q=\(searchString)"
+            }
+            
+            let characterSet = "-0123456789."
+            
+            if !isAnyCharacter(from: characterSet, containedIn: urlString) {
+                let searchString = urlString
+                urlString = "google.com/search?q=\(searchString)"
+            }
+            
+            var userURL = URL(string: "")
+            let url = URL(string: urlString)
+            
+            if var url = url {
+                
+                if (url.scheme == nil) {
+                    
+                    url = URL(string: "http://\(url)")!
+                    userURL = url
+                    
+                } else {
+                    
+                    userURL = url
+                    
+                }
+                
+                let request = URLRequest(url: userURL!)
+                webView.loadRequest(request)
+            }
+        }
+        
+        return false
+
+    }
+    
+    func isAnyCharacter(from characterSetString: String, containedIn string: String) -> Bool {
+        return Set(characterSetString.characters).isDisjoint(with: Set(string.characters)) == false
     }
     
 }
