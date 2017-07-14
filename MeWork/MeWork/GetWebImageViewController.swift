@@ -101,6 +101,7 @@ class GetWebImageViewController: UIViewController {
         
         navBarSetup()
         webViewSetup()
+        longPressGestureSetup()
 
         // Do any additional setup after loading the view.
     }
@@ -112,6 +113,14 @@ class GetWebImageViewController: UIViewController {
         let url = URL(string: "http://www.google.com")
         let request = URLRequest(url: url!)
         webView.loadRequest(request)
+        
+    }
+    
+    func longPressGestureSetup() {
+        
+        longPressRecognizer.delegate = self
+        longPressRecognizer.addTarget(self, action: #selector(longPressAction(sender:)))
+        webView.addGestureRecognizer(longPressRecognizer)
         
     }
     
@@ -349,7 +358,26 @@ extension GetWebImageViewController: UITextFieldDelegate {
     
 }
 
+// MARK: - GestureRecognizerDelegate & Gesture Selector
 
+extension GetWebImageViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+        
+    }
+    
+    func longPressAction(sender: UILongPressGestureRecognizer) {
+        
+        let saveImageViewController = SaveWebImageViewController()
+        saveImageViewController.modalPresentationStyle = .formSheet
+        
+        print("long press")
+        
+        self.present(saveImageViewController, animated: true, completion: nil)
+        
+    }
+}
 
 
 
