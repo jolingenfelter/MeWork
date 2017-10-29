@@ -169,17 +169,27 @@ class BackgroundColorViewController: UIViewController {
             
         case .phone:
             
-            setupLabel(withFontSize: 24)
-            
-            if ScreenSize.SCREEN_MAX_LENGTH == 736.0 || ScreenSize.SCREEN_MAX_LENGTH == 812.0 {
+            // iPhone Plus size
+            if ScreenSize.SCREEN_MAX_LENGTH == 736.0 {
                 
+                setupLabel(withFontSize: 22)
                 setupCollectionView(withTopConstant: 60, andHeight: 300)
-                setupNextButton(withFontSize: 18, height: 40, andTopConstant: 60)
+                setupNextButton(withFontSize: 22, height: 40, andTopConstant: 60)
+             
+            // iPhone X size
+            } else if ScreenSize.SCREEN_MAX_LENGTH == 812.0 {
                 
+                setupLabel(withFontSize: 24)
+                setupCollectionView(withTopConstant: 80, andHeight: 300)
+                setupNextButton(withFontSize: 24, height: 40, andTopConstant: 100)
+            
+            // All other models
             } else {
                 
+                setupLabel(withFontSize: 20)
                 setupCollectionView(withTopConstant: 40, andHeight: 250)
-                setupNextButton(withFontSize: 22, height: 40, andTopConstant: 40)
+                setupNextButton(withFontSize: 20, height: 40, andTopConstant: 40)
+                
             }
             
         default:
