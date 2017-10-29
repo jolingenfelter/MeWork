@@ -120,11 +120,6 @@ class ChooseImageViewController: UIViewController {
         prepareViewController()
         navBarSetup()
         
-        let displaySize = UIScreen.main.bounds
-        let length = displaySize.height
-        print(length)
-
-        // Do any additional setup after loading the view.
     }
     
     func prepareViewController() {
@@ -156,21 +151,35 @@ class ChooseImageViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         switch UIDevice.current.userInterfaceIdiom {
+          
+        // Layout for iPads
             
         case .pad:
             
-            setupLabel(withFontSize: 48)
-            setupImageView(withHeight: 400, andTopAnchorConstant: 60)
-            
-            if DeviceType.IS_IPAD_PRO_12_9 {
+            // iPad Pro 12.9 inch
+            if ScreenSize.SCREEN_MAX_LENGTH == 1366.0 {
                 
+                setupLabel(withFontSize: 48)
+                setupImageView(withHeight: 400, andTopAnchorConstant: 60)
                 buttonSetup(withFontSize: 28, height: 80, topAnchorConstant: 180, bottomAnchorConstant: -180)
+            
+            // iPad Pro 10.5 inch
+            } else if ScreenSize.SCREEN_MAX_LENGTH == 1112.0 {
                 
+                setupLabel(withFontSize: 44)
+                setupImageView(withHeight: 400, andTopAnchorConstant: 60)
+                buttonSetup(withFontSize: 24, height: 60, topAnchorConstant: 80, bottomAnchorConstant: -180)
+        
+            // iPad 9.7 inch and mini
             } else {
                 
-                buttonSetup(withFontSize: 24, height: 60, topAnchorConstant: 80, bottomAnchorConstant: -120)
+                setupLabel(withFontSize: 40)
+                setupImageView(withHeight: 400, andTopAnchorConstant: 60)
+                buttonSetup(withFontSize: 20, height: 50, topAnchorConstant: 80, bottomAnchorConstant: -120)
                 
             }
+            
+        // Layout for iPhones
             
         case .phone:
             
