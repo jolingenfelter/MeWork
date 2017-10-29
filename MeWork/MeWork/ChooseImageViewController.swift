@@ -119,6 +119,10 @@ class ChooseImageViewController: UIViewController {
         view.backgroundColor = Color.green.color()
         prepareViewController()
         navBarSetup()
+        
+        let displaySize = UIScreen.main.bounds
+        let length = displaySize.height
+        print(length)
 
         // Do any additional setup after loading the view.
     }
@@ -170,16 +174,32 @@ class ChooseImageViewController: UIViewController {
             
         case .phone:
             
+            // iPhone 5 Size
             if ScreenSize.SCREEN_MAX_LENGTH == 568.0 {
                 
                 setupLabel(withFontSize: 22)
                 setupImageView(withHeight: 170, andTopAnchorConstant: 20)
                 buttonSetup(withFontSize: 14, height: 40, topAnchorConstant: 40, bottomAnchorConstant: -40)
-                
-            } else {
+            
+            // iPhone 6 Size
+            } else if ScreenSize.SCREEN_MAX_LENGTH == 667 {
                 
                 setupLabel(withFontSize: 24)
-                setupImageView(withHeight: 200, andTopAnchorConstant: 20)
+                setupImageView(withHeight: 180, andTopAnchorConstant: 20)
+                buttonSetup(withFontSize: 16, height: 40, topAnchorConstant: 80, bottomAnchorConstant: -80)
+            
+            // iPhone X Size
+            } else if ScreenSize.SCREEN_MAX_LENGTH == 812.0 {
+                
+                setupLabel(withFontSize: 32)
+                setupImageView(withHeight: 260, andTopAnchorConstant: 40)
+                buttonSetup(withFontSize: 18, height: 40, topAnchorConstant: 40, bottomAnchorConstant: -120)
+            
+            // iPhone Plus Size
+            } else {
+                
+                setupLabel(withFontSize: 30)
+                setupImageView(withHeight: 240, andTopAnchorConstant: 40)
                 buttonSetup(withFontSize: 18, height: 40, topAnchorConstant: 80, bottomAnchorConstant: -80)
                 
             }
