@@ -39,7 +39,7 @@ class BackgroundColorViewController: UIViewController {
             
         case .pad:
             
-            if DeviceType.IS_IPAD_PRO_12_9 {
+            if ScreenSize.SCREEN_MAX_LENGTH == 1366.0 {
                 
                 flowLayout.estimatedItemSize = CGSize(width: 200, height: 200)
                 
@@ -144,15 +144,24 @@ class BackgroundColorViewController: UIViewController {
             
         case .pad:
             
-            if DeviceType.IS_IPAD_PRO_12_9 {
-                
-                setupLabel(withFontSize: 60)
-                setupCollectionView(withTopConstant: 80, andHeight: 500)
-                setupNextButton(withFontSize: 28, height: 60, andTopConstant: 80)
-                
-            } else {
+            // iPad Pro 12.9 inch
+            if ScreenSize.SCREEN_MAX_LENGTH == 1366.0 {
                 
                 setupLabel(withFontSize: 48)
+                setupCollectionView(withTopConstant: 100, andHeight: 400)
+                setupNextButton(withFontSize: 32, height: 80, andTopConstant: 80)
+            
+            // iPad Pro 10.5 inch
+            } else if ScreenSize.SCREEN_MAX_LENGTH == 1112.0 {
+                
+                setupLabel(withFontSize: 44)
+                setupCollectionView(withTopConstant: 100, andHeight: 400)
+                setupNextButton(withFontSize: 28, height: 60, andTopConstant: 80)
+             
+            // iPad 9.7 inch and mini
+            } else {
+                
+                setupLabel(withFontSize: 40)
                 setupCollectionView(withTopConstant: 80, andHeight: 400)
                 setupNextButton(withFontSize: 24, height: 60, andTopConstant: 60)
                 
@@ -162,7 +171,7 @@ class BackgroundColorViewController: UIViewController {
             
             setupLabel(withFontSize: 24)
             
-            if DeviceType.IS_IPHONE_6P || DeviceType.IS_IPHONE_7P {
+            if ScreenSize.SCREEN_MAX_LENGTH == 736.0 || ScreenSize.SCREEN_MAX_LENGTH == 812.0 {
                 
                 setupCollectionView(withTopConstant: 60, andHeight: 300)
                 setupNextButton(withFontSize: 18, height: 40, andTopConstant: 60)
