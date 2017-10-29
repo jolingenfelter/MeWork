@@ -170,9 +170,19 @@ class ChooseImageViewController: UIViewController {
             
         case .phone:
             
-            setupLabel(withFontSize: 24)
-            setupImageView(withHeight: 200, andTopAnchorConstant: 20)
-            buttonSetup(withFontSize: 18, height: 40, topAnchorConstant: 20, bottomAnchorConstant: -40)
+            if ScreenSize.SCREEN_MAX_LENGTH == 568.0 {
+                
+                setupLabel(withFontSize: 22)
+                setupImageView(withHeight: 170, andTopAnchorConstant: 20)
+                buttonSetup(withFontSize: 14, height: 40, topAnchorConstant: 40, bottomAnchorConstant: -40)
+                
+            } else {
+                
+                setupLabel(withFontSize: 24)
+                setupImageView(withHeight: 200, andTopAnchorConstant: 20)
+                buttonSetup(withFontSize: 18, height: 40, topAnchorConstant: 80, bottomAnchorConstant: -80)
+                
+            }
             
         default:
             
@@ -251,7 +261,7 @@ extension ChooseImageViewController {
         
     }
     
-    func donePressed() {
+    @objc func donePressed() {
         
         guard let tokenImageName = tokenImageName else {
             
@@ -277,13 +287,13 @@ extension ChooseImageViewController {
         
     }
     
-    func cancelPressed() {
+    @objc func cancelPressed() {
         
         self.dismiss(animated: true, completion: nil)
         
     }
     
-    func imageFromWeb() {
+    @objc func imageFromWeb() {
         
         let getImageViewController = GetWebImageViewController()
         let navigationController = UINavigationController(rootViewController: getImageViewController)

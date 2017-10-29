@@ -189,13 +189,13 @@ extension EnterChildNameViewController {
         
     }
     
-    func cancelPressed() {
+    @objc func cancelPressed() {
         
         self.dismiss(animated: true, completion: nil)
         
     }
     
-    func nextPressed() {
+    @objc func nextPressed() {
         
         guard nameTextField.text != "" else {
             

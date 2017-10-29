@@ -104,7 +104,7 @@ extension TokenBoardListViewController {
         
     }
     
-    func addTokenBoardPressed() {
+    @objc func addTokenBoardPressed() {
         
         let childNameViewController = EnterChildNameViewController()
         let navigationController = UINavigationController(rootViewController: childNameViewController)
@@ -129,7 +129,7 @@ extension TokenBoardListViewController {
         
     }
     
-    func showInstructions() {
+    @objc func showInstructions() {
         
         if dataSource.fetchedResultsController.fetchedObjects?.count == 0 {
             

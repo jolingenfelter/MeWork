@@ -193,7 +193,7 @@ class GetWebImageViewController: UIViewController {
     
     // MARK: - Timer
     
-    func timerCallBack() {
+    @objc func timerCallBack() {
         
         if webViewIsLoaded == true {
             
@@ -231,25 +231,25 @@ class GetWebImageViewController: UIViewController {
 
 extension GetWebImageViewController {
     
-    func donePressed() {
+    @objc func donePressed() {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func helpPressed() {
+    @objc func helpPressed() {
 //        let helpViewController = WebViewHelpViewController()
 //        helpViewController.modalPresentationStyle = .formSheet
 //        self.present(helpViewController, animated: true, completion: nil)
     }
     
-    func backPressed() {
+    @objc func backPressed() {
         webView.goBack()
     }
     
-    func forwardPressed() {
+    @objc func forwardPressed() {
         webView.goForward()
     }
     
-    func refreshPressed() {
+    @objc func refreshPressed() {
         webView.reload()
     }
     
@@ -367,14 +367,20 @@ extension GetWebImageViewController: UIGestureRecognizerDelegate {
         
     }
     
-    func longPressAction(sender: UILongPressGestureRecognizer) {
+    @objc func longPressAction(sender: UILongPressGestureRecognizer) {
         
         let saveImageViewController = SaveWebImageViewController()
         saveImageViewController.modalPresentationStyle = .formSheet
         
-        print("long press")
-        
-        self.present(saveImageViewController, animated: true, completion: nil)
+        if let presentedViewController = self.presentedViewController {
+            
+            presentedViewController.present(saveImageViewController, animated: true, completion: nil)
+            
+        } else {
+            
+              self.present(saveImageViewController, animated: true, completion: nil)
+            
+        }
         
     }
 }

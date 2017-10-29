@@ -200,20 +200,20 @@ extension NumberOfTokensViewController {
         
     }
     
-    func cancelPressed() {
+    @objc func cancelPressed() {
         
         self.dismiss(animated: true, completion: nil)
         
     }
     
-    func nextPressed() {
+    @objc func nextPressed() {
     
         let backgroundColorViewController = BackgroundColorViewController(childName: childName!, numberOfTokens: selectedNumberOfTokens!)
         navigationController?.pushViewController(backgroundColorViewController, animated: true)
         
     }
     
-    func savePressed() {
+    @objc func savePressed() {
         
         tokenBoard?.tokenNumber = String(describing: selectedNumberOfTokens)
         CoreDataManager.sharedInstance.saveContext()

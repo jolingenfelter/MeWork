@@ -151,14 +151,14 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController {
     
-    func createTokenBoardPressed() {
+    @objc func createTokenBoardPressed() {
         
         let tokenBoardListViewController = TokenBoardListViewController()
         navigationController?.pushViewController(tokenBoardListViewController, animated: true)
         
     }
     
-    func selectTokenBoardPressed() {
+    @objc func selectTokenBoardPressed() {
         
     }
     

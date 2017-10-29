@@ -229,13 +229,13 @@ extension BackgroundColorViewController {
         
     }
     
-    func cancelPressed() {
+    @objc func cancelPressed() {
         
         self.dismiss(animated: true, completion: nil)
         
     }
     
-    func nextPressed() {
+    @objc func nextPressed() {
         
         guard let selectedColor = selectedColor else {
             
@@ -251,7 +251,7 @@ extension BackgroundColorViewController {
         
     }
     
-    func saveChangesPressed() {
+    @objc func saveChangesPressed() {
         
         tokenBoard?.backgroundColor = selectedColor?.rawValue
         CoreDataManager.sharedInstance.saveContext()
@@ -289,7 +289,7 @@ extension BackgroundColorViewController: UICollectionViewDataSource {
 
 extension BackgroundColorViewController {
     
-    func toggleSelection(sender: UIButton) {
+    @objc func toggleSelection(sender: UIButton) {
         
         let point = sender.convert(CGPoint.zero, to: colorPaletteView)
         
