@@ -62,8 +62,12 @@ extension SaveWebImageViewController {
     
     func navBarSetup() {
         
+        let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 40.0))
+        view.addSubview(navigationBar)
+        let navItem = UINavigationItem()
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelPressed))
-        navigationItem.rightBarButtonItem = cancelButton
+        navItem.leftBarButtonItem = cancelButton
+        navigationBar.items = [navItem]
         
     }
     
