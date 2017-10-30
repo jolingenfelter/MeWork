@@ -113,7 +113,7 @@ class EnterChildNameViewController: UIViewController {
             
             setupTitleLabel(withFontSize: 48)
             setupTextField(withTopConstant: 300)
-            setUpButton(withHeight: 60, andFontSize: 24)
+            setUpButton(withHeight: 60, andFontSize: 28)
         
         case .phone:
             

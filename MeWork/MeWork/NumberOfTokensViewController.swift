@@ -114,32 +114,34 @@ class NumberOfTokensViewController: UIViewController {
         case .pad:
             
             setupLabel(withFontSize: 48)
+            let iPadFontSize: CGFloat = 28.0
             
             if ScreenSize.SCREEN_MAX_LENGTH == 1366.0 {
 
                 setupPickerView(withTopConstant: 80, andHeight: 500)
-                setupNextButton(withFontSize: 32, height: 60, andTopConstant: 80)
+                setupNextButton(withFontSize: iPadFontSize, height: 60, andTopConstant: 80)
                 
             } else {
-                
+        
                 setupPickerView(withTopConstant: 80, andHeight: 400)
-                setupNextButton(withFontSize: 24, height: 60, andTopConstant: 60)
+                setupNextButton(withFontSize: iPadFontSize, height: 60, andTopConstant: 60)
                 
             }
             
         case .phone:
             
             setupLabel(withFontSize: 24)
+            let iPhoneFontSize: CGFloat = 18.0
             
             if ScreenSize.SCREEN_MAX_LENGTH == 736.0 {
                 
                 setupPickerView(withTopConstant: 60, andHeight: 300)
-                setupNextButton(withFontSize: 22, height: 40, andTopConstant: 60)
+                setupNextButton(withFontSize: iPhoneFontSize, height: 40, andTopConstant: 60)
                 
             } else {
                 
                 setupPickerView(withTopConstant: 40, andHeight: 250)
-                setupNextButton(withFontSize: 18, height: 40, andTopConstant: 40)
+                setupNextButton(withFontSize: iPhoneFontSize, height: 40, andTopConstant: 40)
                 
             }
             

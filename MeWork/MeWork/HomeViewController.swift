@@ -88,8 +88,8 @@ class HomeViewController: UIViewController {
             
             // Buttons
             setButtonConstraints(withLeadingAnchorConstant: 80, trailingAnchorConstant: -80, height: 80, topAnchor: view.centerYAnchor, topConstant: 40)
-            createTokenBoardButton.titleLabel?.font = UIFont.systemFont(ofSize: 24)
-            selectTokenBoardButton.titleLabel?.font = UIFont.systemFont(ofSize: 24)
+            createTokenBoardButton.titleLabel?.font = UIFont.systemFont(ofSize: 28)
+            selectTokenBoardButton.titleLabel?.font = UIFont.systemFont(ofSize: 28)
         
         default:
             return

@@ -144,51 +144,55 @@ class BackgroundColorViewController: UIViewController {
             
         case .pad:
             
+            let iPadFontSize: CGFloat = 28
+            
             // iPad Pro 12.9 inch
             if ScreenSize.SCREEN_MAX_LENGTH == 1366.0 {
                 
                 setupLabel(withFontSize: 48)
                 setupCollectionView(withTopConstant: 80, andHeight: 500)
-                setupNextButton(withFontSize: 32, height: 80, andTopConstant: 200)
+                setupNextButton(withFontSize: iPadFontSize, height: 60, andTopConstant: 200)
             
             // iPad Pro 10.5 inch
             } else if ScreenSize.SCREEN_MAX_LENGTH == 1112.0 {
                 
                 setupLabel(withFontSize: 44)
                 setupCollectionView(withTopConstant: 80, andHeight: 400)
-                setupNextButton(withFontSize: 24, height: 60, andTopConstant: 80)
+                setupNextButton(withFontSize: iPadFontSize, height: 60, andTopConstant: 80)
              
             // iPad 9.7 inch and mini
             } else {
                 
                 setupLabel(withFontSize: 40)
                 setupCollectionView(withTopConstant: 80, andHeight: 400)
-                setupNextButton(withFontSize: 24, height: 60, andTopConstant: 60)
+                setupNextButton(withFontSize: iPadFontSize, height: 60, andTopConstant: 60)
                 
             }
             
         case .phone:
+            
+            let iPhoneFontSize: CGFloat = 18.0
             
             // iPhone Plus size
             if ScreenSize.SCREEN_MAX_LENGTH == 736.0 {
                 
                 setupLabel(withFontSize: 22)
                 setupCollectionView(withTopConstant: 60, andHeight: 300)
-                setupNextButton(withFontSize: 22, height: 40, andTopConstant: 60)
+                setupNextButton(withFontSize: iPhoneFontSize, height: 40, andTopConstant: 60)
              
             // iPhone X size
             } else if ScreenSize.SCREEN_MAX_LENGTH == 812.0 {
                 
                 setupLabel(withFontSize: 24)
                 setupCollectionView(withTopConstant: 80, andHeight: 300)
-                setupNextButton(withFontSize: 24, height: 40, andTopConstant: 100)
+                setupNextButton(withFontSize: iPhoneFontSize, height: 40, andTopConstant: 100)
             
             // All other models
             } else {
                 
                 setupLabel(withFontSize: 20)
                 setupCollectionView(withTopConstant: 40, andHeight: 250)
-                setupNextButton(withFontSize: 20, height: 40, andTopConstant: 40)
+                setupNextButton(withFontSize: iPhoneFontSize, height: 40, andTopConstant: 40)
                 
             }
             
