@@ -148,15 +148,15 @@ class BackgroundColorViewController: UIViewController {
             if ScreenSize.SCREEN_MAX_LENGTH == 1366.0 {
                 
                 setupLabel(withFontSize: 48)
-                setupCollectionView(withTopConstant: 100, andHeight: 400)
-                setupNextButton(withFontSize: 32, height: 80, andTopConstant: 80)
+                setupCollectionView(withTopConstant: 80, andHeight: 500)
+                setupNextButton(withFontSize: 32, height: 80, andTopConstant: 200)
             
             // iPad Pro 10.5 inch
             } else if ScreenSize.SCREEN_MAX_LENGTH == 1112.0 {
                 
                 setupLabel(withFontSize: 44)
-                setupCollectionView(withTopConstant: 100, andHeight: 400)
-                setupNextButton(withFontSize: 28, height: 60, andTopConstant: 80)
+                setupCollectionView(withTopConstant: 80, andHeight: 400)
+                setupNextButton(withFontSize: 24, height: 60, andTopConstant: 80)
              
             // iPad 9.7 inch and mini
             } else {
@@ -340,13 +340,3 @@ extension BackgroundColorViewController {
     }
     
 }
-
-
-
-
-
-
-
-
-
-

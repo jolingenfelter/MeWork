@@ -160,8 +160,8 @@ class ChooseImageViewController: UIViewController {
             if ScreenSize.SCREEN_MAX_LENGTH == 1366.0 {
                 
                 setupLabel(withFontSize: 48)
-                setupImageView(withHeight: 400, andTopAnchorConstant: 60)
-                buttonSetup(withFontSize: 28, height: 80, topAnchorConstant: 180, bottomAnchorConstant: -180)
+                setupImageView(withHeight: 440, andTopAnchorConstant: 60)
+                buttonSetup(withFontSize: 28, height: 80, topAnchorConstant: 180, bottomAnchorConstant: -220)
             
             // iPad Pro 10.5 inch
             } else if ScreenSize.SCREEN_MAX_LENGTH == 1112.0 {
