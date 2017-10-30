@@ -63,8 +63,8 @@ extension TokenBoardDataSource: UITableViewDataSource {
         let tokenBoard = fetchedResultsController.object(at: indexPath) as! TokenBoard
         
         if editingStyle == .delete {
-            CoreDataManager.sharedInstance.managedObjectContext.delete(tokenBoard)
-            CoreDataManager.sharedInstance.saveContext()
+            fetchedResultsController.managedObjectContext.delete(tokenBoard)
+            try? fetchedResultsController.managedObjectContext.save()
         }
         
     }
