@@ -16,6 +16,8 @@ class GetWebImageViewController: UIViewController {
     let longPressRecognizer = UILongPressGestureRecognizer()
     var webViewIsLoaded = false
     
+    var imageURL: URL?
+    
     var tokenBoard: TokenBoard?
     
     convenience init(tokenBoard: TokenBoard) {
@@ -369,17 +371,20 @@ extension GetWebImageViewController: UIGestureRecognizerDelegate {
     
     @objc func longPressAction(sender: UILongPressGestureRecognizer) {
         
-        let saveImageViewController = SaveWebImageViewController()
-        saveImageViewController.modalPresentationStyle = .formSheet
+        webView.stringByEvaluatingJavaScript(from: getImageJavaScript)
         
-        if let presentedViewController = self.presentedViewController {
+        if sender.state == UIGestureRecognizerState.recognized {
+            let point = sender.location(in: webView)
             
-            presentedViewController.present(saveImageViewController, animated: true, completion: nil)
+            guard let imageSRC = webView.stringByEvaluatingJavaScript(from: "GetImgSourceAtPoint(\(point.x),\(point.y));"), imageSRC != "" else {
+                return
+            }
             
-        } else {
-            
-              self.present(saveImageViewController, animated: true, completion: nil)
-            
+            imageURL = URL(string: imageSRC)
+            let saveImageVC = SaveWebImageViewController()
+            saveImageVC.modalPresentationStyle = .formSheet
+            self.present(saveImageVC, animated: true, completion: nil)
+        
         }
         
     }
