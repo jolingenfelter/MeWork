@@ -381,7 +381,12 @@ extension GetWebImageViewController: UIGestureRecognizerDelegate {
             }
             
             imageURL = URL(string: imageSRC)
-            let saveImageVC = SaveWebImageViewController()
+            
+            guard let imageURL = imageURL else {
+                return
+            }
+            
+            let saveImageVC = SaveWebImageViewController(imageURL: imageURL)
             saveImageVC.modalPresentationStyle = .formSheet
             self.present(saveImageVC, animated: true, completion: nil)
         

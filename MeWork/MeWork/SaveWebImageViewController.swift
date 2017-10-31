@@ -11,6 +11,7 @@ import UIKit
 class SaveWebImageViewController: UIViewController {
     
     var tokenBoard: TokenBoard?
+    let imageURL: URL
     
     lazy var cropScrollView: UIScrollView = {
         
@@ -52,7 +53,16 @@ class SaveWebImageViewController: UIViewController {
 
         
     }()
-
+    
+    init(imageURL: URL) {
+        self.imageURL = imageURL
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Color.yellow.color()
@@ -144,7 +154,6 @@ extension SaveWebImageViewController {
     }
     
     @objc func cancelPressed() {
-        
         self.dismiss(animated: true, completion: nil)
     }
 }

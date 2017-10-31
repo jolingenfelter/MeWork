@@ -1,0 +1,6 @@
+framework module Pods_MeWork {
+  umbrella header "Pods-MeWork-umbrella.h"
+
+  export *
+  module * { export * }
+}
