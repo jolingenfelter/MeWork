@@ -16,6 +16,8 @@ class SaveWebImageViewController: UIViewController {
     lazy var cropScrollView: UIScrollView = {
         
         let scrollView = UIScrollView()
+        scrollView.maximumZoomScale = 10.0
+        scrollView.minimumZoomScale = 1.0
         scrollView.delegate = self
         
         self.view.addSubview(scrollView)
@@ -160,4 +162,10 @@ extension SaveWebImageViewController {
 
 extension SaveWebImageViewController: UIScrollViewDelegate {
     
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return cropScrollView
+    }
+    
 }
+
+
