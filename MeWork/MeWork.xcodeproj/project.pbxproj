@@ -10,6 +10,7 @@
 		44295CF21D76E2EF3C371335 /* Pods_MeWork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6218D03E6971B3769E9A4BE /* Pods_MeWork.framework */; };
 		6306D2171FACAB3D001D4285 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6306D2161FACAB3D001D4285 /* Result.swift */; };
 		6306D2191FACAB62001D4285 /* ImageGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6306D2181FACAB62001D4285 /* ImageGetter.swift */; };
+		6306D21B1FACB632001D4285 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6306D21A1FACB632001D4285 /* ImageScrollView.swift */; };
 		636C78F61FA92A6A006CC723 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636C78F51FA92A6A006CC723 /* UIImageViewExtension.swift */; };
 		63DA79131FAA9BD700F7B54D /* CropBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA79121FAA9BD700F7B54D /* CropBox.swift */; };
 		9E0DCCE31EFC8C35001AB810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0DCCE21EFC8C35001AB810 /* AppDelegate.swift */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		6306D2161FACAB3D001D4285 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		6306D2181FACAB62001D4285 /* ImageGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGetter.swift; sourceTree = "<group>"; };
+		6306D21A1FACB632001D4285 /* ImageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
 		636C78F51FA92A6A006CC723 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		63DA79121FAA9BD700F7B54D /* CropBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropBox.swift; sourceTree = "<group>"; };
 		9E0DCCDF1EFC8C35001AB810 /* MeWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +144,7 @@
 				636C78F51FA92A6A006CC723 /* UIImageViewExtension.swift */,
 				6306D2161FACAB3D001D4285 /* Result.swift */,
 				6306D2181FACAB62001D4285 /* ImageGetter.swift */,
+				6306D21A1FACB632001D4285 /* ImageScrollView.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				9EC7E69A1F000D6C008093E8 /* UIViewControllerExtension.swift in Sources */,
 				9EF20FF41EFEFC9F008D7F8C /* TokenBoardDataSource.swift in Sources */,
 				9EFBD84A1F06A1C1002BFF1A /* DeviceType.swift in Sources */,
+				6306D21B1FACB632001D4285 /* ImageScrollView.swift in Sources */,
 				9E0DCCE31EFC8C35001AB810 /* AppDelegate.swift in Sources */,
 				9E0DCCFB1EFC9571001AB810 /* MeWork.xcdatamodeld in Sources */,
 			);

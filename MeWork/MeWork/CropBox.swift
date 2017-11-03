@@ -77,6 +77,7 @@ class CropBox: UIView {
     override func layoutSubviews() {
         self.backgroundColor = .white
         self.alpha = 0.5
+        self.isUserInteractionEnabled = false
     }
     
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {

@@ -14,35 +14,36 @@ class SaveWebImageViewController: UIViewController {
     let imageURL: URL
     let imageGetter: ImageGetter?
     
-    lazy var cropScrollView: UIScrollView = {
+    lazy var imageScrollView: ImageScrollView = {
         
-        let scrollView = UIScrollView()
-        scrollView.maximumZoomScale = 10.0
-        scrollView.minimumZoomScale = 1.0
-        scrollView.delegate = self
-        
+        let scrollView = ImageScrollView()
         self.view.addSubview(scrollView)
         
         return scrollView
     }()
     
-    let cropBox = CropBox()
+    lazy var cropBox: CropBox = {
+        
+        let box = CropBox()
+        box.isHidden = true
+        
+        view.addSubview(box)
+        
+        return box
+    }()
     
     var cropArea: CGRect? {
         
         get {
             
-            guard let image = previewImageView.image else {
-                return nil
-            }
+            let imageSize = imageScrollView._imageSize!
+            let factor = imageSize.width/view.frame.width
+            let scale = 1/imageScrollView.zoomScale
+            let imageFrame = imageScrollView.frame
             
-            let factor = image.size.width/view.frame.width
-            let scale = 1/cropScrollView.zoomScale
-            let imageFrame = previewImageView.frame
+            let x = (imageScrollView.contentOffset.x + cropBox.frame.origin.x - imageFrame.origin.x) * scale * factor
             
-            let x = (cropScrollView.contentOffset.x + cropBox.frame.origin.x - imageFrame.origin.x) * scale * factor
-            
-            let y = (cropScrollView.contentOffset.y + cropBox.frame.origin.y - imageFrame.origin.y) * scale * factor
+            let y = (imageScrollView.contentOffset.y + cropBox.frame.origin.y - imageFrame.origin.y) * scale * factor
             
             let width = cropBox.frame.size.width * scale * factor
             
@@ -53,20 +54,6 @@ class SaveWebImageViewController: UIViewController {
         }
         
     }
-    
-    lazy var previewImageView: UIImageView = {
-        
-        let imageView = UIImageView()
-        imageView.layer.cornerRadius = 12
-        imageView.layer.masksToBounds = true
-        imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.view.addSubview(imageView)
-        
-        return imageView
-        
-    }()
     
     lazy var saveImageButton: UIButton = {
         
@@ -108,9 +95,12 @@ class SaveWebImageViewController: UIViewController {
                 switch result {
                     
                     case .ok(let image):
+                        
                         DispatchQueue.main.async {
-                            strongSelf.previewImageView.image = image
+                            strongSelf.imageScrollView.displayImage(image)
+                            strongSelf.cropBox.isHidden = false
                         }
+                    
                     case .error(let error): strongSelf.showAlert(withTitle: "Oops!", andMessage: "There was a problem \(error.localizedDescription)")
                     
                 }
@@ -137,7 +127,6 @@ class SaveWebImageViewController: UIViewController {
             if ScreenSize.SCREEN_MAX_LENGTH == 1366.0 {
                 scrollViewSetup(withWidth: 300, andTopConstant: 80)
                 cropBoxSetup()
-                imagViewSetup()
                 saveButtonSetup(withFontSize: 28.0, height: 60, andTopConstant: 80)
             }
             
@@ -152,39 +141,25 @@ class SaveWebImageViewController: UIViewController {
     
     func scrollViewSetup(withWidth width: CGFloat, andTopConstant constant: CGFloat) {
         
-        cropScrollView.translatesAutoresizingMaskIntoConstraints = false
+        imageScrollView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            cropScrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: constant),
-            cropScrollView.widthAnchor.constraint(equalToConstant: width),
-            cropScrollView.heightAnchor.constraint(equalToConstant: width),
-            cropScrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
+            imageScrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: constant),
+            imageScrollView.widthAnchor.constraint(equalToConstant: width),
+            imageScrollView.heightAnchor.constraint(equalToConstant: width),
+            imageScrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
         
     }
     
     func cropBoxSetup() {
-        
-        view.addSubview(cropBox)
+    
         cropBox.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            cropBox.topAnchor.constraint(equalTo: cropScrollView.topAnchor, constant: 50),
-            cropBox.bottomAnchor.constraint(equalTo: cropScrollView.bottomAnchor, constant: -50),
-            cropBox.leftAnchor.constraint(equalTo: cropScrollView.leftAnchor, constant: 50),
-            cropBox.rightAnchor.constraint(equalTo: cropScrollView.rightAnchor, constant: -50)])
-        
-    }
-    
-    func imagViewSetup() {
-        
-        previewImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            previewImageView.topAnchor.constraint(equalTo: cropScrollView.topAnchor),
-            previewImageView.widthAnchor.constraint(equalTo: cropScrollView.widthAnchor),
-            previewImageView.heightAnchor.constraint(equalTo: cropScrollView.heightAnchor),
-            previewImageView.centerXAnchor.constraint(equalTo: cropScrollView.centerXAnchor)
-            ])
+            cropBox.topAnchor.constraint(equalTo: imageScrollView.topAnchor, constant: 50),
+            cropBox.bottomAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant: -50),
+            cropBox.leftAnchor.constraint(equalTo: imageScrollView.leftAnchor, constant: 50),
+            cropBox.rightAnchor.constraint(equalTo: imageScrollView.rightAnchor, constant: -50)])
         
     }
     
@@ -193,10 +168,10 @@ class SaveWebImageViewController: UIViewController {
         saveImageButton.titleLabel?.font = UIFont.systemFont(ofSize: fontSize)
         
         NSLayoutConstraint.activate([
-            saveImageButton.topAnchor.constraint(equalTo: previewImageView.bottomAnchor, constant: constant),
+            saveImageButton.topAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant: constant),
             saveImageButton.heightAnchor.constraint(equalToConstant: height),
             saveImageButton.widthAnchor.constraint(equalToConstant: 200),
-            saveImageButton.centerXAnchor.constraint(equalTo: previewImageView.centerXAnchor)
+            saveImageButton.centerXAnchor.constraint(equalTo: imageScrollView.centerXAnchor)
             ])
     
     }
@@ -227,13 +202,3 @@ extension SaveWebImageViewController {
         self.dismiss(animated: true, completion: nil)
     }
 }
-
-extension SaveWebImageViewController: UIScrollViewDelegate {
-    
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return cropScrollView
-    }
-    
-}
-
-
