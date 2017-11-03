@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		44295CF21D76E2EF3C371335 /* Pods_MeWork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6218D03E6971B3769E9A4BE /* Pods_MeWork.framework */; };
+		6306D2171FACAB3D001D4285 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6306D2161FACAB3D001D4285 /* Result.swift */; };
+		6306D2191FACAB62001D4285 /* ImageGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6306D2181FACAB62001D4285 /* ImageGetter.swift */; };
 		636C78F61FA92A6A006CC723 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636C78F51FA92A6A006CC723 /* UIImageViewExtension.swift */; };
 		63DA79131FAA9BD700F7B54D /* CropBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA79121FAA9BD700F7B54D /* CropBox.swift */; };
 		9E0DCCE31EFC8C35001AB810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0DCCE21EFC8C35001AB810 /* AppDelegate.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6306D2161FACAB3D001D4285 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		6306D2181FACAB62001D4285 /* ImageGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGetter.swift; sourceTree = "<group>"; };
 		636C78F51FA92A6A006CC723 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		63DA79121FAA9BD700F7B54D /* CropBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropBox.swift; sourceTree = "<group>"; };
 		9E0DCCDF1EFC8C35001AB810 /* MeWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +140,8 @@
 				9EC7E6991F000D6C008093E8 /* UIViewControllerExtension.swift */,
 				9EFBD8491F06A1C1002BFF1A /* DeviceType.swift */,
 				636C78F51FA92A6A006CC723 /* UIImageViewExtension.swift */,
+				6306D2161FACAB3D001D4285 /* Result.swift */,
+				6306D2181FACAB62001D4285 /* ImageGetter.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -334,10 +340,12 @@
 				9E22ECD31EFD39A200546314 /* TokenBoard.swift in Sources */,
 				9EB8C4871F019A3100F0D2BD /* ChooseImageViewController.swift in Sources */,
 				9E0DCCE51EFC8C35001AB810 /* HomeViewController.swift in Sources */,
+				6306D2191FACAB62001D4285 /* ImageGetter.swift in Sources */,
 				9E0DCCF51EFC8CDC001AB810 /* Color.swift in Sources */,
 				9E918F4B1EFF2F5900466251 /* Reward.swift in Sources */,
 				9E0DCCF81EFC91B0001AB810 /* CoreDataManager.swift in Sources */,
 				63DA79131FAA9BD700F7B54D /* CropBox.swift in Sources */,
+				6306D2171FACAB3D001D4285 /* Result.swift in Sources */,
 				9EEC8BD71F016BC600491A9E /* NumberOfTokensViewController.swift in Sources */,
 				636C78F61FA92A6A006CC723 /* UIImageViewExtension.swift in Sources */,
 				9EF20FF21EFEFC80008D7F8C /* TokenBoardFetchedResultsController.swift in Sources */,
