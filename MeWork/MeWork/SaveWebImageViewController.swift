@@ -25,6 +25,34 @@ class SaveWebImageViewController: UIViewController {
         return scrollView
     }()
     
+    let cropBox = CropBox()
+    
+    var cropArea: CGRect? {
+        
+        get {
+            
+            guard let image = previewImageView.image else {
+                return nil
+            }
+            
+            let factor = image.size.width/view.frame.width
+            let scale = 1/cropScrollView.zoomScale
+            let imageFrame = previewImageView.frame
+            
+            let x = (cropScrollView.contentOffset.x + cropBox.frame.origin.x - imageFrame.origin.x) * scale * factor
+            
+            let y = (cropScrollView.contentOffset.y + cropBox.frame.origin.y - imageFrame.origin.y) * scale * factor
+            
+            let width = cropBox.frame.size.width * scale * factor
+            
+            let height = cropBox.frame.size.height * scale * factor
+            
+            return CGRect(x: x, y: y, width: width, height: height)
+            
+        }
+        
+    }
+    
     lazy var previewImageView: UIImageView = {
         
         let imageView = UIImageView()
@@ -82,6 +110,7 @@ class SaveWebImageViewController: UIViewController {
             // iPad Pro 12.9 inch
             if ScreenSize.SCREEN_MAX_LENGTH == 1366.0 {
                 scrollViewSetup(withWidth: 300, andTopConstant: 80)
+                cropBoxSetup()
                 imagViewSetup()
                 saveButtonSetup(withFontSize: 28.0, height: 60, andTopConstant: 80)
             }
@@ -107,9 +136,20 @@ class SaveWebImageViewController: UIViewController {
         
     }
     
-    func imagViewSetup() {
+    func cropBoxSetup() {
         
-        previewImageView.backgroundColor = .blue
+        view.addSubview(cropBox)
+        cropBox.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            cropBox.topAnchor.constraint(equalTo: cropScrollView.topAnchor, constant: 50),
+            cropBox.bottomAnchor.constraint(equalTo: cropScrollView.bottomAnchor, constant: -50),
+            cropBox.leftAnchor.constraint(equalTo: cropScrollView.leftAnchor, constant: 50),
+            cropBox.rightAnchor.constraint(equalTo: cropScrollView.rightAnchor, constant: -50)])
+        
+    }
+    
+    func imagViewSetup() {
         
         previewImageView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -141,6 +181,8 @@ class SaveWebImageViewController: UIViewController {
     }
     
 }
+
+// MARK: - Navigation
 
 extension SaveWebImageViewController {
     
