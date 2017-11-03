@@ -15,15 +15,9 @@ class CropBox: UIView {
         
         let viewWidth = self.bounds.width
         let viewHeight = self.bounds.height
-        let viewSize = self.frame.size
         
         let lineWidth: CGFloat = 2.0
         let drawingColor = UIColor.black
-        let fillColor = UIColor.white
-        
-        UIGraphicsBeginImageContext(viewSize)
-        
-        fillColor.setFill()
         
         // Vertical Lines
         let vLine1 = UIBezierPath()
@@ -77,13 +71,12 @@ class CropBox: UIView {
         gridPath.append(hline3)
         
         gridPath.stroke()
-    
-        UIGraphicsEndImageContext()
         
     }
     
     override func layoutSubviews() {
         self.backgroundColor = .white
+        self.alpha = 0.5
     }
     
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
