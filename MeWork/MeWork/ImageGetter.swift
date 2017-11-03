@@ -11,6 +11,8 @@ import UIKit
 
 class ImageGetter {
     
+    static let sharedInstance = ImageGetter()
+    
     enum ImageGetterError: Error {
         case unknown
     }

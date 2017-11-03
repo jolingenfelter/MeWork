@@ -12,6 +12,7 @@ class SaveWebImageViewController: UIViewController {
     
     var tokenBoard: TokenBoard?
     let imageURL: URL
+    let imageGetter: ImageGetter?
     
     lazy var cropScrollView: UIScrollView = {
         
@@ -84,13 +85,38 @@ class SaveWebImageViewController: UIViewController {
         
     }()
     
-    init(imageURL: URL) {
+    init(imageURL: URL, imageGetter: ImageGetter = ImageGetter.sharedInstance) {
         self.imageURL = imageURL
+        self.imageGetter = imageGetter
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        if let imageGetter = imageGetter {
+            imageGetter.getImage(from: imageURL, completion: { [weak self] (result) in
+                
+                guard let strongSelf = self else {
+                    return
+                }
+               
+                switch result {
+                    
+                    case .ok(let image):
+                        DispatchQueue.main.async {
+                            strongSelf.previewImageView.image = image
+                        }
+                    case .error(let error): strongSelf.showAlert(withTitle: "Oops!", andMessage: "There was a problem \(error.localizedDescription)")
+                    
+                }
+                
+            })
+        }
     }
     
     override func viewDidLoad() {
