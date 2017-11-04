@@ -34,6 +34,9 @@ class ImageScrollView: UIScrollView, UIScrollViewDelegate {
     
     func customInit() {
         
+        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.borderWidth = 2.0
+        self.layer.cornerRadius = 15.0
         self.showsVerticalScrollIndicator = false;
         self.showsHorizontalScrollIndicator = false
         self.bouncesZoom = true
@@ -48,12 +51,12 @@ class ImageScrollView: UIScrollView, UIScrollViewDelegate {
         
         // center the zoom view as it becomes smaller than the size of the screen
         let boundsSize: CGSize = self.bounds.size
-        
+
         guard let imageView = self._imageView else {
             return
         }
         var frameToCenter: CGRect = imageView.frame
-        
+
         // center horizontally
         if frameToCenter.size.width < boundsSize.width {
             frameToCenter.origin.x = (boundsSize.width - frameToCenter.size.width) / 2
@@ -61,7 +64,7 @@ class ImageScrollView: UIScrollView, UIScrollViewDelegate {
         else {
             frameToCenter.origin.x = 0
         }
-        
+
         // center vertically
         if (frameToCenter.size.height < boundsSize.height) {
             frameToCenter.origin.y = (boundsSize.height - frameToCenter.size.height) / 2
@@ -69,8 +72,9 @@ class ImageScrollView: UIScrollView, UIScrollViewDelegate {
         else {
             frameToCenter.origin.y = 0
         }
-        
+
         self._imageView!.frame = frameToCenter
+        
     }
     
     
@@ -141,8 +145,8 @@ class ImageScrollView: UIScrollView, UIScrollViewDelegate {
         let boundsSize: CGSize = self.bounds.size
         
         // calculate min/max zoom scale
-        let xScale: CGFloat = boundsSize.width / _imageSize.width   // the scale needed to perfectly fit the image width-wise
-        let yScale: CGFloat = boundsSize.height / _imageSize.height // the scale neede to perfectly fit the image height-wise
+        let xScale: CGFloat = boundsSize.width / self.frame.size.width   // the scale needed to perfectly fit the image width-wise
+        let yScale: CGFloat = boundsSize.height / self.frame.size.height // the scale neede to perfectly fit the image height-wise
         
         // fill width if the image nad phone are both in prortrait or both landscape; otherwise take smaller scale
         let imagePortrait: Bool = _imageSize.height > _imageSize.width
@@ -152,7 +156,7 @@ class ImageScrollView: UIScrollView, UIScrollViewDelegate {
         // on high res screens we have double the pixel density, so we will be seeing every pixel if we limit the max zoom scale to 0.5
         //let maxScale: CGFloat = 1.0 / UIScreen.main.scale
         
-        let maxScale: CGFloat = 6.0
+        let maxScale: CGFloat = 10.0
         
         // don't let minScale exceed maxScale. (If the image is smaller than the screen, we don't want to force it to be zoomed.)
         

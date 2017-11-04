@@ -156,10 +156,11 @@ class SaveWebImageViewController: UIViewController {
         cropBox.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            cropBox.topAnchor.constraint(equalTo: imageScrollView.topAnchor, constant: 50),
-            cropBox.bottomAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant: -50),
-            cropBox.leftAnchor.constraint(equalTo: imageScrollView.leftAnchor, constant: 50),
-            cropBox.rightAnchor.constraint(equalTo: imageScrollView.rightAnchor, constant: -50)])
+            cropBox.topAnchor.constraint(equalTo: imageScrollView.topAnchor),
+            cropBox.bottomAnchor.constraint(equalTo: imageScrollView.bottomAnchor),
+            cropBox.leftAnchor.constraint(equalTo: imageScrollView.leftAnchor),
+            cropBox.rightAnchor.constraint(equalTo: imageScrollView.rightAnchor
+            )])
         
     }
     

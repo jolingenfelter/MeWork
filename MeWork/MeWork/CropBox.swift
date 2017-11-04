@@ -18,7 +18,7 @@ class CropBox: UIView {
         
         let lineWidth: CGFloat = 2.0
         let drawingColor = UIColor.black
-        
+    
         // Vertical Lines
         let vLine1 = UIBezierPath()
         let vLine2 = UIBezierPath()
@@ -75,8 +75,9 @@ class CropBox: UIView {
     }
     
     override func layoutSubviews() {
-        self.backgroundColor = .white
+        self.backgroundColor = .clear
         self.alpha = 0.5
+        self.layer.cornerRadius = 5.0
         self.isUserInteractionEnabled = false
     }
     

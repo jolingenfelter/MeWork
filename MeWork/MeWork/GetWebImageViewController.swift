@@ -355,7 +355,7 @@ extension GetWebImageViewController: UITextFieldDelegate {
     }
     
     func isAnyCharacter(from characterSetString: String, containedIn string: String) -> Bool {
-        return Set(characterSetString.characters).isDisjoint(with: Set(string.characters)) == false
+        return Set(characterSetString).isDisjoint(with: Set(string)) == false
     }
     
 }
