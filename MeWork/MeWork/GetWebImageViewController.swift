@@ -17,6 +17,7 @@ class GetWebImageViewController: UIViewController {
     var webViewIsLoaded = false
     
     var imageURL: URL?
+    var currentUserURL: URL?
     
     var tokenBoard: TokenBoard?
     
@@ -95,14 +96,25 @@ class GetWebImageViewController: UIViewController {
     }()
     
     let getImageJavaScript = "function GetImgSourceAtPoint(x,y) { var msg = ''; var e = document.elementFromPoint(x,y); while (e) { if (e.tagName == 'IMG') { msg += e.src; break; } e = e.parentNode; } return msg; }"
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Reload URL if returning from saving an image, iPads don't need this for formsheet presentation
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            if let currentUserURL = currentUserURL {
+                let request = URLRequest(url: currentUserURL)
+                webView.loadRequest(request)
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        
-        navBarSetup()
         webViewSetup()
+        navBarSetup()
         longPressGestureSetup()
 
         // Do any additional setup after loading the view.
@@ -374,6 +386,8 @@ extension GetWebImageViewController: UIGestureRecognizerDelegate {
         webView.stringByEvaluatingJavaScript(from: getImageJavaScript)
         
         if sender.state == UIGestureRecognizerState.recognized {
+            
+            currentUserURL = webView.request?.url
             let point = sender.location(in: webView)
             
             guard let imageSRC = webView.stringByEvaluatingJavaScript(from: "GetImgSourceAtPoint(\(point.x),\(point.y));"), imageSRC != "" else {
@@ -386,24 +400,25 @@ extension GetWebImageViewController: UIGestureRecognizerDelegate {
                 return
             }
             
+            
             let saveImageVC = SaveWebImageViewController(imageURL: imageURL)
-            saveImageVC.modalPresentationStyle = .formSheet
-            self.present(saveImageVC, animated: true, completion: nil)
+            
+            switch UIDevice.current.userInterfaceIdiom {
+            case .pad:
+                
+                saveImageVC.modalPresentationStyle = .formSheet
+                self.present(saveImageVC, animated: true, completion: nil)
+                
+            case .phone:
+                
+                let navigationController = UINavigationController(rootViewController: saveImageVC)
+                self.present(navigationController, animated: true, completion: nil)
+                
+            default:
+                break
+            }
         
         }
         
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

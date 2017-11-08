@@ -63,9 +63,9 @@ class SaveWebImageViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = Color.yellow.color()
         navBarSetup()
-
-        // Do any additional setup after loading the view.
     }
+    
+    // MARK: - Layout Views
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -75,19 +75,108 @@ class SaveWebImageViewController: UIViewController {
             
             // iPad Pro 12.9 inch
             if ScreenSize.SCREEN_MAX_LENGTH == 1366.0 {
+                
                 scrollViewSetup(withWidth: 300, andTopConstant: 80)
                 cropBoxSetup()
-                saveButtonSetup(withFontSize: 28.0, height: 60, andTopConstant: 80)
+                saveButtonSetup(withFontSize: 28.0, height: 80, andTopConstant: 80)
+                
+            // iPad Pro 10.5 inch
+            } else if ScreenSize.SCREEN_MAX_LENGTH == 1112.0{
+                
+                scrollViewSetup(withWidth: 280, andTopConstant: 60)
+                cropBoxSetup()
+                saveButtonSetup(withFontSize: 24.0, height: 60, andTopConstant: 80)
+            
+            // iPad 9.7 inch and mini
+            } else {
+                
+                scrollViewSetup(withWidth: 200, andTopConstant: 40)
+                cropBoxSetup()
+                saveButtonSetup(withFontSize: 20, height: 50, andTopConstant: 80)
+                
             }
             
         case .phone:
             
-            print("phone")
+            // iPhone 5 Size
+            if ScreenSize.SCREEN_MAX_LENGTH == 568.0 {
+                
+                scrollViewSetup(withWidth: 170, andTopConstant: 40)
+                cropBoxSetup()
+                saveButtonSetup(withFontSize: 14, height: 40, andTopConstant: 60)
+            
+            // iPhone 6 Size
+            } else if ScreenSize.SCREEN_MAX_LENGTH == 667 {
+                
+                scrollViewSetup(withWidth: 220, andTopConstant: 40)
+                cropBoxSetup()
+                saveButtonSetup(withFontSize: 16, height: 40, andTopConstant: 80)
+                
+            // iPhone X Size
+            } else if ScreenSize.SCREEN_MAX_LENGTH == 812.0 {
+                
+                scrollViewSetup(withWidth: 240, andTopConstant: 80)
+                cropBoxSetup()
+                saveButtonSetup(withFontSize: 18, height: 40, andTopConstant: 40)
+        
+            // iPhone Plus Size
+            } else {
+                
+                scrollViewSetup(withWidth: 240, andTopConstant: 80)
+                cropBoxSetup()
+                saveButtonSetup(withFontSize: 18, height: 40, andTopConstant: 120)
+                
+            }
             
         default:
             break
         }
     }
+    
+    func scrollViewSetup(withWidth width: CGFloat, andTopConstant constant: CGFloat) {
+        
+        imageScrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            imageScrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: constant),
+            imageScrollView.widthAnchor.constraint(equalToConstant: width),
+            imageScrollView.heightAnchor.constraint(equalToConstant: width),
+            imageScrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
+        
+    }
+    
+    func cropBoxSetup() {
+        
+        cropBox.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            cropBox.topAnchor.constraint(equalTo: imageScrollView.topAnchor),
+            cropBox.bottomAnchor.constraint(equalTo: imageScrollView.bottomAnchor),
+            cropBox.leftAnchor.constraint(equalTo: imageScrollView.leftAnchor),
+            cropBox.rightAnchor.constraint(equalTo: imageScrollView.rightAnchor
+            )])
+        
+    }
+    
+    func saveButtonSetup(withFontSize fontSize: CGFloat,height: CGFloat, andTopConstant constant: CGFloat) {
+        
+        saveImageButton.titleLabel?.font = UIFont.systemFont(ofSize: fontSize)
+        
+        NSLayoutConstraint.activate([
+            saveImageButton.topAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant: constant),
+            saveImageButton.heightAnchor.constraint(equalToConstant: height),
+            saveImageButton.widthAnchor.constraint(equalToConstant: 200),
+            saveImageButton.centerXAnchor.constraint(equalTo: imageScrollView.centerXAnchor)
+            ])
+        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - Load Image
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -116,49 +205,6 @@ class SaveWebImageViewController: UIViewController {
         }
     }
     
-    func scrollViewSetup(withWidth width: CGFloat, andTopConstant constant: CGFloat) {
-        
-        imageScrollView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            imageScrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: constant),
-            imageScrollView.widthAnchor.constraint(equalToConstant: width),
-            imageScrollView.heightAnchor.constraint(equalToConstant: width),
-            imageScrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
-        
-    }
-    
-    func cropBoxSetup() {
-    
-        cropBox.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            cropBox.topAnchor.constraint(equalTo: imageScrollView.topAnchor),
-            cropBox.bottomAnchor.constraint(equalTo: imageScrollView.bottomAnchor),
-            cropBox.leftAnchor.constraint(equalTo: imageScrollView.leftAnchor),
-            cropBox.rightAnchor.constraint(equalTo: imageScrollView.rightAnchor
-            )])
-        
-    }
-    
-    func saveButtonSetup(withFontSize fontSize: CGFloat,height: CGFloat, andTopConstant constant: CGFloat) {
-        
-        saveImageButton.titleLabel?.font = UIFont.systemFont(ofSize: fontSize)
-        
-        NSLayoutConstraint.activate([
-            saveImageButton.topAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant: constant),
-            saveImageButton.heightAnchor.constraint(equalToConstant: height),
-            saveImageButton.widthAnchor.constraint(equalToConstant: 200),
-            saveImageButton.centerXAnchor.constraint(equalTo: imageScrollView.centerXAnchor)
-            ])
-    
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 }
 
 // MARK: - Navigation
@@ -167,12 +213,21 @@ extension SaveWebImageViewController {
     
     func navBarSetup() {
         
-        let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 40.0))
-        view.addSubview(navigationBar)
-        let navItem = UINavigationItem()
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelPressed))
-        navItem.leftBarButtonItem = cancelButton
-        navigationBar.items = [navItem]
+        
+        // iPad create NavBar for formSheet presentation
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            
+            let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 40.0))
+            view.addSubview(navigationBar)
+            let navItem = UINavigationItem()
+            navItem.leftBarButtonItem = cancelButton
+            navigationBar.items = [navItem]
+        
+        // iPhone presents from navigationController
+        } else {
+            navigationItem.leftBarButtonItem = cancelButton
+        }
         
     }
     
