@@ -14,9 +14,9 @@ class SaveWebImageViewController: UIViewController {
     let imageURL: URL
     let imageGetter: ImageGetter?
     
-    lazy var imageScrollView: ImageScrollView = {
+    lazy var imageScrollView: ScrollAndCropImageView = {
         
-        let scrollView = ImageScrollView()
+        let scrollView = ScrollAndCropImageView()
         self.view.addSubview(scrollView)
         
         return scrollView
@@ -31,29 +31,6 @@ class SaveWebImageViewController: UIViewController {
         
         return box
     }()
-    
-    var cropArea: CGRect? {
-        
-        get {
-            
-            let imageSize = imageScrollView._imageSize!
-            let factor = imageSize.width/view.frame.width
-            let scale = 1/imageScrollView.zoomScale
-            let imageFrame = imageScrollView.frame
-            
-            let x = (imageScrollView.contentOffset.x + cropBox.frame.origin.x - imageFrame.origin.x) * scale * factor
-            
-            let y = (imageScrollView.contentOffset.y + cropBox.frame.origin.y - imageFrame.origin.y) * scale * factor
-            
-            let width = cropBox.frame.size.width * scale * factor
-            
-            let height = cropBox.frame.size.height * scale * factor
-            
-            return CGRect(x: x, y: y, width: width, height: height)
-            
-        }
-        
-    }
     
     lazy var saveImageButton: UIButton = {
         
@@ -82,33 +59,6 @@ class SaveWebImageViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-        if let imageGetter = imageGetter {
-            imageGetter.getImage(from: imageURL, completion: { [weak self] (result) in
-                
-                guard let strongSelf = self else {
-                    return
-                }
-               
-                switch result {
-                    
-                    case .ok(let image):
-                        
-                        DispatchQueue.main.async {
-                            strongSelf.imageScrollView.displayImage(image)
-                            strongSelf.cropBox.isHidden = false
-                        }
-                    
-                    case .error(let error): strongSelf.showAlert(withTitle: "Oops!", andMessage: "There was a problem \(error.localizedDescription)")
-                    
-                }
-                
-            })
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Color.yellow.color()
@@ -117,8 +67,8 @@ class SaveWebImageViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         
         switch UIDevice.current.userInterfaceIdiom {
         case .pad:
@@ -136,6 +86,33 @@ class SaveWebImageViewController: UIViewController {
             
         default:
             break
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if let imageGetter = imageGetter {
+            imageGetter.getImage(from: imageURL, completion: { [weak self] (result) in
+                
+                guard let strongSelf = self else {
+                    return
+                }
+                
+                switch result {
+                    
+                case .ok(let image):
+                    
+                    DispatchQueue.main.async {
+                        strongSelf.imageScrollView.showImage(image)
+                        strongSelf.cropBox.isHidden = false
+                    }
+                    
+                case .error(let error): strongSelf.showAlert(withTitle: "Oops!", andMessage: "There was a problem \(error.localizedDescription)")
+                    
+                }
+                
+            })
         }
     }
     
