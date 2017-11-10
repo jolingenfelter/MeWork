@@ -11,8 +11,8 @@ import UIKit
 class SaveWebImageViewController: UIViewController {
     
     var tokenBoard: TokenBoard?
-    let imageURL: URL
-    let imageGetter: ImageGetter?
+    var imageURL: URL?
+    let imageGetter: ImageGetter
     
     lazy var imageScrollView: ScrollAndCropImageView = {
         
@@ -49,7 +49,7 @@ class SaveWebImageViewController: UIViewController {
         
     }()
     
-    init(imageURL: URL, imageGetter: ImageGetter = ImageGetter.sharedInstance) {
+    init(imageURL: URL? = nil, imageGetter: ImageGetter = ImageGetter.sharedInstance) {
         self.imageURL = imageURL
         self.imageGetter = imageGetter
         super.init(nibName: nil, bundle: nil)
@@ -63,6 +63,37 @@ class SaveWebImageViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = Color.yellow.color()
         navBarSetup()
+    }
+    
+    // MARK: - Load Image
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let imageURL = imageURL {
+            
+            imageGetter.getImage(from: imageURL, completion: { [weak self] (result) in
+                
+                guard let strongSelf = self else {
+                    return
+                }
+                
+                switch result {
+                    
+                case .ok(let image):
+                    
+                    DispatchQueue.main.async {
+                        strongSelf.imageScrollView.showImage(image)
+                        strongSelf.cropBox.isHidden = false
+                    }
+                    
+                case .error(let error): strongSelf.showAlert(withTitle: "Oops!", andMessage: "There was a problem \(error.localizedDescription)")
+                    
+                }
+                
+            })
+        }
+        
     }
     
     // MARK: - Layout Views
@@ -176,33 +207,9 @@ class SaveWebImageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Load Image
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        if let imageGetter = imageGetter {
-            imageGetter.getImage(from: imageURL, completion: { [weak self] (result) in
-                
-                guard let strongSelf = self else {
-                    return
-                }
-                
-                switch result {
-                    
-                case .ok(let image):
-                    
-                    DispatchQueue.main.async {
-                        strongSelf.imageScrollView.showImage(image)
-                        strongSelf.cropBox.isHidden = false
-                    }
-                    
-                case .error(let error): strongSelf.showAlert(withTitle: "Oops!", andMessage: "There was a problem \(error.localizedDescription)")
-                    
-                }
-                
-            })
-        }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        imageURL = nil
     }
     
 }

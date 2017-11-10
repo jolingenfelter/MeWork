@@ -22,11 +22,8 @@ class GetWebImageViewController: UIViewController {
     var tokenBoard: TokenBoard?
     
     convenience init(tokenBoard: TokenBoard) {
-        
         self.init()
-        
         self.tokenBoard = tokenBoard
-        
     }
     
     lazy var urlTextField: UITextField = {
@@ -95,16 +92,7 @@ class GetWebImageViewController: UIViewController {
         
     }()
     
-    lazy var saveImageViewController: SaveWebImageViewController? = {
-        
-        guard let imageURL = imageURL else {
-            return nil
-        }
-        
-        let saveImageVC = SaveWebImageViewController(imageURL: imageURL)
-        
-        return saveImageVC
-    }()
+    let saveImageViewController = SaveWebImageViewController()
     
     let getImageJavaScript = "function GetImgSourceAtPoint(x,y) { var msg = ''; var e = document.elementFromPoint(x,y); while (e) { if (e.tagName == 'IMG') { msg += e.src; break; } e = e.parentNode; } return msg; }"
     
@@ -406,11 +394,7 @@ extension GetWebImageViewController: UIGestureRecognizerDelegate {
             }
             
             imageURL = URL(string: imageSRC)
-            
-        
-            guard let saveImageViewController = saveImageViewController else {
-                return
-            }
+            saveImageViewController.imageURL = imageURL
             
             switch UIDevice.current.userInterfaceIdiom {
             case .pad:
