@@ -95,6 +95,17 @@ class GetWebImageViewController: UIViewController {
         
     }()
     
+    lazy var saveImageViewController: SaveWebImageViewController? = {
+        
+        guard let imageURL = imageURL else {
+            return nil
+        }
+        
+        let saveImageVC = SaveWebImageViewController(imageURL: imageURL)
+        
+        return saveImageVC
+    }()
+    
     let getImageJavaScript = "function GetImgSourceAtPoint(x,y) { var msg = ''; var e = document.elementFromPoint(x,y); while (e) { if (e.tagName == 'IMG') { msg += e.src; break; } e = e.parentNode; } return msg; }"
     
     override func viewWillAppear(_ animated: Bool) {
@@ -396,22 +407,20 @@ extension GetWebImageViewController: UIGestureRecognizerDelegate {
             
             imageURL = URL(string: imageSRC)
             
-            guard let imageURL = imageURL else {
+        
+            guard let saveImageViewController = saveImageViewController else {
                 return
             }
-            
-            
-            let saveImageVC = SaveWebImageViewController(imageURL: imageURL)
             
             switch UIDevice.current.userInterfaceIdiom {
             case .pad:
                 
-                saveImageVC.modalPresentationStyle = .formSheet
-                self.present(saveImageVC, animated: true, completion: nil)
+                saveImageViewController.modalPresentationStyle = .formSheet
+                self.present(saveImageViewController, animated: true, completion: nil)
                 
             case .phone:
                 
-                let navigationController = UINavigationController(rootViewController: saveImageVC)
+                let navigationController = UINavigationController(rootViewController: saveImageViewController)
                 self.present(navigationController, animated: true, completion: nil)
                 
             default:
