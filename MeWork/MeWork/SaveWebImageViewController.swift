@@ -8,12 +8,17 @@
 
 import UIKit
 
+protocol SaveWebImageDelegate {
+    func prepareToSave(image: UIImage)
+}
+
 class SaveWebImageViewController: UIViewController {
     
     var tokenBoard: TokenBoard?
     var imageURL: URL?
     var originalImage: UIImage?
     let imageGetter: ImageGetter
+    var delegate: SaveWebImageDelegate!
     
     lazy var imageScrollView: ScrollAndCropImageView = {
         
@@ -249,7 +254,9 @@ extension SaveWebImageViewController {
     }
     
     @objc func cropAndSavePressed() {
-        
+        imageScrollView.cropImage { (image) in
+            delegate.prepareToSave(image: image)
+        }
     }
     
     @objc func refreshPressed() {

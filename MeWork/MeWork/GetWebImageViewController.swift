@@ -92,7 +92,11 @@ class GetWebImageViewController: UIViewController {
         
     }()
     
-    let saveImageViewController = SaveWebImageViewController()
+    lazy var saveImageViewController: SaveWebImageViewController = {
+        let saveWebImageVC = SaveWebImageViewController()
+        saveWebImageVC.delegate = self
+        return saveWebImageVC
+    }()
     
     let getImageJavaScript = "function GetImgSourceAtPoint(x,y) { var msg = ''; var e = document.elementFromPoint(x,y); while (e) { if (e.tagName == 'IMG') { msg += e.src; break; } e = e.parentNode; } return msg; }"
     
@@ -412,6 +416,13 @@ extension GetWebImageViewController: UIGestureRecognizerDelegate {
             }
         
         }
+        
+    }
+}
+
+extension GetWebImageViewController: SaveWebImageDelegate {
+    func prepareToSave(image: UIImage) {
+        let imageName = UUID.init().uuidString
         
     }
 }
