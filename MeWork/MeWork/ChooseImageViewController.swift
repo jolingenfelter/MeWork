@@ -322,6 +322,7 @@ extension ChooseImageViewController {
 
             tokenBoard.tokenImageName = tokenImageName
             CoreDataManager.sharedInstance.saveContext()
+            self.dismiss(animated: true, completion: nil)
         
        } else {
             
@@ -331,7 +332,7 @@ extension ChooseImageViewController {
         
             tokenBoard = TokenBoard.tokenBoard(withName: childName!, backgroundColor: (backgroundColor?.rawValue)!, tokenImageName: tokenImageName, andTokenNumber: tokenNumber!)
             CoreDataManager.sharedInstance.saveContext()
-        
+            self.dismiss(animated: true, completion: nil)
         }
         
     }
