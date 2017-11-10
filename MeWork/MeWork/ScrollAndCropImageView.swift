@@ -36,11 +36,6 @@ class ScrollAndCropImageView: UIScrollView {
         self.delegate = self
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-    }
-    
     // Constraints myst be set on scrollView (or frame) in setup before this method is called
     func showImage(_ image: UIImage) {
         
@@ -52,11 +47,7 @@ class ScrollAndCropImageView: UIScrollView {
         self.imageView = UIImageView(image: image)
         configureForImageSize(image.size)
         self.addSubview(imageView!)
-        
-        if isFirstLoad {
-            originalImage = image
-            isFirstLoad = false
-        }
+
     }
     
     private func configureForImageSize(_ imageSize: CGSize) {
@@ -102,15 +93,6 @@ class ScrollAndCropImageView: UIScrollView {
         let newImage = UIImage(cgImage: croppedCGImage)
         showImage(newImage)
         completion(newImage)
-    }
-    
-    func revertToOriginal() {
-        
-        guard let originalImage = originalImage else {
-            return
-        }
-        
-        showImage(originalImage)
     }
     
 }

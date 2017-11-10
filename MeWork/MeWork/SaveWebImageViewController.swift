@@ -12,6 +12,7 @@ class SaveWebImageViewController: UIViewController {
     
     var tokenBoard: TokenBoard?
     var imageURL: URL?
+    var originalImage: UIImage?
     let imageGetter: ImageGetter
     
     lazy var imageScrollView: ScrollAndCropImageView = {
@@ -36,7 +37,7 @@ class SaveWebImageViewController: UIViewController {
         
         let button = UIButton()
         button.backgroundColor = Color.navBarBlue.color()
-        button.setTitle("Save Image", for: .normal)
+        button.setTitle("Crop and Save Image", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
@@ -85,6 +86,7 @@ class SaveWebImageViewController: UIViewController {
                     DispatchQueue.main.async {
                         strongSelf.imageScrollView.showImage(image)
                         strongSelf.cropBox.isHidden = false
+                        strongSelf.originalImage = image
                     }
                     
                 case .error(let error): strongSelf.showAlert(withTitle: "Oops!", andMessage: "There was a problem \(error.localizedDescription)")
@@ -210,6 +212,7 @@ class SaveWebImageViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         imageURL = nil
+        originalImage = nil
     }
     
 }
@@ -221,6 +224,7 @@ extension SaveWebImageViewController {
     func navBarSetup() {
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelPressed))
+        let redoButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshPressed))
         
         // iPad create NavBar for formSheet presentation
         if UIDevice.current.userInterfaceIdiom == .pad {
@@ -229,16 +233,31 @@ extension SaveWebImageViewController {
             view.addSubview(navigationBar)
             let navItem = UINavigationItem()
             navItem.leftBarButtonItem = cancelButton
+            navItem.rightBarButtonItem = redoButton
             navigationBar.items = [navItem]
         
         // iPhone presents from navigationController
         } else {
             navigationItem.leftBarButtonItem = cancelButton
+            navigationItem.rightBarButtonItem = redoButton
         }
         
     }
     
     @objc func cancelPressed() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func cropAndSavePressed() {
+        
+    }
+    
+    @objc func refreshPressed() {
+        
+        guard let originalImage = originalImage else {
+            return
+        }
+        
+        imageScrollView.showImage(originalImage)
     }
 }
