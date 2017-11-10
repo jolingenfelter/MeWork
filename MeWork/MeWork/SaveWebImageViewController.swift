@@ -254,8 +254,15 @@ extension SaveWebImageViewController {
     }
     
     @objc func cropAndSavePressed() {
-        imageScrollView.cropImage { (image) in
-            delegate.prepareToSave(image: image)
+        
+        do {
+            try imageScrollView.cropImage { (image) in
+                delegate.prepareToSave(image: image)
+            }
+        } catch ImageCroppingError.unknownError {
+            showAlert(withTitle: "Error", andMessage: ImageCroppingError.unknownError.rawValue)
+        } catch let error {
+            showAlert(withTitle: "Error", andMessage: "\(error.localizedDescription)")
         }
     }
     

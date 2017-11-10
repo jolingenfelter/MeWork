@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol GetWebImageDelegate {
+    func didSave(image withName: String?, andError: Error?)
+}
+
 class GetWebImageViewController: UIViewController {
     
     let webView = UIWebView()
@@ -19,12 +23,7 @@ class GetWebImageViewController: UIViewController {
     var imageURL: URL?
     var currentUserURL: URL?
     
-    var tokenBoard: TokenBoard?
-    
-    convenience init(tokenBoard: TokenBoard) {
-        self.init()
-        self.tokenBoard = tokenBoard
-    }
+    var delegate: GetWebImageDelegate!
     
     lazy var urlTextField: UITextField = {
         
@@ -421,8 +420,19 @@ extension GetWebImageViewController: UIGestureRecognizerDelegate {
 }
 
 extension GetWebImageViewController: SaveWebImageDelegate {
+    
     func prepareToSave(image: UIImage) {
-        let imageName = UUID.init().uuidString
+        
+        let imageName = generateImageName()
+        let fileName = getDocumentsDirectory().appendingPathComponent("\(imageName).jpeg")
+        let imageData = UIImageJPEGRepresentation(image, 1.0)
+        
+        do {
+            try imageData?.write(to: fileName)
+            self.delegate.didSave(image: imageName, andError: nil)
+        } catch let error {
+            self.delegate.didSave(image: nil, andError:error)
+        }
         
     }
 }

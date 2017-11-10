@@ -113,6 +113,10 @@ class ChooseImageViewController: UIViewController {
         self.tokenBoard = tokenBoard
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -330,6 +334,7 @@ extension ChooseImageViewController {
         
     }
 }
+
 
 
 
