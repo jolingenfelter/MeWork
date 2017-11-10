@@ -13,11 +13,15 @@ class ChooseImageViewController: UIViewController {
     var childName: String?
     var tokenNumber: Int?
     var backgroundColor: Color?
-    
     var tokenBoard: TokenBoard?
-    
     var tokenImage: UIImage?
     var tokenImageName: String?
+    
+    lazy var getWebImageViewController:  GetWebImageViewController = {
+        let getWebImageVC = GetWebImageViewController()
+        getWebImageVC.delegate = self
+        return getWebImageVC
+    }()
     
     lazy var titleLabel: UILabel = {
         
@@ -296,43 +300,60 @@ extension ChooseImageViewController {
     
     @objc func donePressed() {
         
-        guard let tokenImageName = tokenImageName else {
-            
+        guard let tokenImage = tokenImage else {
             showAlert(withTitle: "Oops!", andMessage: "You must choose an image for your tokens")
-            
             return
         }
         
-       if let tokenBoard = tokenBoard {
+        let imageData = UIImageJPEGRepresentation(tokenImage, 1.0)
+        let imageName = generateImageName()
+        let fileName = getDocumentsDirectory().appendingPathComponent("\(imageName).jpeg")
         
+        // Save Image to FileDirectory
+        do {
+            try imageData?.write(to: fileName)
+            tokenImageName = imageName
+        } catch let error {
+            showAlert(withTitle: "Error", andMessage: "There was an error saving the image: \(error.localizedDescription)")
+        }
+        
+        // Save TokenBoard to CoreData
+        if let tokenBoard = tokenBoard {
+
             tokenBoard.tokenImageName = tokenImageName
             CoreDataManager.sharedInstance.saveContext()
-            
         
        } else {
-        
+            
+            guard let tokenImageName = tokenImageName else {
+                return
+            }
         
             tokenBoard = TokenBoard.tokenBoard(withName: childName!, backgroundColor: (backgroundColor?.rawValue)!, tokenImageName: tokenImageName, andTokenNumber: tokenNumber!)
             CoreDataManager.sharedInstance.saveContext()
-        
         
         }
         
     }
     
     @objc func cancelPressed() {
-        
         self.dismiss(animated: true, completion: nil)
-        
     }
     
     @objc func imageFromWeb() {
-        
-        let getImageViewController = GetWebImageViewController()
-        let navigationController = UINavigationController(rootViewController: getImageViewController)
+        let navigationController = UINavigationController(rootViewController: getWebImageViewController)
         self.present(navigationController, animated: true, completion: nil)
         
     }
+}
+
+extension ChooseImageViewController: GetWebImageDelegate {
+    
+    func didGet(croppedWebImage: UIImage) {
+        tokenImageView.image = croppedWebImage
+        tokenImage = croppedWebImage
+    }
+    
 }
 
 

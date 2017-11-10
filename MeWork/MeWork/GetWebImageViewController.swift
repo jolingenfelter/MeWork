@@ -9,7 +9,7 @@
 import UIKit
 
 protocol GetWebImageDelegate {
-    func didSave(image withName: String?, andError: Error?)
+    func didGet(croppedWebImage: UIImage)
 }
 
 class GetWebImageViewController: UIViewController {
@@ -421,18 +421,8 @@ extension GetWebImageViewController: UIGestureRecognizerDelegate {
 
 extension GetWebImageViewController: SaveWebImageDelegate {
     
-    func prepareToSave(image: UIImage) {
-        
-        let imageName = generateImageName()
-        let fileName = getDocumentsDirectory().appendingPathComponent("\(imageName).jpeg")
-        let imageData = UIImageJPEGRepresentation(image, 1.0)
-        
-        do {
-            try imageData?.write(to: fileName)
-            self.delegate.didSave(image: imageName, andError: nil)
-        } catch let error {
-            self.delegate.didSave(image: nil, andError:error)
-        }
-        
+    func didSelectAndCrop(image: UIImage) {
+        self.delegate.didGet(croppedWebImage: image)
     }
+    
 }

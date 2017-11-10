@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SaveWebImageDelegate {
-    func prepareToSave(image: UIImage)
+    func didSelectAndCrop(image: UIImage)
 }
 
 class SaveWebImageViewController: UIViewController {
@@ -46,6 +46,7 @@ class SaveWebImageViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
+        button.addTarget(self, action: #selector(cropAndSavePressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         self.view.addSubview(button)
@@ -257,13 +258,16 @@ extension SaveWebImageViewController {
         
         do {
             try imageScrollView.cropImage { (image) in
-                delegate.prepareToSave(image: image)
+                delegate.didSelectAndCrop(image: image)
             }
         } catch ImageCroppingError.unknownError {
             showAlert(withTitle: "Error", andMessage: ImageCroppingError.unknownError.rawValue)
         } catch let error {
             showAlert(withTitle: "Error", andMessage: "\(error.localizedDescription)")
         }
+        
+        self.dismiss(animated: true, completion: nil)
+        
     }
     
     @objc func refreshPressed() {
