@@ -10,6 +10,7 @@
 		44295CF21D76E2EF3C371335 /* Pods_MeWork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6218D03E6971B3769E9A4BE /* Pods_MeWork.framework */; };
 		6306D2171FACAB3D001D4285 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6306D2161FACAB3D001D4285 /* Result.swift */; };
 		6306D2191FACAB62001D4285 /* ImageGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6306D2181FACAB62001D4285 /* ImageGetter.swift */; };
+		63A7E2A41FB89AA400D23252 /* MediaPickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A7E2A31FB89AA400D23252 /* MediaPickerManager.swift */; };
 		63B58E251FB3A2D100C2320A /* ScrollAndCropImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B58E241FB3A2D100C2320A /* ScrollAndCropImageView.swift */; };
 		63B58E271FB3A2FC00C2320A /* ImageCroppingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B58E261FB3A2FC00C2320A /* ImageCroppingError.swift */; };
 		63DA79131FAA9BD700F7B54D /* CropBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA79121FAA9BD700F7B54D /* CropBox.swift */; };
@@ -24,7 +25,7 @@
 		9E0FC9161F103C58003985C0 /* GetWebImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0FC9151F103C58003985C0 /* GetWebImageViewController.swift */; };
 		9E22ECD31EFD39A200546314 /* TokenBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E22ECD21EFD39A200546314 /* TokenBoard.swift */; };
 		9E918F4B1EFF2F5900466251 /* Reward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E918F4A1EFF2F5900466251 /* Reward.swift */; };
-		9E9903191F184DD3003F7FCB /* SaveWebImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9903181F184DD3003F7FCB /* SaveWebImageViewController.swift */; };
+		9E9903191F184DD3003F7FCB /* CropImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9903181F184DD3003F7FCB /* CropImageViewController.swift */; };
 		9EB8C4871F019A3100F0D2BD /* ChooseImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB8C4861F019A3100F0D2BD /* ChooseImageViewController.swift */; };
 		9EC7E6981F000876008093E8 /* EnterChildNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC7E6971F000876008093E8 /* EnterChildNameViewController.swift */; };
 		9EC7E69A1F000D6C008093E8 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC7E6991F000D6C008093E8 /* UIViewControllerExtension.swift */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		6306D2161FACAB3D001D4285 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		6306D2181FACAB62001D4285 /* ImageGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGetter.swift; sourceTree = "<group>"; };
+		63A7E2A31FB89AA400D23252 /* MediaPickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPickerManager.swift; sourceTree = "<group>"; };
 		63B58E241FB3A2D100C2320A /* ScrollAndCropImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollAndCropImageView.swift; sourceTree = "<group>"; };
 		63B58E261FB3A2FC00C2320A /* ImageCroppingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCroppingError.swift; sourceTree = "<group>"; };
 		63DA79121FAA9BD700F7B54D /* CropBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropBox.swift; sourceTree = "<group>"; };
@@ -56,7 +58,7 @@
 		9E0FC9151F103C58003985C0 /* GetWebImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetWebImageViewController.swift; sourceTree = "<group>"; };
 		9E22ECD21EFD39A200546314 /* TokenBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenBoard.swift; sourceTree = "<group>"; };
 		9E918F4A1EFF2F5900466251 /* Reward.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reward.swift; sourceTree = "<group>"; };
-		9E9903181F184DD3003F7FCB /* SaveWebImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveWebImageViewController.swift; sourceTree = "<group>"; };
+		9E9903181F184DD3003F7FCB /* CropImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropImageViewController.swift; sourceTree = "<group>"; };
 		9EB8C4861F019A3100F0D2BD /* ChooseImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseImageViewController.swift; sourceTree = "<group>"; };
 		9EC7E6971F000876008093E8 /* EnterChildNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterChildNameViewController.swift; sourceTree = "<group>"; };
 		9EC7E6991F000D6C008093E8 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				63B58E241FB3A2D100C2320A /* ScrollAndCropImageView.swift */,
 				63B58E261FB3A2FC00C2320A /* ImageCroppingError.swift */,
 				63FE02291FB6288000409659 /* SaveFiles.swift */,
+				63A7E2A31FB89AA400D23252 /* MediaPickerManager.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -167,7 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				9E0FC9151F103C58003985C0 /* GetWebImageViewController.swift */,
-				9E9903181F184DD3003F7FCB /* SaveWebImageViewController.swift */,
+				9E9903181F184DD3003F7FCB /* CropImageViewController.swift */,
 			);
 			name = GetImages;
 			sourceTree = "<group>";
@@ -340,7 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E9903191F184DD3003F7FCB /* SaveWebImageViewController.swift in Sources */,
+				9E9903191F184DD3003F7FCB /* CropImageViewController.swift in Sources */,
 				9E0FC9161F103C58003985C0 /* GetWebImageViewController.swift in Sources */,
 				63B58E271FB3A2FC00C2320A /* ImageCroppingError.swift in Sources */,
 				9EF0AAE51F0C2AC500E2BBA8 /* ColorCell.swift in Sources */,
@@ -360,6 +363,7 @@
 				9EC7E6981F000876008093E8 /* EnterChildNameViewController.swift in Sources */,
 				9EF20FF01EFEF853008D7F8C /* TokenBoardListViewController.swift in Sources */,
 				9EFBD84C1F06A431002BFF1A /* BackgroundColorViewController.swift in Sources */,
+				63A7E2A41FB89AA400D23252 /* MediaPickerManager.swift in Sources */,
 				9EC7E69A1F000D6C008093E8 /* UIViewControllerExtension.swift in Sources */,
 				9EF20FF41EFEFC9F008D7F8C /* TokenBoardDataSource.swift in Sources */,
 				9EFBD84A1F06A1C1002BFF1A /* DeviceType.swift in Sources */,

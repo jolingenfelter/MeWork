@@ -91,8 +91,8 @@ class GetWebImageViewController: UIViewController {
         
     }()
     
-    lazy var saveImageViewController: SaveWebImageViewController = {
-        let saveWebImageVC = SaveWebImageViewController()
+    lazy var saveImageViewController: CropImageViewController = {
+        let saveWebImageVC = CropImageViewController(imageLocation: ImageLocation.webImage)
         saveWebImageVC.delegate = self
         return saveWebImageVC
     }()
@@ -419,7 +419,7 @@ extension GetWebImageViewController: UIGestureRecognizerDelegate {
     }
 }
 
-extension GetWebImageViewController: SaveWebImageDelegate {
+extension GetWebImageViewController: CropImageDelegate {
     
     func didSelectAndCrop(image: UIImage) {
         self.delegate.didGet(croppedWebImage: image)

@@ -1,5 +1,5 @@
 //
-//  SaveWebImageViewController.swift
+//  CropImageViewController.swift
 //  MeWork
 //
 //  Created by Joanna Lingenfelter on 7/13/17.
@@ -8,17 +8,23 @@
 
 import UIKit
 
-protocol SaveWebImageDelegate {
+protocol CropImageDelegate {
     func didSelectAndCrop(image: UIImage)
 }
 
-class SaveWebImageViewController: UIViewController {
+enum ImageLocation {
+    case webImage
+    case photoLibrary
+}
+
+class CropImageViewController: UIViewController {
     
     var tokenBoard: TokenBoard?
     var imageURL: URL?
     var originalImage: UIImage?
     let imageGetter: ImageGetter
-    var delegate: SaveWebImageDelegate!
+    var delegate: CropImageDelegate!
+    var imageLocation: ImageLocation
     
     lazy var imageScrollView: ScrollAndCropImageView = {
         
@@ -56,10 +62,16 @@ class SaveWebImageViewController: UIViewController {
         
     }()
     
-    init(imageURL: URL? = nil, imageGetter: ImageGetter = ImageGetter.sharedInstance) {
+    init(imageURL: URL? = nil, imageGetter: ImageGetter = ImageGetter.sharedInstance, imageLocation: ImageLocation) {
+        self.imageLocation = imageLocation
         self.imageURL = imageURL
         self.imageGetter = imageGetter
         super.init(nibName: nil, bundle: nil)
+    }
+    
+    convenience init(imageLocation: ImageLocation, originalImage: UIImage) {
+        self.init(imageLocation: imageLocation)
+        self.originalImage = originalImage
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -77,29 +89,45 @@ class SaveWebImageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let imageURL = imageURL {
+        switch imageLocation {
+        case .webImage:
             
-            imageGetter.getImage(from: imageURL, completion: { [weak self] (result) in
+            if let imageURL = imageURL {
                 
-                guard let strongSelf = self else {
-                    return
-                }
-                
-                switch result {
+                imageGetter.getImage(from: imageURL, completion: { [weak self] (result) in
                     
-                case .ok(let image):
-                    
-                    DispatchQueue.main.async {
-                        strongSelf.imageScrollView.showImage(image)
-                        strongSelf.cropBox.isHidden = false
-                        strongSelf.originalImage = image
+                    guard let strongSelf = self else {
+                        return
                     }
                     
-                case .error(let error): strongSelf.showAlert(withTitle: "Oops!", andMessage: "There was a problem \(error.localizedDescription)")
+                    switch result {
+                        
+                    case .ok(let image):
+                        
+                        DispatchQueue.main.async {
+                            strongSelf.imageScrollView.showImage(image)
+                            strongSelf.cropBox.isHidden = false
+                            strongSelf.originalImage = image
+                        }
+                        
+                    case .error(let error): strongSelf.showAlert(withTitle: "Oops!", andMessage: "There was a problem \(error.localizedDescription)")
+                        
+                    }
                     
-                }
-                
-            })
+                })
+            }
+        
+        case .photoLibrary:
+            
+            if let originalImage = originalImage {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
+                    self.imageScrollView.showImage(originalImage)
+                    self.cropBox.isHidden = false
+                })
+            } else {
+                self.showAlert(withTitle: "Error", andMessage: "There was an error loading the image.")
+            }
+            
         }
         
     }
@@ -115,21 +143,21 @@ class SaveWebImageViewController: UIViewController {
             // iPad Pro 12.9 inch
             if ScreenSize.SCREEN_MAX_LENGTH == 1366.0 {
                 
-                scrollViewSetup(withWidth: 300, andTopConstant: 80)
+                scrollViewSetup(withWidth: 300, andTopConstant: 120)
                 cropBoxSetup()
-                saveButtonSetup(withFontSize: 28.0, height: 80, andTopConstant: 80)
+                saveButtonSetup(withFontSize: 20.0, height: 80, andTopConstant: 80)
                 
             // iPad Pro 10.5 inch
             } else if ScreenSize.SCREEN_MAX_LENGTH == 1112.0{
                 
-                scrollViewSetup(withWidth: 280, andTopConstant: 60)
+                scrollViewSetup(withWidth: 280, andTopConstant: 80)
                 cropBoxSetup()
-                saveButtonSetup(withFontSize: 24.0, height: 60, andTopConstant: 80)
+                saveButtonSetup(withFontSize: 20.0, height: 60, andTopConstant: 80)
             
             // iPad 9.7 inch and mini
             } else {
                 
-                scrollViewSetup(withWidth: 200, andTopConstant: 40)
+                scrollViewSetup(withWidth: 200, andTopConstant: 60)
                 cropBoxSetup()
                 saveButtonSetup(withFontSize: 20, height: 50, andTopConstant: 80)
                 
@@ -225,7 +253,7 @@ class SaveWebImageViewController: UIViewController {
 
 // MARK: - Navigation
 
-extension SaveWebImageViewController {
+extension CropImageViewController {
     
     func navBarSetup() {
         

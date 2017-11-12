@@ -44,6 +44,8 @@ class ChooseImageViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
+        imageView.layer.borderWidth = 10
+        imageView.layer.borderColor = UIColor.white.cgColor
         
         self.view.addSubview(imageView)
         
@@ -90,6 +92,7 @@ class ChooseImageViewController: UIViewController {
         button.backgroundColor = Color.navBarBlue.color()
         button.setTitle("Image from Photos", for: .normal)
         button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(imageFromPhotoLibrary), for: .touchUpInside)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -98,6 +101,18 @@ class ChooseImageViewController: UIViewController {
         
         return button
         
+    }()
+    
+    lazy var mediaPickerManager: MediaPickerManager = {
+        let manager = MediaPickerManager(presentingViewController: self)
+        manager.delegate = self
+        return manager
+    }()
+    
+    lazy var cropImageViewController: CropImageViewController = {
+        let cropImageVC = CropImageViewController(imageLocation: ImageLocation.photoLibrary)
+        cropImageVC.delegate = self
+        return cropImageVC
     }()
     
     convenience init(childName: String, tokenNumber: Int, backgroundColor: Color) {
@@ -111,7 +126,7 @@ class ChooseImageViewController: UIViewController {
     }
     
     convenience init(tokenBoard: TokenBoard) {
-        
+
         self.init()
         
         self.tokenBoard = tokenBoard
@@ -120,6 +135,7 @@ class ChooseImageViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        checkForTokenImage()
     }
 
     override func viewDidLoad() {
@@ -242,8 +258,6 @@ class ChooseImageViewController: UIViewController {
     
     func setupImageView(withHeight: CGFloat, andTopAnchorConstant: CGFloat) {
         
-        tokenImageView.backgroundColor = .purple
-        
         NSLayoutConstraint.activate([
             tokenImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: andTopAnchorConstant),
             tokenImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -281,6 +295,15 @@ class ChooseImageViewController: UIViewController {
             stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: bottomAnchorConstant)
             ])
         
+    }
+    
+    func checkForTokenImage() {
+        if let tokenImage = tokenImage {
+            tokenImageView.image = tokenImage
+        } else {
+            let noImage = UIImage(named: "NoImage")!
+            tokenImageView.image = noImage
+        }
     }
 
 }
@@ -346,7 +369,13 @@ extension ChooseImageViewController {
         self.present(navigationController, animated: true, completion: nil)
         
     }
+    
+    @objc func imageFromPhotoLibrary() {
+        mediaPickerManager.presentImagePickerController(animated: true)
+    }
 }
+
+// MARK: - GetWebImageDelegate
 
 extension ChooseImageViewController: GetWebImageDelegate {
     
@@ -357,9 +386,35 @@ extension ChooseImageViewController: GetWebImageDelegate {
     
 }
 
+// MARK: - MediaPickerManager
 
+extension ChooseImageViewController: MediaPickerManagerDelegate {
+    func mediaPickerManager(manager: MediaPickerManager, didFinishPickingImage image: UIImage) {
+        mediaPickerManager.dismissImagePickerController(animated: true) {
+        
+            switch UIDevice.current.userInterfaceIdiom {
+            case .pad:
+                self.cropImageViewController.originalImage = image
+                self.cropImageViewController.modalPresentationStyle = .formSheet
+                self.present(self.cropImageViewController, animated: true, completion: nil)
+            case .phone:
+                let navigationController = UINavigationController(rootViewController: self.cropImageViewController)
+                self.cropImageViewController.originalImage = image
+                self.present(navigationController, animated: true, completion: nil)
+            default: break
+            }
+        }
+    }
+}
 
+// MARK: - CropImageViewControllerDelegate
 
+extension ChooseImageViewController: CropImageDelegate {
+    func didSelectAndCrop(image: UIImage) {
+        tokenImage = image
+        tokenImageView.image = image
+    }
+}
 
 
 
