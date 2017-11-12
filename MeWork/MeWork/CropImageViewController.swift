@@ -143,21 +143,21 @@ class CropImageViewController: UIViewController {
             // iPad Pro 12.9 inch
             if ScreenSize.SCREEN_MAX_LENGTH == 1366.0 {
                 
-                scrollViewSetup(withWidth: 300, andTopConstant: 80)
+                scrollViewSetup(withWidth: 300, andTopConstant: 120)
                 cropBoxSetup()
-                saveButtonSetup(withFontSize: 28.0, height: 80, andTopConstant: 80)
+                saveButtonSetup(withFontSize: 20.0, height: 80, andTopConstant: 80)
                 
             // iPad Pro 10.5 inch
             } else if ScreenSize.SCREEN_MAX_LENGTH == 1112.0{
                 
-                scrollViewSetup(withWidth: 280, andTopConstant: 60)
+                scrollViewSetup(withWidth: 280, andTopConstant: 80)
                 cropBoxSetup()
-                saveButtonSetup(withFontSize: 24.0, height: 60, andTopConstant: 80)
+                saveButtonSetup(withFontSize: 20.0, height: 60, andTopConstant: 80)
             
             // iPad 9.7 inch and mini
             } else {
                 
-                scrollViewSetup(withWidth: 200, andTopConstant: 40)
+                scrollViewSetup(withWidth: 200, andTopConstant: 60)
                 cropBoxSetup()
                 saveButtonSetup(withFontSize: 20, height: 50, andTopConstant: 80)
                 

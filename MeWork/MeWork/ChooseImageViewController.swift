@@ -301,7 +301,7 @@ class ChooseImageViewController: UIViewController {
         if let tokenImage = tokenImage {
             tokenImageView.image = tokenImage
         } else {
-            let noImage = UIImage(named: "noImageIcon")!
+            let noImage = UIImage(named: "NoImage")!
             tokenImageView.image = noImage
         }
     }
@@ -391,17 +391,28 @@ extension ChooseImageViewController: GetWebImageDelegate {
 extension ChooseImageViewController: MediaPickerManagerDelegate {
     func mediaPickerManager(manager: MediaPickerManager, didFinishPickingImage image: UIImage) {
         mediaPickerManager.dismissImagePickerController(animated: true) {
-            
-            let navigationController = UINavigationController(rootViewController: self.cropImageViewController)
-            self.cropImageViewController.originalImage = image
-            self.present(navigationController, animated: true, completion: nil)
+        
+            switch UIDevice.current.userInterfaceIdiom {
+            case .pad:
+                self.cropImageViewController.originalImage = image
+                self.cropImageViewController.modalPresentationStyle = .formSheet
+                self.present(self.cropImageViewController, animated: true, completion: nil)
+            case .phone:
+                let navigationController = UINavigationController(rootViewController: self.cropImageViewController)
+                self.cropImageViewController.originalImage = image
+                self.present(navigationController, animated: true, completion: nil)
+            default: break
+            }
         }
     }
 }
 
+// MARK: - CropImageViewControllerDelegate
+
 extension ChooseImageViewController: CropImageDelegate {
     func didSelectAndCrop(image: UIImage) {
-        
+        tokenImage = image
+        tokenImageView.image = image
     }
 }
 
