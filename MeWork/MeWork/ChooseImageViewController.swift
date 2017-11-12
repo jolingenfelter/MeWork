@@ -90,6 +90,7 @@ class ChooseImageViewController: UIViewController {
         button.backgroundColor = Color.navBarBlue.color()
         button.setTitle("Image from Photos", for: .normal)
         button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(imageFromPhotoLibrary), for: .touchUpInside)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -98,6 +99,12 @@ class ChooseImageViewController: UIViewController {
         
         return button
         
+    }()
+    
+    lazy var mediaPickerManager: MediaPickerManager = {
+        let manager = MediaPickerManager(presentingViewController: self)
+        manager.delegate = self
+        return manager
     }()
     
     convenience init(childName: String, tokenNumber: Int, backgroundColor: Color) {
@@ -111,7 +118,7 @@ class ChooseImageViewController: UIViewController {
     }
     
     convenience init(tokenBoard: TokenBoard) {
-        
+
         self.init()
         
         self.tokenBoard = tokenBoard
@@ -242,8 +249,6 @@ class ChooseImageViewController: UIViewController {
     
     func setupImageView(withHeight: CGFloat, andTopAnchorConstant: CGFloat) {
         
-        tokenImageView.backgroundColor = .purple
-        
         NSLayoutConstraint.activate([
             tokenImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: andTopAnchorConstant),
             tokenImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -346,7 +351,13 @@ extension ChooseImageViewController {
         self.present(navigationController, animated: true, completion: nil)
         
     }
+    
+    @objc func imageFromPhotoLibrary() {
+        mediaPickerManager.presentImagePickerController(animated: true)
+    }
 }
+
+// MARK: - GetWebImageDelegate
 
 extension ChooseImageViewController: GetWebImageDelegate {
     
@@ -357,7 +368,16 @@ extension ChooseImageViewController: GetWebImageDelegate {
     
 }
 
+// MARK: - MediaPickerManager
 
+extension ChooseImageViewController: MediaPickerManagerDelegate {
+    func mediaPickerManager(manager: MediaPickerManager, didFinishPickingImage image: UIImage) {
+        mediaPickerManager.dismissImagePickerController(animated: true) {
+            self.tokenImageView.image = image
+            self.tokenImage = image
+        }
+    }
+}
 
 
 
