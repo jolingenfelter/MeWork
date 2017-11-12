@@ -34,7 +34,7 @@ class MediaPickerManager: NSObject {
         presentingViewController.present(imagePickerController, animated: animated, completion: nil)
     }
     
-    func dismissImagePickerController(animated: Bool, completion: @escaping (() -> Void)) {
+    func dismissImagePickerController(animated: Bool, completion: (() -> Void)?) {
         imagePickerController.dismiss(animated: animated, completion: completion)
     }
     

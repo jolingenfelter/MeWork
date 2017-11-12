@@ -44,6 +44,8 @@ class ChooseImageViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
+        imageView.layer.borderWidth = 10
+        imageView.layer.borderColor = UIColor.white.cgColor
         
         self.view.addSubview(imageView)
         
@@ -127,6 +129,7 @@ class ChooseImageViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        checkForTokenImage()
     }
 
     override func viewDidLoad() {
@@ -286,6 +289,15 @@ class ChooseImageViewController: UIViewController {
             stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: bottomAnchorConstant)
             ])
         
+    }
+    
+    func checkForTokenImage() {
+        if let tokenImage = tokenImage {
+            tokenImageView.image = tokenImage
+        } else {
+            let noImage = UIImage(named: "noImageIcon")!
+            tokenImageView.image = noImage
+        }
     }
 
 }
