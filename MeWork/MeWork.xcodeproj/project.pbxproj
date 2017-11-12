@@ -25,7 +25,7 @@
 		9E0FC9161F103C58003985C0 /* GetWebImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0FC9151F103C58003985C0 /* GetWebImageViewController.swift */; };
 		9E22ECD31EFD39A200546314 /* TokenBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E22ECD21EFD39A200546314 /* TokenBoard.swift */; };
 		9E918F4B1EFF2F5900466251 /* Reward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E918F4A1EFF2F5900466251 /* Reward.swift */; };
-		9E9903191F184DD3003F7FCB /* SaveWebImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9903181F184DD3003F7FCB /* SaveWebImageViewController.swift */; };
+		9E9903191F184DD3003F7FCB /* CropImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9903181F184DD3003F7FCB /* CropImageViewController.swift */; };
 		9EB8C4871F019A3100F0D2BD /* ChooseImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB8C4861F019A3100F0D2BD /* ChooseImageViewController.swift */; };
 		9EC7E6981F000876008093E8 /* EnterChildNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC7E6971F000876008093E8 /* EnterChildNameViewController.swift */; };
 		9EC7E69A1F000D6C008093E8 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC7E6991F000D6C008093E8 /* UIViewControllerExtension.swift */; };
@@ -58,7 +58,7 @@
 		9E0FC9151F103C58003985C0 /* GetWebImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetWebImageViewController.swift; sourceTree = "<group>"; };
 		9E22ECD21EFD39A200546314 /* TokenBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenBoard.swift; sourceTree = "<group>"; };
 		9E918F4A1EFF2F5900466251 /* Reward.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reward.swift; sourceTree = "<group>"; };
-		9E9903181F184DD3003F7FCB /* SaveWebImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveWebImageViewController.swift; sourceTree = "<group>"; };
+		9E9903181F184DD3003F7FCB /* CropImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropImageViewController.swift; sourceTree = "<group>"; };
 		9EB8C4861F019A3100F0D2BD /* ChooseImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseImageViewController.swift; sourceTree = "<group>"; };
 		9EC7E6971F000876008093E8 /* EnterChildNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterChildNameViewController.swift; sourceTree = "<group>"; };
 		9EC7E6991F000D6C008093E8 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				9E0FC9151F103C58003985C0 /* GetWebImageViewController.swift */,
-				9E9903181F184DD3003F7FCB /* SaveWebImageViewController.swift */,
+				9E9903181F184DD3003F7FCB /* CropImageViewController.swift */,
 			);
 			name = GetImages;
 			sourceTree = "<group>";
@@ -343,7 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E9903191F184DD3003F7FCB /* SaveWebImageViewController.swift in Sources */,
+				9E9903191F184DD3003F7FCB /* CropImageViewController.swift in Sources */,
 				9E0FC9161F103C58003985C0 /* GetWebImageViewController.swift in Sources */,
 				63B58E271FB3A2FC00C2320A /* ImageCroppingError.swift in Sources */,
 				9EF0AAE51F0C2AC500E2BBA8 /* ColorCell.swift in Sources */,

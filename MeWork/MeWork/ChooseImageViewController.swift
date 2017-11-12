@@ -109,6 +109,12 @@ class ChooseImageViewController: UIViewController {
         return manager
     }()
     
+    lazy var cropImageViewController: CropImageViewController = {
+        let cropImageVC = CropImageViewController(imageLocation: ImageLocation.photoLibrary)
+        cropImageVC.delegate = self
+        return cropImageVC
+    }()
+    
     convenience init(childName: String, tokenNumber: Int, backgroundColor: Color) {
         
         self.init()
@@ -385,13 +391,19 @@ extension ChooseImageViewController: GetWebImageDelegate {
 extension ChooseImageViewController: MediaPickerManagerDelegate {
     func mediaPickerManager(manager: MediaPickerManager, didFinishPickingImage image: UIImage) {
         mediaPickerManager.dismissImagePickerController(animated: true) {
-            self.tokenImageView.image = image
-            self.tokenImage = image
+            
+            let navigationController = UINavigationController(rootViewController: self.cropImageViewController)
+            self.cropImageViewController.originalImage = image
+            self.present(navigationController, animated: true, completion: nil)
         }
     }
 }
 
-
+extension ChooseImageViewController: CropImageDelegate {
+    func didSelectAndCrop(image: UIImage) {
+        
+    }
+}
 
 
 
