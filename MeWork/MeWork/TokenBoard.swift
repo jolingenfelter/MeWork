@@ -22,13 +22,12 @@ class TokenBoard: NSManagedObject {
         
     }()
     
-    class func tokenBoard(withName name: String, backgroundColor colorString: String, tokenImageName imageName: String, andTokenNumber tokenNumber: Int) -> TokenBoard {
+    class func tokenBoard(withName name: String, backgroundColor colorString: String, andTokenNumber tokenNumber: Int) -> TokenBoard {
         
         let tokenBoard = NSEntityDescription.insertNewObject(forEntityName: TokenBoard.entityName, into: CoreDataManager.sharedInstance.managedObjectContext) as! TokenBoard
         
         tokenBoard.childName = name
         tokenBoard.backgroundColor = colorString
-        tokenBoard.tokenImageName = imageName
         tokenBoard.tokenNumber = String(tokenNumber)
         
         return tokenBoard
@@ -53,8 +52,9 @@ extension TokenBoard {
     
     @NSManaged public var childName: String?
     @NSManaged public var backgroundColor: String?
-    @NSManaged public var tokenImageName: String?
     @NSManaged public var tokenNumber: String?
+    @NSManaged public var token: Token?
+    @NSManaged public var reward: Reward?
     
 }
 
@@ -62,16 +62,16 @@ extension TokenBoard {
 
 extension TokenBoard {
     
-    @objc(addChildRewardChoiceObject:)
-    @NSManaged public func addToChildRewardChoice(_ value: Reward)
+    @objc(addTokenBoardRewardObject:)
+    @NSManaged public func addToTokenBoardReward(_ value: Reward)
     
-    @objc(removeChildRewardChoiceObject:)
-    @NSManaged public func removeChildRewardChoice(_ value: Reward)
+    @objc(removeTokenBoardRewardChoiceObject:)
+    @NSManaged public func removeFromTokenBoardReward(_ value: Reward)
     
-    @objc(addChildRewardChoices:)
-    @NSManaged public func addToChildRewardChoices(_ value: NSSet)
+    @objc(addTokenBoardTokenObject:)
+    @NSManaged public func addToTokenBoardToken(_ value: Token)
     
-    @objc(removeChildRewardChoices:)
-    @NSManaged public func removeFromChildRewardChoices(_ value: NSSet)
+    @objc(removeTokenBoardTokenTokenObject:)
+    @NSManaged public func removeFromTokenBoardToken(_ value: Token)
     
 }

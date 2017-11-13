@@ -76,6 +76,7 @@ class ChooseImageViewController: UIViewController {
         button.backgroundColor = Color.navBarBlue.color()
         button.setTitle("Image from MeWork Library", for: .normal)
         button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(imageFromTokenLibrary), for: .touchUpInside)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -150,7 +151,7 @@ class ChooseImageViewController: UIViewController {
         
         if let tokenBoard = tokenBoard {
             
-            tokenImageName = tokenBoard.tokenImageName
+            
             titleLabel.text = "Edit token image"
             view.backgroundColor = Color(rawValue: tokenBoard.backgroundColor!)!.color()
             
@@ -332,6 +333,8 @@ extension ChooseImageViewController {
         let imageName = generateImageName()
         let fileName = getDocumentsDirectory().appendingPathComponent("\(imageName).jpeg")
         
+        let token = Token.token(withName: imageName)
+        
         // Save Image to FileDirectory
         do {
             try imageData?.write(to: fileName)
@@ -342,18 +345,18 @@ extension ChooseImageViewController {
         
         // Save TokenBoard to CoreData
         if let tokenBoard = tokenBoard {
-
-            tokenBoard.tokenImageName = tokenImageName
+            tokenBoard.addToTokenBoardToken(token)
             CoreDataManager.sharedInstance.saveContext()
             self.dismiss(animated: true, completion: nil)
         
        } else {
             
-            guard let tokenImageName = tokenImageName else {
+            guard tokenImageName != nil else {
                 return
             }
         
-            tokenBoard = TokenBoard.tokenBoard(withName: childName!, backgroundColor: (backgroundColor?.rawValue)!, tokenImageName: tokenImageName, andTokenNumber: tokenNumber!)
+            tokenBoard = TokenBoard.tokenBoard(withName: childName!, backgroundColor: (backgroundColor?.rawValue)!, andTokenNumber: tokenNumber!)
+            tokenBoard?.addToTokenBoardToken(token)
             CoreDataManager.sharedInstance.saveContext()
             self.dismiss(animated: true, completion: nil)
         }
@@ -372,6 +375,12 @@ extension ChooseImageViewController {
     
     @objc func imageFromPhotoLibrary() {
         mediaPickerManager.presentImagePickerController(animated: true)
+    }
+    
+    @objc func imageFromTokenLibrary() {
+        let tokenLibrary = TokenLibraryViewController()
+        let navigationController = UINavigationController(rootViewController: tokenLibrary)
+        self.present(navigationController, animated: true, completion: nil)
     }
 }
 
