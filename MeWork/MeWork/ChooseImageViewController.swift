@@ -345,7 +345,7 @@ extension ChooseImageViewController {
         
         // Save TokenBoard to CoreData
         if let tokenBoard = tokenBoard {
-            tokenBoard.addToTokenBoardToken(token)
+            tokenBoard.addTokenBoardTokenObject(token)
             CoreDataManager.sharedInstance.saveContext()
             self.dismiss(animated: true, completion: nil)
         
@@ -356,7 +356,7 @@ extension ChooseImageViewController {
             }
         
             tokenBoard = TokenBoard.tokenBoard(withName: childName!, backgroundColor: (backgroundColor?.rawValue)!, andTokenNumber: tokenNumber!)
-            tokenBoard?.addToTokenBoardToken(token)
+            tokenBoard!.addTokenBoardTokenObject(token)
             CoreDataManager.sharedInstance.saveContext()
             self.dismiss(animated: true, completion: nil)
         }

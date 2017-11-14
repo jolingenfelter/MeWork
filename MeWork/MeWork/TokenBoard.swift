@@ -62,16 +62,20 @@ extension TokenBoard {
 
 extension TokenBoard {
     
-    @objc(addTokenBoardRewardObject:)
-    @NSManaged public func addToTokenBoardReward(_ value: Reward)
+    public func addTokenBoardRewardObject(value: Reward) {
+        self.reward = value
+    }
     
-    @objc(removeTokenBoardRewardChoiceObject:)
-    @NSManaged public func removeFromTokenBoardReward(_ value: Reward)
+    public func removeTokenBoardRewardChoiceObject(_ value: Reward) {
+        self.reward = nil
+    }
     
-    @objc(addTokenBoardTokenObject:)
-    @NSManaged public func addToTokenBoardToken(_ value: Token)
+    public func addTokenBoardTokenObject(_ value: Token) {
+        self.token = value
+    }
     
-    @objc(removeTokenBoardTokenTokenObject:)
-    @NSManaged public func removeFromTokenBoardToken(_ value: Token)
+    public func removeTokenBoardTokenTokenObject(_ value: Token) {
+        self.token = value
+    }
     
 }
