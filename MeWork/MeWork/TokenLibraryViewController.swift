@@ -117,7 +117,7 @@ extension TokenLibraryViewController: UICollectionViewDelegate, UICollectionView
         let token = fetchedResultsController.object(at: indexPath) as! Token
         let tokenImageName = token.fileName!
         
-        if let tokenImage = UIImage(named: tokenImageName) {
+        if let tokenImage = retrieveImage(imageName: tokenImageName) {
             cell.configureCell(withImage: tokenImage)
         }
         
