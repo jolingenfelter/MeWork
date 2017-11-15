@@ -75,7 +75,7 @@ extension TokenBoard {
     }
     
     public func removeTokenBoardTokenTokenObject(_ value: Token) {
-        self.token = value
+        self.token = nil
     }
     
 }

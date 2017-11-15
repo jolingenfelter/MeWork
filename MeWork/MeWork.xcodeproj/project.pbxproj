@@ -10,6 +10,8 @@
 		44295CF21D76E2EF3C371335 /* Pods_MeWork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6218D03E6971B3769E9A4BE /* Pods_MeWork.framework */; };
 		6306D2171FACAB3D001D4285 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6306D2161FACAB3D001D4285 /* Result.swift */; };
 		6306D2191FACAB62001D4285 /* ImageGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6306D2181FACAB62001D4285 /* ImageGetter.swift */; };
+		633AF5841FBB8D7E0009F389 /* TokenLibraryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AF5831FBB8D7E0009F389 /* TokenLibraryCell.swift */; };
+		633AF5861FBB8E900009F389 /* TokenLibraryFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AF5851FBB8E8F0009F389 /* TokenLibraryFlowLayout.swift */; };
 		638FE2CA1FB9FA2F004957CA /* TokenLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638FE2C91FB9FA2F004957CA /* TokenLibraryViewController.swift */; };
 		638FE2CE1FBA0373004957CA /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638FE2CD1FBA0373004957CA /* Token.swift */; };
 		63A7E2A41FB89AA400D23252 /* MediaPickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A7E2A31FB89AA400D23252 /* MediaPickerManager.swift */; };
@@ -43,6 +45,8 @@
 /* Begin PBXFileReference section */
 		6306D2161FACAB3D001D4285 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		6306D2181FACAB62001D4285 /* ImageGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGetter.swift; sourceTree = "<group>"; };
+		633AF5831FBB8D7E0009F389 /* TokenLibraryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenLibraryCell.swift; sourceTree = "<group>"; };
+		633AF5851FBB8E8F0009F389 /* TokenLibraryFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenLibraryFlowLayout.swift; sourceTree = "<group>"; };
 		638FE2C91FB9FA2F004957CA /* TokenLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenLibraryViewController.swift; sourceTree = "<group>"; };
 		638FE2CB1FBA01E6004957CA /* MeWork 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MeWork 2.xcdatamodel"; sourceTree = "<group>"; };
 		638FE2CD1FBA0373004957CA /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
@@ -98,6 +102,16 @@
 				D45CFB5F13343D085F71979B /* Pods-MeWork.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		633AF5821FBB8D5A0009F389 /* TokenLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				638FE2C91FB9FA2F004957CA /* TokenLibraryViewController.swift */,
+				633AF5831FBB8D7E0009F389 /* TokenLibraryCell.swift */,
+				633AF5851FBB8E8F0009F389 /* TokenLibraryFlowLayout.swift */,
+			);
+			name = TokenLibrary;
 			sourceTree = "<group>";
 		};
 		63DA79111FAA9BB500F7B54D /* Views */ = {
@@ -177,7 +191,7 @@
 			children = (
 				9E0FC9151F103C58003985C0 /* GetWebImageViewController.swift */,
 				9E9903181F184DD3003F7FCB /* CropImageViewController.swift */,
-				638FE2C91FB9FA2F004957CA /* TokenLibraryViewController.swift */,
+				633AF5821FBB8D5A0009F389 /* TokenLibrary */,
 			);
 			name = GetImages;
 			sourceTree = "<group>";
@@ -359,6 +373,7 @@
 				63FE022A1FB6288000409659 /* SaveFiles.swift in Sources */,
 				9E0DCCE51EFC8C35001AB810 /* HomeViewController.swift in Sources */,
 				6306D2191FACAB62001D4285 /* ImageGetter.swift in Sources */,
+				633AF5841FBB8D7E0009F389 /* TokenLibraryCell.swift in Sources */,
 				9E0DCCF51EFC8CDC001AB810 /* Color.swift in Sources */,
 				9E918F4B1EFF2F5900466251 /* Reward.swift in Sources */,
 				9E0DCCF81EFC91B0001AB810 /* CoreDataManager.swift in Sources */,
@@ -376,6 +391,7 @@
 				9EF20FF41EFEFC9F008D7F8C /* TokenBoardDataSource.swift in Sources */,
 				9EFBD84A1F06A1C1002BFF1A /* DeviceType.swift in Sources */,
 				638FE2CA1FB9FA2F004957CA /* TokenLibraryViewController.swift in Sources */,
+				633AF5861FBB8E900009F389 /* TokenLibraryFlowLayout.swift in Sources */,
 				9E0DCCE31EFC8C35001AB810 /* AppDelegate.swift in Sources */,
 				9E0DCCFB1EFC9571001AB810 /* MeWork.xcdatamodeld in Sources */,
 			);
