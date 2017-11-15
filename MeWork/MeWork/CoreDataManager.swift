@@ -35,9 +35,11 @@ class CoreDataManager {
         
         var failureReason = "There was an error loading the application's saved data."
         
+        let migrationOptions = [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true]
+        
         do {
             
-            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
+            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: migrationOptions)
             
         } catch {
             
