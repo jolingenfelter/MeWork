@@ -26,7 +26,7 @@ class TokenLibraryViewController: UIViewController {
     }()
     
     let collectionView: UICollectionView = {
-        let flowLayout = UICollectionViewFlowLayout()
+        let flowLayout = TokenLibraryFlowLayout()
         flowLayout.itemSize = CGSize(width: 200, height: 200)
         let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
         view.backgroundColor = Color.purple.color()
@@ -79,6 +79,7 @@ class TokenLibraryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Saved Tokens"
+        navBarSetup()
         
         self.collectionView.register(TokenLibraryCell.self, forCellWithReuseIdentifier: TokenLibraryCell.reuseIdentifier)
     }
@@ -125,3 +126,25 @@ extension TokenLibraryViewController: UICollectionViewDelegate, UICollectionView
     }
     
 }
+
+// MARK: - Navigation
+
+extension TokenLibraryViewController {
+    
+    func navBarSetup() {
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelPressed))
+        navigationItem.rightBarButtonItem = cancelButton
+    }
+    
+    @objc func cancelPressed() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+
+
+
+
+
+

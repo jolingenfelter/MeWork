@@ -19,7 +19,7 @@ class TokenLibraryCell: UICollectionViewCell {
         view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 5
+        view.layer.borderWidth = 3
         
         return view
     }()
