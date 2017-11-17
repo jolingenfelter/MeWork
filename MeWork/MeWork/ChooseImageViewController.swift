@@ -116,6 +116,12 @@ class ChooseImageViewController: UIViewController {
         return cropImageVC
     }()
     
+    lazy var tokenLibrary: TokenLibraryViewController = {
+        let tokenLibraryVC = TokenLibraryViewController()
+        tokenLibraryVC.delegate = self
+        return tokenLibraryVC
+    }()
+    
     convenience init(childName: String, tokenNumber: Int, backgroundColor: Color) {
         
         self.init()
@@ -306,7 +312,7 @@ class ChooseImageViewController: UIViewController {
             tokenImageView.image = noImage
         }
     }
-
+    
 }
 
 // MARK: - Navigation
@@ -324,37 +330,52 @@ extension ChooseImageViewController {
     
     @objc func donePressed() {
         
-        guard let tokenImage = tokenImage else {
-            showAlert(withTitle: "Oops!", andMessage: "You must choose an image for your tokens")
-            return
+        // Image from TokenLibrary
+        if let tokenImageName = tokenImageName {
+            
+            let token = Token.token(withName: tokenImageName)
+            saveTokenBoard(with: token)
+
+        // Other images
+        } else {
+            
+            guard let tokenImage = tokenImage else {
+                showAlert(withTitle: "Oops!", andMessage: "You must choose an image for your tokens")
+                return
+            }
+            
+            let imageData = UIImageJPEGRepresentation(tokenImage, 1.0)
+            let imageName = generateImageName()
+            let fileName = getDocumentsDirectory().appendingPathComponent("\(imageName).jpeg")
+            
+            let token = Token.token(withName: imageName)
+            
+            // Save Image to FileDirectory
+            do {
+                try imageData?.write(to: fileName)
+                tokenImageName = imageName
+            } catch let error {
+                showAlert(withTitle: "Error", andMessage: "There was an error saving the image: \(error.localizedDescription)")
+            }
+            
+            // Save TokenBoard to CoreData
+            saveTokenBoard(with: token)
         }
         
-        let imageData = UIImageJPEGRepresentation(tokenImage, 1.0)
-        let imageName = generateImageName()
-        let fileName = getDocumentsDirectory().appendingPathComponent("\(imageName).jpeg")
+    }
+    
+    func saveTokenBoard(with token: Token) {
         
-        let token = Token.token(withName: imageName)
-        
-        // Save Image to FileDirectory
-        do {
-            try imageData?.write(to: fileName)
-            tokenImageName = imageName
-        } catch let error {
-            showAlert(withTitle: "Error", andMessage: "There was an error saving the image: \(error.localizedDescription)")
-        }
-        
-        // Save TokenBoard to CoreData
         if let tokenBoard = tokenBoard {
             tokenBoard.addTokenBoardTokenObject(token)
             CoreDataManager.sharedInstance.saveContext()
             self.dismiss(animated: true, completion: nil)
-        
-       } else {
+        } else {
             
             guard tokenImageName != nil else {
                 return
             }
-        
+            
             tokenBoard = TokenBoard.tokenBoard(withName: childName!, backgroundColor: (backgroundColor?.rawValue)!, andTokenNumber: tokenNumber!)
             tokenBoard!.addTokenBoardTokenObject(token)
             CoreDataManager.sharedInstance.saveContext()
@@ -378,7 +399,6 @@ extension ChooseImageViewController {
     }
     
     @objc func imageFromTokenLibrary() {
-        let tokenLibrary = TokenLibraryViewController()
         let navigationController = UINavigationController(rootViewController: tokenLibrary)
         self.present(navigationController, animated: true, completion: nil)
     }
@@ -425,13 +445,12 @@ extension ChooseImageViewController: CropImageDelegate {
     }
 }
 
+// MARK: - TokenLibraryDelegate
 
-
-
-
-
-
-
-
-
-
+extension ChooseImageViewController: TokenLibraryDelegate {
+    func didSelectFromLibrary(image: UIImage, withName name: String) {
+        tokenImageName = name
+        tokenImage = image
+        tokenImageView.image = image
+    }
+}

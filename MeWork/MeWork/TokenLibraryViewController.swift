@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 protocol TokenLibraryDelegate {
-    func didSelectImageFromLibrary(_ image: UIImage)
+    func didSelectFromLibrary(image: UIImage, withName name: String)
 }
 
 class TokenLibraryViewController: UIViewController {
@@ -27,7 +27,6 @@ class TokenLibraryViewController: UIViewController {
     
     let collectionView: UICollectionView = {
         let flowLayout = TokenLibraryFlowLayout()
-        flowLayout.itemSize = CGSize(width: 200, height: 200)
         let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
         view.backgroundColor = Color.purple.color()
         
@@ -97,12 +96,11 @@ extension TokenLibraryViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let token = fetchedResultsController.object(at: indexPath) as! Token
+        let tokenFileName = token.fileName!
+        let image = retrieveImage(imageName: tokenFileName)!
         
-        guard let image = retrieveImage(imageName: token.fileName!) else {
-            return
-        }
-        
-        delegate.didSelectImageFromLibrary(image)
+        delegate.didSelectFromLibrary(image: image, withName: tokenFileName)
+        self.dismiss(animated: true, completion: nil)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
