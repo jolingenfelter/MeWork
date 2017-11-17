@@ -142,13 +142,13 @@ class ChooseImageViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        prepareViewController()
         checkForTokenImage()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Color.green.color()
-        prepareViewController()
         navBarSetup()
         
     }
@@ -157,6 +157,9 @@ class ChooseImageViewController: UIViewController {
         
         if let tokenBoard = tokenBoard {
             
+            if let tokenImageName = tokenBoard.token?.fileName {
+                tokenImageView.image = retrieveImage(imageName: tokenImageName)
+            }
             
             titleLabel.text = "Edit token image"
             view.backgroundColor = Color(rawValue: tokenBoard.backgroundColor!)!.color()
