@@ -22,9 +22,9 @@ class TokenBoard: NSManagedObject {
         
     }()
     
-    class func tokenBoard(withName name: String, backgroundColor colorString: String, andTokenNumber tokenNumber: Int) -> TokenBoard {
+    class func tokenBoard(withName name: String, backgroundColor colorString: String, andTokenNumber tokenNumber: Int, inContext: NSManagedObjectContext = CoreDataManager.sharedInstance.managedObjectContext) -> TokenBoard {
         
-        let tokenBoard = NSEntityDescription.insertNewObject(forEntityName: TokenBoard.entityName, into: CoreDataManager.sharedInstance.managedObjectContext) as! TokenBoard
+        let tokenBoard = NSEntityDescription.insertNewObject(forEntityName: TokenBoard.entityName, into: inContext) as! TokenBoard
         
         tokenBoard.childName = name
         tokenBoard.backgroundColor = colorString

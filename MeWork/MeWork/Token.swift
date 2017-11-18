@@ -21,7 +21,7 @@ class Token: NSManagedObject {
         return request
     }()
     
-    class func token(withName name: String) -> Token {
+    class func token(withName name: String, inContext: NSManagedObjectContext = CoreDataManager.sharedInstance.managedObjectContext) -> Token {
         
         var token: Token?
         
@@ -30,7 +30,7 @@ class Token: NSManagedObject {
                 token = duplicateToken
             } else {
                 
-                let newToken = NSEntityDescription.insertNewObject(forEntityName: Token.entityName, into: CoreDataManager.sharedInstance.managedObjectContext) as! Token
+                let newToken = NSEntityDescription.insertNewObject(forEntityName: Token.entityName, into: inContext) as! Token
                 
                 newToken.fileName = name
                 newToken.date = Date()
@@ -43,7 +43,7 @@ class Token: NSManagedObject {
         return token!
     }
     
-    private class func checkForDuplicate(tokenWithName: String, completion: (Token?) -> ()) {
+    private class func checkForDuplicate(tokenWithName: String, inContext: NSManagedObjectContext = CoreDataManager.sharedInstance.managedObjectContext, completion: (Token?) -> ()) {
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Token.entityName)
         let predicate = NSPredicate(format: "fileName == %@", tokenWithName)
@@ -52,15 +52,14 @@ class Token: NSManagedObject {
         var duplicateToken: Token?
         
         do {
-            let results = try CoreDataManager.sharedInstance.managedObjectContext.fetch(fetchRequest) as! [Token]
+            
+            let results = try inContext.fetch(fetchRequest) as! [Token]
             duplicateToken = results.first
             completion(duplicateToken)
             
         } catch let error {
             print(error.localizedDescription)
         }
-        
-        
         
     }
     

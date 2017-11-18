@@ -22,9 +22,9 @@ class Reward: NSManagedObject {
         
     }()
     
-    class func reward(withName name: String) -> Reward {
+    class func reward(withName name: String, inContext: NSManagedObjectContext = CoreDataManager.sharedInstance.managedObjectContext) -> Reward {
         
-        let reward = NSEntityDescription.insertNewObject(forEntityName: Reward.entityName, into: CoreDataManager.sharedInstance.managedObjectContext) as! Reward
+        let reward = NSEntityDescription.insertNewObject(forEntityName: Reward.entityName, into: inContext) as! Reward
         
         reward.fileName = name
         reward.date = Date()
