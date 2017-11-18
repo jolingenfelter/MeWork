@@ -100,8 +100,9 @@ extension TokenBoardListViewController {
     func navigationBarSetup() {
         
         let addTokenBoardButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTokenBoardPressed))
+        let manageTokensButton = UIBarButtonItem(title: "Manage Tokens", style: .plain, target: self, action: #selector(manageTokensPressed))
         
-        navigationItem.rightBarButtonItem = addTokenBoardButton
+        navigationItem.rightBarButtonItems = [addTokenBoardButton, manageTokensButton]
         
     }
     
@@ -109,6 +110,15 @@ extension TokenBoardListViewController {
         
         let childNameViewController = EnterChildNameViewController()
         let navigationController = UINavigationController(rootViewController: childNameViewController)
+        
+        self.present(navigationController, animated: true, completion: nil)
+        
+    }
+    
+    @objc func manageTokensPressed() {
+        
+        let manageTokensViewController = ManageTokensViewController()
+        let navigationController = UINavigationController(rootViewController: manageTokensViewController)
         
         self.present(navigationController, animated: true, completion: nil)
         
