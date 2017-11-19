@@ -15,6 +15,7 @@ protocol TokenLibraryDelegate {
 
 class TokenLibraryViewController: UIViewController {
     
+    lazy var instructionsLabel = UILabel()
     var delegate: TokenLibraryDelegate!
     let managedObjectContext: NSManagedObjectContext
     
@@ -67,20 +68,66 @@ class TokenLibraryViewController: UIViewController {
         
         let navigationBar = navigationController.navigationBar
         
+        // CollectionViewLayout
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: navigationBar.bottomAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
             ])
+        
+        // InstructionsLabel Layout
+        self.collectionView.addSubview(instructionsLabel)
+        instructionsLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            instructionsLabel.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor),
+            instructionsLabel.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor
+            )])
+        
+        instructionsLabelSetup()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Saved Tokens"
         navBarSetup()
+        self.fetchedResultsController.delegate = self
         
         self.collectionView.register(TokenLibraryCell.self, forCellWithReuseIdentifier: TokenLibraryCell.reuseIdentifier)
+    }
+    
+    func instructionsLabelSetup() {
+        instructionsLabel.text = "There are no tokens in your library."
+        instructionsLabel.textColor = .white
+        instructionsLabel.textAlignment = .center
+        setLabelFontSize()
+        showInstructionsLabel()
+    }
+    
+    func setLabelFontSize() {
+        
+        switch UIDevice.current.userInterfaceIdiom {
+        case .pad:
+            
+            instructionsLabel.font = UIFont.systemFont(ofSize: 48)
+            
+        case .phone:
+            
+            instructionsLabel.font = UIFont.systemFont(ofSize: 22)
+            
+        default: break
+            
+        }
+        
+    }
+    
+    func showInstructionsLabel() {
+        if fetchedResultsController.fetchedObjects?.count == 0 {
+            instructionsLabel.isHidden = false
+        } else {
+            instructionsLabel.isHidden = true
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -138,4 +185,13 @@ extension TokenLibraryViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+}
+
+// MARK: - NSFetchedResultsControllerDelegate
+
+extension TokenLibraryViewController: NSFetchedResultsControllerDelegate {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        collectionView.reloadData()
+        showInstructionsLabel()
+    }
 }

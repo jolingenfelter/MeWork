@@ -11,8 +11,6 @@ import CoreData
 
 class ManageTokensViewController: TokenLibraryViewController {
     
-    lazy var instructionsLabel = UILabel()
-    
     lazy var  manageTokensMenu: ManageTokensMenu = {
         
         let menu = ManageTokensMenu()
@@ -25,45 +23,6 @@ class ManageTokensViewController: TokenLibraryViewController {
         fetchedResultsController.delegate = self
 
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        // InstructionsLabel Layout
-        self.collectionView.addSubview(instructionsLabel)
-        instructionsLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            instructionsLabel.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor),
-            instructionsLabel.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor
-            )])
-        
-        instructionsLabelSetup()
-    }
-    
-    func instructionsLabelSetup() {
-        instructionsLabel.text = "There are no tokens in your library."
-        instructionsLabel.textColor = .white
-        instructionsLabel.textAlignment = .center
-        setLabelFontSize()
-        showInstructionsLabel()
-    }
-    
-    func setLabelFontSize() {
-        
-        switch UIDevice.current.userInterfaceIdiom {
-        case .pad:
-            
-            instructionsLabel.font = UIFont.systemFont(ofSize: 48)
-            
-        case .phone:
-            
-            instructionsLabel.font = UIFont.systemFont(ofSize: 22)
-            
-        default: break
-            
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -88,14 +47,6 @@ class ManageTokensViewController: TokenLibraryViewController {
         self.present(manageTokensMenu, animated: true, completion: nil)
         
     }
-    
-    func showInstructionsLabel() {
-        if fetchedResultsController.fetchedObjects?.count == 0 {
-            instructionsLabel.isHidden = false
-        } else {
-            instructionsLabel.isHidden = true
-        }
-    }
 
 }
 
@@ -108,14 +59,5 @@ extension ManageTokensViewController: UIPopoverPresentationControllerDelegate {
         case .pad: return UIModalPresentationStyle.popover
         default: return UIModalPresentationStyle.none
         }
-    }
-}
-
-// MARK: - NSFetchedResultsControllerDelegate
-
-extension ManageTokensViewController: NSFetchedResultsControllerDelegate {
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        collectionView.reloadData()
-        showInstructionsLabel()
     }
 }
