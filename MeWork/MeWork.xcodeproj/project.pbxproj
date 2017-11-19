@@ -13,6 +13,7 @@
 		633AF5841FBB8D7E0009F389 /* TokenLibraryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AF5831FBB8D7E0009F389 /* TokenLibraryCell.swift */; };
 		633AF5861FBB8E900009F389 /* TokenLibraryFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AF5851FBB8E8F0009F389 /* TokenLibraryFlowLayout.swift */; };
 		6353EEFB1FBF2D7F00AC9E84 /* ManageTokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353EEFA1FBF2D7F00AC9E84 /* ManageTokensViewController.swift */; };
+		637447671FC222B1009BAA08 /* ManageTokensMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637447661FC222B1009BAA08 /* ManageTokensMenu.swift */; };
 		638FE2CA1FB9FA2F004957CA /* TokenLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638FE2C91FB9FA2F004957CA /* TokenLibraryViewController.swift */; };
 		638FE2CE1FBA0373004957CA /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638FE2CD1FBA0373004957CA /* Token.swift */; };
 		63A7E2A41FB89AA400D23252 /* MediaPickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A7E2A31FB89AA400D23252 /* MediaPickerManager.swift */; };
@@ -49,6 +50,7 @@
 		633AF5831FBB8D7E0009F389 /* TokenLibraryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenLibraryCell.swift; sourceTree = "<group>"; };
 		633AF5851FBB8E8F0009F389 /* TokenLibraryFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenLibraryFlowLayout.swift; sourceTree = "<group>"; };
 		6353EEFA1FBF2D7F00AC9E84 /* ManageTokensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageTokensViewController.swift; sourceTree = "<group>"; };
+		637447661FC222B1009BAA08 /* ManageTokensMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageTokensMenu.swift; sourceTree = "<group>"; };
 		638FE2C91FB9FA2F004957CA /* TokenLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenLibraryViewController.swift; sourceTree = "<group>"; };
 		638FE2CB1FBA01E6004957CA /* MeWork 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MeWork 2.xcdatamodel"; sourceTree = "<group>"; };
 		638FE2CD1FBA0373004957CA /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
@@ -112,9 +114,18 @@
 				638FE2C91FB9FA2F004957CA /* TokenLibraryViewController.swift */,
 				633AF5831FBB8D7E0009F389 /* TokenLibraryCell.swift */,
 				633AF5851FBB8E8F0009F389 /* TokenLibraryFlowLayout.swift */,
-				6353EEFA1FBF2D7F00AC9E84 /* ManageTokensViewController.swift */,
+				637447651FC22261009BAA08 /* ManageTokens */,
 			);
 			name = TokenLibrary;
+			sourceTree = "<group>";
+		};
+		637447651FC22261009BAA08 /* ManageTokens */ = {
+			isa = PBXGroup;
+			children = (
+				6353EEFA1FBF2D7F00AC9E84 /* ManageTokensViewController.swift */,
+				637447661FC222B1009BAA08 /* ManageTokensMenu.swift */,
+			);
+			name = ManageTokens;
 			sourceTree = "<group>";
 		};
 		63DA79111FAA9BB500F7B54D /* Views */ = {
@@ -370,6 +381,7 @@
 				6353EEFB1FBF2D7F00AC9E84 /* ManageTokensViewController.swift in Sources */,
 				9E9903191F184DD3003F7FCB /* CropImageViewController.swift in Sources */,
 				9E0FC9161F103C58003985C0 /* GetWebImageViewController.swift in Sources */,
+				637447671FC222B1009BAA08 /* ManageTokensMenu.swift in Sources */,
 				63B58E271FB3A2FC00C2320A /* ImageCroppingError.swift in Sources */,
 				9EF0AAE51F0C2AC500E2BBA8 /* ColorCell.swift in Sources */,
 				9E22ECD31EFD39A200546314 /* TokenBoard.swift in Sources */,
