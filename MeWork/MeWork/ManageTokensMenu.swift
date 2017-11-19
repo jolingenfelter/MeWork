@@ -29,6 +29,7 @@ class ManageTokensMenu: UIViewController {
         button.setTitle("Add Token to...", for: .normal)
         button.backgroundColor = .white
         button.setTitleColor(.black, for: .normal)
+        button.addTarget(self, action: #selector(addTokenToTokenBoard), for: .touchUpInside)
         
         return button
         
@@ -41,6 +42,13 @@ class ManageTokensMenu: UIViewController {
         
         return view
         
+    }()
+    
+    lazy var tokenBoardListPopover: TokenBoardListPopover = {
+        let tokenBoardList = TokenBoardListPopover()
+        tokenBoardList.delegate = self
+        
+        return tokenBoardList
     }()
     
     var token: Token?
@@ -121,6 +129,36 @@ extension ManageTokensMenu {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @objc func addTokenToTokenBoard() {
+        
+        guard let token = token else {
+            return
+        }
+        
+        
+    
+    }
+    
+}
+
+extension ManageTokensMenu: TokenBoardListPopoverDelegate {
+    func didSelect(tokenBoard: TokenBoard) {
+        tokenBoard.token = token
+        try? managedObjectContext.save()
+    }
+    
+}
+
+// MARK: - UIPopoverPresentationControllerDelegate
+
+extension ManageTokensMenu: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle
+    {
+        switch UIDevice.current.userInterfaceIdiom {
+        case .pad: return UIModalPresentationStyle.popover
+        default: return UIModalPresentationStyle.none
+        }
+    }
 }
 
 

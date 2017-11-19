@@ -14,6 +14,7 @@
 		633AF5861FBB8E900009F389 /* TokenLibraryFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AF5851FBB8E8F0009F389 /* TokenLibraryFlowLayout.swift */; };
 		6353EEFB1FBF2D7F00AC9E84 /* ManageTokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353EEFA1FBF2D7F00AC9E84 /* ManageTokensViewController.swift */; };
 		637447671FC222B1009BAA08 /* ManageTokensMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637447661FC222B1009BAA08 /* ManageTokensMenu.swift */; };
+		637447691FC23C3E009BAA08 /* TokenBoardListPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637447681FC23C3E009BAA08 /* TokenBoardListPopover.swift */; };
 		638FE2CA1FB9FA2F004957CA /* TokenLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638FE2C91FB9FA2F004957CA /* TokenLibraryViewController.swift */; };
 		638FE2CE1FBA0373004957CA /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638FE2CD1FBA0373004957CA /* Token.swift */; };
 		63A7E2A41FB89AA400D23252 /* MediaPickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A7E2A31FB89AA400D23252 /* MediaPickerManager.swift */; };
@@ -51,6 +52,7 @@
 		633AF5851FBB8E8F0009F389 /* TokenLibraryFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenLibraryFlowLayout.swift; sourceTree = "<group>"; };
 		6353EEFA1FBF2D7F00AC9E84 /* ManageTokensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageTokensViewController.swift; sourceTree = "<group>"; };
 		637447661FC222B1009BAA08 /* ManageTokensMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageTokensMenu.swift; sourceTree = "<group>"; };
+		637447681FC23C3E009BAA08 /* TokenBoardListPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenBoardListPopover.swift; sourceTree = "<group>"; };
 		638FE2C91FB9FA2F004957CA /* TokenLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenLibraryViewController.swift; sourceTree = "<group>"; };
 		638FE2CB1FBA01E6004957CA /* MeWork 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MeWork 2.xcdatamodel"; sourceTree = "<group>"; };
 		638FE2CD1FBA0373004957CA /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			children = (
 				6353EEFA1FBF2D7F00AC9E84 /* ManageTokensViewController.swift */,
 				637447661FC222B1009BAA08 /* ManageTokensMenu.swift */,
+				637447681FC23C3E009BAA08 /* TokenBoardListPopover.swift */,
 			);
 			name = ManageTokens;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				9E0FC9161F103C58003985C0 /* GetWebImageViewController.swift in Sources */,
 				637447671FC222B1009BAA08 /* ManageTokensMenu.swift in Sources */,
 				63B58E271FB3A2FC00C2320A /* ImageCroppingError.swift in Sources */,
+				637447691FC23C3E009BAA08 /* TokenBoardListPopover.swift in Sources */,
 				9EF0AAE51F0C2AC500E2BBA8 /* ColorCell.swift in Sources */,
 				9E22ECD31EFD39A200546314 /* TokenBoard.swift in Sources */,
 				9EB8C4871F019A3100F0D2BD /* ChooseImageViewController.swift in Sources */,
