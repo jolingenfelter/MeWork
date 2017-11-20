@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class RewardsLibraryViewController: TokenLibraryViewController {
+class RewardsLibraryViewController: ManageTokensViewController {
     
     override lazy var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
         let controller = NSFetchedResultsController(fetchRequest: Reward.allRewardsFetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
@@ -50,6 +50,21 @@ class RewardsLibraryViewController: TokenLibraryViewController {
 extension RewardsLibraryViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let reward = fetchedResultsController.object(at: indexPath) as! Reward
+        manageTokensMenu.reward = reward
+        
+        manageTokensMenu.modalPresentationStyle = .popover
+        manageTokensMenu.preferredContentSize = CGSize(width: 150, height: 150)
+        
+        let popover = manageTokensMenu.popoverPresentationController! as UIPopoverPresentationController
+        popover.delegate = self
+        popover.permittedArrowDirections = [.left, .right]
+        let cell = collectionView.cellForItem(at: indexPath) as! TokenLibraryCell
+        popover.sourceView = cell
+        popover.sourceRect = cell.imageView.frame
+        
+        self.present(manageTokensMenu, animated: true, completion: nil)
         
     }
     

@@ -14,10 +14,10 @@ class ManageTokensMenu: UIViewController {
     lazy var deleteButton: UIButton = {
         
         let button = UIButton()
-        button.setTitle("Delete Token", for: .normal)
+        button.setTitle("Delete", for: .normal)
         button.backgroundColor = .white
         button.setTitleColor(.black, for: .normal)
-        button.addTarget(self, action: #selector(deleteToken), for: .touchUpInside)
+        button.addTarget(self, action: #selector(deleteTokenOrReward), for: .touchUpInside)
 
         return button
         
@@ -26,7 +26,7 @@ class ManageTokensMenu: UIViewController {
     lazy var addTokenToTokenBoardButton: UIButton = {
         
         let button = UIButton()
-        button.setTitle("Add Token to...", for: .normal)
+        button.setTitle("Add to...", for: .normal)
         button.backgroundColor = .white
         button.setTitleColor(.black, for: .normal)
         button.addTarget(self, action: #selector(addTokenToTokenBoard), for: .touchUpInside)
@@ -52,6 +52,8 @@ class ManageTokensMenu: UIViewController {
     }()
     
     var token: Token?
+    var reward: Reward?
+    
     let managedObjectContext: NSManagedObjectContext
     
     init(managedObjectContext: NSManagedObjectContext = CoreDataManager.sharedInstance.managedObjectContext) {
@@ -108,6 +110,12 @@ class ManageTokensMenu: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        token = nil
+        reward = nil
+    }
 
 }
 
@@ -115,16 +123,21 @@ class ManageTokensMenu: UIViewController {
 
 extension ManageTokensMenu {
     
-    @objc func deleteToken() {
+    @objc func deleteTokenOrReward() {
         
-        guard let token = token, let fileName = token.fileName else {
-            return
+        if let token = token, let fileName = token.fileName {
+            
+            managedObjectContext.delete(token)
+            try? managedObjectContext.save()
+            deleteFile(named: fileName)
+            
+        } else if let reward = reward, let fileName = reward.fileName {
+            
+            managedObjectContext.delete(reward)
+            try? managedObjectContext.save()
+            deleteFile(named: fileName)
+            
         }
-        
-        managedObjectContext.delete(token)
-        try? managedObjectContext.save()
-        
-        deleteFile(named: fileName)
         
         self.dismiss(animated: true, completion: nil)
     }
@@ -149,7 +162,13 @@ extension ManageTokensMenu {
 
 extension ManageTokensMenu: TokenBoardListPopoverDelegate {
     func didSelect(tokenBoard: TokenBoard) {
-        tokenBoard.token = token
+        
+        if let token = token {
+           tokenBoard.token = token
+        } else if let reward = reward {
+            tokenBoard.reward = reward
+        }
+        
         try? managedObjectContext.save()
     }
     

@@ -12,9 +12,7 @@ import CoreData
 class ManageTokensViewController: TokenLibraryViewController {
     
     lazy var  manageTokensMenu: ManageTokensMenu = {
-        
         let menu = ManageTokensMenu()
-
         return menu
     }()
 
