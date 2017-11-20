@@ -31,6 +31,17 @@ class RewardsLibraryViewController: TokenLibraryViewController {
         setLabelFontSize()
         showInstructionsLabel()
     }
+    
+    override func navBarSetup() {
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(TokenLibraryViewController.cancelPressed))
+        let addRewardButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addRewardPressed))
+        
+        navigationItem.rightBarButtonItems = [doneButton, addRewardButton]
+    }
+    
+    @objc func addRewardPressed() {
+        
+    }
 
 }
 

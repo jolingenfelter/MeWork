@@ -120,6 +120,16 @@
 			name = Rewards;
 			sourceTree = "<group>";
 		};
+		6310E6811FC3536E009B0B68 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				637447681FC23C3E009BAA08 /* TokenBoardListPopover.swift */,
+				6310E67E1FC349E1009B0B68 /* Rewards */,
+				633AF5821FBB8D5A0009F389 /* TokenLibrary */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
 		633AF5821FBB8D5A0009F389 /* TokenLibrary */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,7 +146,6 @@
 			children = (
 				6353EEFA1FBF2D7F00AC9E84 /* ManageTokensViewController.swift */,
 				637447661FC222B1009BAA08 /* ManageTokensMenu.swift */,
-				637447681FC23C3E009BAA08 /* TokenBoardListPopover.swift */,
 			);
 			name = ManageTokens;
 			sourceTree = "<group>";
@@ -174,8 +183,7 @@
 				9E0DCCE41EFC8C35001AB810 /* HomeViewController.swift */,
 				9EF20FF51EFEFCB4008D7F8C /* TokenBoardList */,
 				9EC7E6941F000805008093E8 /* CreateTokenBoard */,
-				6310E67E1FC349E1009B0B68 /* Rewards */,
-				633AF5821FBB8D5A0009F389 /* TokenLibrary */,
+				6310E6811FC3536E009B0B68 /* Libraries */,
 				9E0FC9141F103BEC003985C0 /* GetImages */,
 				9E0DCCE91EFC8C35001AB810 /* Assets.xcassets */,
 				9E0DCCEB1EFC8C35001AB810 /* LaunchScreen.storyboard */,
