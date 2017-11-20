@@ -134,6 +134,17 @@ class TokenLibraryViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - Navigation
+    
+    func navBarSetup() {
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelPressed))
+        navigationItem.rightBarButtonItem = cancelButton
+    }
+    
+    @objc func cancelPressed() {
+        self.dismiss(animated: true, completion: nil)
+    }
 
 }
 
@@ -168,21 +179,6 @@ extension TokenLibraryViewController: UICollectionViewDelegate, UICollectionView
         }
         
         return cell
-    }
-    
-}
-
-// MARK: - Navigation
-
-extension TokenLibraryViewController {
-    
-    func navBarSetup() {
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelPressed))
-        navigationItem.rightBarButtonItem = cancelButton
-    }
-    
-    @objc func cancelPressed() {
-        self.dismiss(animated: true, completion: nil)
     }
     
 }

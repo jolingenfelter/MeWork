@@ -24,6 +24,11 @@ class ManageTokensViewController: TokenLibraryViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    override func navBarSetup() {
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(TokenLibraryViewController.cancelPressed))
+        navigationItem.rightBarButtonItem = doneButton
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -36,10 +41,10 @@ class ManageTokensViewController: TokenLibraryViewController {
 
         manageTokensMenu.modalPresentationStyle = .popover
         manageTokensMenu.preferredContentSize = CGSize(width: 150, height: 150)
-        manageTokensMenu.popoverPresentationController?.permittedArrowDirections = .left
 
         let popover = manageTokensMenu.popoverPresentationController! as UIPopoverPresentationController
         popover.delegate = self
+        popover.permittedArrowDirections = [.left, .right]
         let cell = collectionView.cellForItem(at: indexPath) as! TokenLibraryCell
         popover.sourceView = cell
         popover.sourceRect = cell.imageView.frame

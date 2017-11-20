@@ -87,7 +87,10 @@ class TokenBoardListViewController: UIViewController {
 extension TokenBoardListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let tokenBoard = dataSource.fetchedResultsController.object(at: indexPath) as! TokenBoard
+        let tokenBoard = dataSource.fetchedResultsController.object(at: indexPath) as! TokenBoard
+        if let token = tokenBoard.token, let fileName = token.fileName {
+            print(fileName)
+        }
         
     }
     

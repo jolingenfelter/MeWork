@@ -131,11 +131,17 @@ extension ManageTokensMenu {
     
     @objc func addTokenToTokenBoard() {
         
-        guard let token = token else {
-            return
-        }
+        tokenBoardListPopover.preferredContentSize = CGSize(width: 150, height: 150)
+        tokenBoardListPopover.modalPresentationStyle = .popover
         
+        let popoverPresentationController = tokenBoardListPopover.popoverPresentationController! as UIPopoverPresentationController
+        popoverPresentationController.permittedArrowDirections = [.left, .right]
+        popoverPresentationController.delegate = self
+        popoverPresentationController.sourceView = addTokenToTokenBoardButton
+        let sourceRect = CGRect(x: addTokenToTokenBoardButton.center.x, y: addTokenToTokenBoardButton.frame.height/2, width: 0, height: 0)
+        popoverPresentationController.sourceRect = sourceRect
         
+        present(tokenBoardListPopover, animated: true, completion: nil)
     
     }
     
