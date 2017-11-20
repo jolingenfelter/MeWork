@@ -103,9 +103,10 @@ extension TokenBoardListViewController {
     func navigationBarSetup() {
         
         let addTokenBoardButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTokenBoardPressed))
-        let manageTokensButton = UIBarButtonItem(title: "Manage Tokens", style: .plain, target: self, action: #selector(manageTokensPressed))
+        let manageTokensButton = UIBarButtonItem(title: "Tokens", style: .plain, target: self, action: #selector(manageTokensPressed))
+        let manageRewardsButton = UIBarButtonItem(title: "Rewards", style: .plain, target: self, action: #selector(manageRewardsPressed))
         
-        navigationItem.rightBarButtonItems = [addTokenBoardButton, manageTokensButton]
+        navigationItem.rightBarButtonItems = [addTokenBoardButton, manageTokensButton, manageRewardsButton]
         
     }
     
@@ -125,6 +126,13 @@ extension TokenBoardListViewController {
         
         self.present(navigationController, animated: true, completion: nil)
         
+    }
+    
+    @objc func manageRewardsPressed() {
+        let rewardsLibraryViewController = RewardsLibraryViewController()
+        let navigationController = UINavigationController(rootViewController: rewardsLibraryViewController)
+        
+        self.present(navigationController, animated: true, completion: nil)
     }
 }
 
