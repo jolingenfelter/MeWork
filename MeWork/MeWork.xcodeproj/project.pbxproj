@@ -10,6 +10,7 @@
 		44295CF21D76E2EF3C371335 /* Pods_MeWork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6218D03E6971B3769E9A4BE /* Pods_MeWork.framework */; };
 		6306D2171FACAB3D001D4285 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6306D2161FACAB3D001D4285 /* Result.swift */; };
 		6306D2191FACAB62001D4285 /* ImageGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6306D2181FACAB62001D4285 /* ImageGetter.swift */; };
+		630C5CC91FC3A46C001CA8E5 /* ChooseRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630C5CC81FC3A46C001CA8E5 /* ChooseRewardViewController.swift */; };
 		6310E6801FC34A2D009B0B68 /* RewardsLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310E67F1FC34A2D009B0B68 /* RewardsLibraryViewController.swift */; };
 		633AF5841FBB8D7E0009F389 /* TokenLibraryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AF5831FBB8D7E0009F389 /* TokenLibraryCell.swift */; };
 		633AF5861FBB8E900009F389 /* TokenLibraryFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AF5851FBB8E8F0009F389 /* TokenLibraryFlowLayout.swift */; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		6306D2161FACAB3D001D4285 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		6306D2181FACAB62001D4285 /* ImageGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGetter.swift; sourceTree = "<group>"; };
+		630C5CC81FC3A46C001CA8E5 /* ChooseRewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRewardViewController.swift; sourceTree = "<group>"; };
 		6310E67F1FC34A2D009B0B68 /* RewardsLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsLibraryViewController.swift; sourceTree = "<group>"; };
 		633AF5831FBB8D7E0009F389 /* TokenLibraryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenLibraryCell.swift; sourceTree = "<group>"; };
 		633AF5851FBB8E8F0009F389 /* TokenLibraryFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenLibraryFlowLayout.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				6310E67F1FC34A2D009B0B68 /* RewardsLibraryViewController.swift */,
+				630C5CC81FC3A46C001CA8E5 /* ChooseRewardViewController.swift */,
 			);
 			name = Rewards;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				6353EEFB1FBF2D7F00AC9E84 /* ManageTokensViewController.swift in Sources */,
 				9E9903191F184DD3003F7FCB /* CropImageViewController.swift in Sources */,
 				9E0FC9161F103C58003985C0 /* GetWebImageViewController.swift in Sources */,
+				630C5CC91FC3A46C001CA8E5 /* ChooseRewardViewController.swift in Sources */,
 				637447671FC222B1009BAA08 /* ManageTokensMenu.swift in Sources */,
 				63B58E271FB3A2FC00C2320A /* ImageCroppingError.swift in Sources */,
 				637447691FC23C3E009BAA08 /* TokenBoardListPopover.swift in Sources */,

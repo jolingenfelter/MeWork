@@ -18,6 +18,13 @@ class RewardsLibraryViewController: ManageTokensViewController {
         return controller
     }()
     
+    lazy var chooseRewardViewController: ChooseRewardViewController = {
+        let controller = ChooseRewardViewController()
+        controller.delegate = self
+        
+        return controller
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Saved Rewards"
@@ -40,7 +47,9 @@ class RewardsLibraryViewController: ManageTokensViewController {
     }
     
     @objc func addRewardPressed() {
-        
+    
+        let navigationController = UINavigationController(rootViewController: chooseRewardViewController)
+        self.present(navigationController, animated: true, completion: nil)
     }
 
 }
@@ -82,6 +91,14 @@ extension RewardsLibraryViewController {
         return cell
     }
     
+}
+
+// MARK: - ChooseRewardDelegate
+
+extension RewardsLibraryViewController: ChooseRewardDelegate {
+    func didSelectReward(image: UIImage) {
+        
+    }
 }
 
 
