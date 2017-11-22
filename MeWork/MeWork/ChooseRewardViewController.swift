@@ -95,6 +95,11 @@ class ChooseRewardViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        checkForRewardImage()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Color.yellow.color()
@@ -225,6 +230,15 @@ class ChooseRewardViewController: UIViewController {
     
     @objc func imageFromPhotoLibrary() {
         mediaPickerManager.presentImagePickerController(animated: true)
+    }
+    
+    func checkForRewardImage() {
+        if let rewardImage = rewardImage {
+            rewardImageView.image = rewardImage
+        } else {
+            let noImage = UIImage(named: "NoImage")!
+            rewardImageView.image = noImage
+        }
     }
 
     override func didReceiveMemoryWarning() {
