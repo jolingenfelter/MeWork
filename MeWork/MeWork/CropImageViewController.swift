@@ -173,7 +173,7 @@ class CropImageViewController: UIViewController {
                 saveButtonSetup(withFontSize: 14, height: 40, andTopConstant: 60)
             
             // iPhone 6 Size
-            } else if ScreenSize.SCREEN_MAX_LENGTH == 667 {
+            } else if ScreenSize.SCREEN_MAX_LENGTH == 667.0 {
                 
                 scrollViewSetup(withWidth: 220, andTopConstant: 40)
                 cropBoxSetup()

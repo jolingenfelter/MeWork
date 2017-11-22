@@ -46,7 +46,7 @@ class TokenLibraryFlowLayout: UICollectionViewFlowLayout {
                 itemSize = CGSize(width: 100, height: 100)
             
             // iPhone 6 Size
-            } else if ScreenSize.SCREEN_MAX_LENGTH == 667 {
+            } else if ScreenSize.SCREEN_MAX_LENGTH == 667.0 {
             
                 itemSize = CGSize(width: 150, height: 150)
             

@@ -225,7 +225,7 @@ class ChooseImageViewController: UIViewController {
                 buttonSetup(withFontSize: 14, height: 40, topAnchorConstant: 40, bottomAnchorConstant: -40)
             
             // iPhone 6 Size
-            } else if ScreenSize.SCREEN_MAX_LENGTH == 667 {
+            } else if ScreenSize.SCREEN_MAX_LENGTH == 667.0 {
                 
                 setupLabel(withFontSize: 24)
                 setupImageView(withHeight: 180, andTopAnchorConstant: 20)

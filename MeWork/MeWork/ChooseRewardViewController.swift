@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol ChooseRewardDelegate {
     func didSelectReward(image: UIImage)
@@ -14,11 +15,13 @@ protocol ChooseRewardDelegate {
 
 class ChooseRewardViewController: UIViewController {
     
+    let managedObjectContext: NSManagedObjectContext
+    
     var delegate: ChooseRewardDelegate!
     
-    var tokenBoard: TokenBoard?
     var rewardImage: UIImage?
     var rewardImageName: String?
+    var reward: Reward?
     
     lazy var rewardImageView: UIImageView = {
         
@@ -82,7 +85,16 @@ class ChooseRewardViewController: UIViewController {
         manager.delegate = self
         return manager
     }()
-
+    
+    init(managedObjectContext: NSManagedObjectContext = CoreDataManager.sharedInstance.managedObjectContext) {
+        self.managedObjectContext = managedObjectContext
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Color.yellow.color()
@@ -131,7 +143,7 @@ class ChooseRewardViewController: UIViewController {
                 buttonSetup(withFontSize: 14, height: 40, topAnchorConstant: 80, bottomAnchorConstant: -120)
                 
                 // iPhone 6 Size
-            } else if ScreenSize.SCREEN_MAX_LENGTH == 667 {
+            } else if ScreenSize.SCREEN_MAX_LENGTH == 667.0 {
                 
                 setupImageView(withHeight: 180, andTopAnchorConstant: 40)
                 buttonSetup(withFontSize: 16, height: 40, topAnchorConstant: 80, bottomAnchorConstant: -200)
@@ -203,9 +215,6 @@ class ChooseRewardViewController: UIViewController {
     func navBarSetup() {
         
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelPressed))
-        
-        navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = doneButton
     }
     
@@ -230,19 +239,43 @@ class ChooseRewardViewController: UIViewController {
 extension ChooseRewardViewController {
     
     @objc func donePressed() {
-        self.dismiss(animated: true, completion: nil)
+        
+        guard let rewardImage = rewardImage else {
+            self.dismiss(animated: true, completion: nil)
+            return
+        }
+        
+        let imageData = UIImageJPEGRepresentation(rewardImage, 1.0)
+        let imageName = generateImageName()
+        let fileName = getDocumentsDirectory().appendingPathComponent("\(imageName).jpeg")
+        
+        reward = Reward.reward(withName: imageName)
+        
+        // Save Image to FileDirectory
+        do {
+            try imageData?.write(to: fileName)
+            rewardImageName = imageName
+            try managedObjectContext.save()
+        } catch let error {
+            showAlert(withTitle: "Error", andMessage: "There was an error saving the image: \(error.localizedDescription)")
+        }
+        
+        self.dismiss(animated: true) {
+            self.rewardImageName = nil
+            self.rewardImage = nil
+            self.reward = nil
+            self.rewardImageView.image = nil
+        }
     }
     
-    @objc func cancelPressed() {
-        self.dismiss(animated: true, completion: nil)
-    }
 }
 
 // MARK: - GetWebImageDelegate
 
 extension ChooseRewardViewController: GetWebImageDelegate {
     func didGet(croppedWebImage: UIImage) {
-        
+        rewardImage = croppedWebImage
+        rewardImageView.image = croppedWebImage
     }
 }
 
@@ -250,6 +283,7 @@ extension ChooseRewardViewController: GetWebImageDelegate {
 
 extension ChooseRewardViewController: MediaPickerManagerDelegate {
     func mediaPickerManager(manager: MediaPickerManager, didFinishPickingImage image: UIImage) {
-        
+        rewardImage = image
+        rewardImageView.image = image
     }
 }
