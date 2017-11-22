@@ -114,7 +114,7 @@ class TokenLibraryViewController: UIViewController {
             
         case .phone:
             
-            instructionsLabel.font = UIFont.systemFont(ofSize: 22)
+            instructionsLabel.font = UIFont.systemFont(ofSize: 18)
             
         default: break
             

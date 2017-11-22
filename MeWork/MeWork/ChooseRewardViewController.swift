@@ -16,6 +16,10 @@ class ChooseRewardViewController: UIViewController {
     
     var delegate: ChooseRewardDelegate!
     
+    var tokenBoard: TokenBoard?
+    var rewardImage: UIImage?
+    var rewardImageName: String?
+    
     lazy var rewardImageView: UIImageView = {
         
         let imageView = UIImageView()
@@ -69,8 +73,14 @@ class ChooseRewardViewController: UIViewController {
     
     lazy var getWebImageViewController:  GetWebImageViewController = {
         let getWebImageVC = GetWebImageViewController()
-        //getWebImageVC.delegate = self
+        getWebImageVC.delegate = self
         return getWebImageVC
+    }()
+    
+    lazy var mediaPickerManager: MediaPickerManager = {
+        let manager = MediaPickerManager(presentingViewController: self)
+        manager.delegate = self
+        return manager
     }()
 
     override func viewDidLoad() {
@@ -94,19 +104,19 @@ class ChooseRewardViewController: UIViewController {
             if ScreenSize.SCREEN_MAX_LENGTH == 1366.0 {
                 
                 setupImageView(withHeight: 440, andTopAnchorConstant: 60)
-                buttonSetup(withFontSize: 28, height: 80, topAnchorConstant: 180, bottomAnchorConstant: -220)
+                buttonSetup(withFontSize: 28, height: 80, topAnchorConstant: 180, bottomAnchorConstant: -400)
                 
                 // iPad Pro 10.5 inch
             } else if ScreenSize.SCREEN_MAX_LENGTH == 1112.0 {
                 
                 setupImageView(withHeight: 400, andTopAnchorConstant: 60)
-                buttonSetup(withFontSize: 24, height: 60, topAnchorConstant: 80, bottomAnchorConstant: -180)
+                buttonSetup(withFontSize: 24, height: 60, topAnchorConstant: 80, bottomAnchorConstant: -360)
                 
                 // iPad 9.7 inch and mini
             } else {
                 
                 setupImageView(withHeight: 400, andTopAnchorConstant: 60)
-                buttonSetup(withFontSize: 20, height: 50, topAnchorConstant: 80, bottomAnchorConstant: -120)
+                buttonSetup(withFontSize: 20, height: 50, topAnchorConstant: 80, bottomAnchorConstant: -280)
                 
             }
             
@@ -117,26 +127,26 @@ class ChooseRewardViewController: UIViewController {
             // iPhone 5 Size
             if ScreenSize.SCREEN_MAX_LENGTH == 568.0 {
                 
-                setupImageView(withHeight: 170, andTopAnchorConstant: 20)
-                buttonSetup(withFontSize: 14, height: 40, topAnchorConstant: 40, bottomAnchorConstant: -40)
+                setupImageView(withHeight: 170, andTopAnchorConstant: 40)
+                buttonSetup(withFontSize: 14, height: 40, topAnchorConstant: 80, bottomAnchorConstant: -120)
                 
                 // iPhone 6 Size
             } else if ScreenSize.SCREEN_MAX_LENGTH == 667 {
                 
-                setupImageView(withHeight: 180, andTopAnchorConstant: 20)
-                buttonSetup(withFontSize: 16, height: 40, topAnchorConstant: 80, bottomAnchorConstant: -80)
+                setupImageView(withHeight: 180, andTopAnchorConstant: 40)
+                buttonSetup(withFontSize: 16, height: 40, topAnchorConstant: 80, bottomAnchorConstant: -200)
                 
                 // iPhone X Size
             } else if ScreenSize.SCREEN_MAX_LENGTH == 812.0 {
                 
-                setupImageView(withHeight: 260, andTopAnchorConstant: 40)
-                buttonSetup(withFontSize: 18, height: 40, topAnchorConstant: 40, bottomAnchorConstant: -120)
+                setupImageView(withHeight: 260, andTopAnchorConstant: 80)
+                buttonSetup(withFontSize: 18, height: 40, topAnchorConstant: 80, bottomAnchorConstant: -200)
                 
                 // iPhone Plus Size
             } else {
                 
                 setupImageView(withHeight: 240, andTopAnchorConstant: 40)
-                buttonSetup(withFontSize: 18, height: 40, topAnchorConstant: 80, bottomAnchorConstant: -80)
+                buttonSetup(withFontSize: 18, height: 40, topAnchorConstant: 80, bottomAnchorConstant: -200)
                 
             }
             
@@ -152,7 +162,6 @@ class ChooseRewardViewController: UIViewController {
     
     func setupImageView(withHeight: CGFloat, andTopAnchorConstant: CGFloat) {
         
-        rewardImageView.backgroundColor = UIColor.blue
         NSLayoutConstraint.activate([
             rewardImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: andTopAnchorConstant),
             rewardImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -162,6 +171,32 @@ class ChooseRewardViewController: UIViewController {
     }
     
     func buttonSetup(withFontSize: CGFloat, height: CGFloat, topAnchorConstant: CGFloat, bottomAnchorConstant: CGFloat) {
+        
+        let buttonsArray = [imageFromWebButton, imageFromPhotoLibraryButton]
+        
+        let stackView = UIStackView(arrangedSubviews: buttonsArray)
+        stackView.alignment = .center
+        stackView.distribution = .equalSpacing
+        stackView.axis = UILayoutConstraintAxis.vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackView)
+        
+        for button in buttonsArray {
+            
+            button.titleLabel?.font = UIFont.systemFont(ofSize: withFontSize)
+            
+            NSLayoutConstraint.activate([
+                button.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+                button.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+                button.heightAnchor.constraint(equalToConstant: height)])
+        }
+        
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60),
+            stackView.topAnchor.constraint(equalTo: rewardImageView.bottomAnchor, constant: topAnchorConstant),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: bottomAnchorConstant)
+            ])
         
     }
     
@@ -175,11 +210,12 @@ class ChooseRewardViewController: UIViewController {
     }
     
     @objc func imageFromWeb() {
-        
+        let navigationController = UINavigationController(rootViewController: getWebImageViewController)
+        self.present(navigationController, animated: true, completion: nil)
     }
     
     @objc func imageFromPhotoLibrary() {
-        
+        mediaPickerManager.presentImagePickerController(animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -199,5 +235,21 @@ extension ChooseRewardViewController {
     
     @objc func cancelPressed() {
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - GetWebImageDelegate
+
+extension ChooseRewardViewController: GetWebImageDelegate {
+    func didGet(croppedWebImage: UIImage) {
+        
+    }
+}
+
+// MARK: - MediaPickerManagerDelegate
+
+extension ChooseRewardViewController: MediaPickerManagerDelegate {
+    func mediaPickerManager(manager: MediaPickerManager, didFinishPickingImage image: UIImage) {
+        
     }
 }
