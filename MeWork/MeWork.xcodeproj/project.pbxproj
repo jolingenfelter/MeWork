@@ -127,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				637447681FC23C3E009BAA08 /* TokenBoardListPopover.swift */,
+				637447661FC222B1009BAA08 /* ManageTokensMenu.swift */,
 				6310E67E1FC349E1009B0B68 /* Rewards */,
 				633AF5821FBB8D5A0009F389 /* TokenLibrary */,
 			);
@@ -148,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				6353EEFA1FBF2D7F00AC9E84 /* ManageTokensViewController.swift */,
-				637447661FC222B1009BAA08 /* ManageTokensMenu.swift */,
 			);
 			name = ManageTokens;
 			sourceTree = "<group>";
