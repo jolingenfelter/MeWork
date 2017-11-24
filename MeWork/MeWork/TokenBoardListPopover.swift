@@ -33,5 +33,9 @@ class TokenBoardListPopover: TokenBoardListViewController {
         self.dismiss(animated: true, completion: nil)
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
+    
+    override func showInstructions() {
+        instructionsLabel.isHidden = true
+    }
 
 }

@@ -144,17 +144,24 @@ extension ManageTokensMenu {
     
     @objc func addTokenToTokenBoard() {
         
-        tokenBoardListPopover.preferredContentSize = CGSize(width: 150, height: 150)
-        tokenBoardListPopover.modalPresentationStyle = .popover
-        
-        let popoverPresentationController = tokenBoardListPopover.popoverPresentationController! as UIPopoverPresentationController
-        popoverPresentationController.permittedArrowDirections = [.left, .right]
-        popoverPresentationController.delegate = self
-        popoverPresentationController.sourceView = addTokenToTokenBoardButton
-        let sourceRect = CGRect(x: addTokenToTokenBoardButton.center.x, y: addTokenToTokenBoardButton.frame.height/2, width: 0, height: 0)
-        popoverPresentationController.sourceRect = sourceRect
-        
-        present(tokenBoardListPopover, animated: true, completion: nil)
+        if tokenBoardListPopover.dataSource.fetchedResultsController.fetchedObjects?.count == 0 {
+            
+            self.showAlert(withTitle: "Oops!", andMessage: "There are no saved token boards.")
+            
+        } else {
+            
+            tokenBoardListPopover.preferredContentSize = CGSize(width: 150, height: 150)
+            tokenBoardListPopover.modalPresentationStyle = .popover
+            
+            let popoverPresentationController = tokenBoardListPopover.popoverPresentationController! as UIPopoverPresentationController
+            popoverPresentationController.permittedArrowDirections = [.left, .right]
+            popoverPresentationController.delegate = self
+            popoverPresentationController.sourceView = addTokenToTokenBoardButton
+            let sourceRect = CGRect(x: addTokenToTokenBoardButton.center.x, y: addTokenToTokenBoardButton.frame.height/2, width: 0, height: 0)
+            popoverPresentationController.sourceRect = sourceRect
+            
+            present(tokenBoardListPopover, animated: true, completion: nil)
+        }
     
     }
     
@@ -164,9 +171,9 @@ extension ManageTokensMenu: TokenBoardListPopoverDelegate {
     func didSelect(tokenBoard: TokenBoard) {
         
         if let token = token {
-           tokenBoard.token = token
+           tokenBoard.addTokenBoardTokenObject(token)
         } else if let reward = reward {
-            tokenBoard.reward = reward
+            tokenBoard.addTokenBoardRewardObject(value: reward)
         }
         
         try? managedObjectContext.save()
