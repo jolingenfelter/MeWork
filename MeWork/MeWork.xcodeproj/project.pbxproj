@@ -114,6 +114,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		630C26A21FC8984600973406 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9EC7E6971F000876008093E8 /* EnterChildNameViewController.swift */,
+				9EEC8BD61F016BC600491A9E /* NumberOfTokensViewController.swift */,
+				9EFBD84B1F06A431002BFF1A /* BackgroundColorViewController.swift */,
+				9EB8C4861F019A3100F0D2BD /* ChooseImageViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		6310E67E1FC349E1009B0B68 /* Rewards */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,10 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				9EFBD84D1F06A70F002BFF1A /* View */,
-				9EC7E6971F000876008093E8 /* EnterChildNameViewController.swift */,
-				9EEC8BD61F016BC600491A9E /* NumberOfTokensViewController.swift */,
-				9EFBD84B1F06A431002BFF1A /* BackgroundColorViewController.swift */,
-				9EB8C4861F019A3100F0D2BD /* ChooseImageViewController.swift */,
+				630C26A21FC8984600973406 /* Controllers */,
 			);
 			name = CreateTokenBoard;
 			sourceTree = "<group>";

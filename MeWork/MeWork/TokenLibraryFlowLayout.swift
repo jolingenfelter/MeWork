@@ -43,21 +43,21 @@ class TokenLibraryFlowLayout: UICollectionViewFlowLayout {
             // iPhone 5 Size
             if ScreenSize.SCREEN_MAX_LENGTH == 568.0 {
             
-                itemSize = CGSize(width: 100, height: 100)
+                itemSize = CGSize(width: 150, height: 150)
             
             // iPhone 6 Size
             } else if ScreenSize.SCREEN_MAX_LENGTH == 667.0 {
             
-                itemSize = CGSize(width: 150, height: 150)
+                itemSize = CGSize(width: 170, height: 170)
             
             // iPhone X Size
             } else if ScreenSize.SCREEN_MAX_LENGTH == 812.0 {
             
-                itemSize = CGSize(width: 220, height: 220)
+                itemSize = CGSize(width: 180, height: 180)
             
             // iPhone Plus Size
             } else {
-                itemSize = CGSize(width: 200, height: 200)
+                itemSize = CGSize(width: 180, height: 180)
             }
         
         default: break
