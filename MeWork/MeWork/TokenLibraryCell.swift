@@ -15,7 +15,7 @@ class TokenLibraryCell: UICollectionViewCell {
     lazy var imageView: UIImageView = {
         
         let view = UIImageView()
-        view.contentMode = .scaleAspectFill
+        view.contentMode = .scaleAspectFit
         view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
         view.layer.borderColor = UIColor.white.cgColor

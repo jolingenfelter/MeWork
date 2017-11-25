@@ -40,7 +40,6 @@ class ChooseImageViewController: UIViewController {
     lazy var tokenImageView: UIImageView = {
         
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
@@ -309,8 +308,10 @@ class ChooseImageViewController: UIViewController {
     
     func checkForTokenImage() {
         if let tokenImage = tokenImage {
+            tokenImageView.contentMode = .scaleAspectFit
             tokenImageView.image = tokenImage
         } else {
+            tokenImageView.contentMode = .scaleAspectFill
             let noImage = UIImage(named: "NoImage")!
             tokenImageView.image = noImage
         }

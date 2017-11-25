@@ -139,6 +139,7 @@
 			children = (
 				637447681FC23C3E009BAA08 /* TokenBoardListPopover.swift */,
 				637447661FC222B1009BAA08 /* ManageTokensMenu.swift */,
+				633AF5831FBB8D7E0009F389 /* TokenLibraryCell.swift */,
 				6310E67E1FC349E1009B0B68 /* Rewards */,
 				633AF5821FBB8D5A0009F389 /* TokenLibrary */,
 			);
@@ -149,7 +150,6 @@
 			isa = PBXGroup;
 			children = (
 				638FE2C91FB9FA2F004957CA /* TokenLibraryViewController.swift */,
-				633AF5831FBB8D7E0009F389 /* TokenLibraryCell.swift */,
 				633AF5851FBB8E8F0009F389 /* TokenLibraryFlowLayout.swift */,
 				637447651FC22261009BAA08 /* ManageTokens */,
 			);

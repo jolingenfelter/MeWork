@@ -143,23 +143,23 @@ class CropImageViewController: UIViewController {
             // iPad Pro 12.9 inch
             if ScreenSize.SCREEN_MAX_LENGTH == 1366.0 {
                 
-                scrollViewSetup(withWidth: 300, andTopConstant: 120)
+                scrollViewSetup(withWidth: 350, andTopConstant: 80)
                 cropBoxSetup()
-                saveButtonSetup(withFontSize: 20.0, height: 80, andTopConstant: 80)
+                saveButtonSetup(withFontSize: 20.0, height: 60, andTopConstant: 80)
                 
             // iPad Pro 10.5 inch
             } else if ScreenSize.SCREEN_MAX_LENGTH == 1112.0{
                 
-                scrollViewSetup(withWidth: 280, andTopConstant: 80)
+                scrollViewSetup(withWidth: 300, andTopConstant: 80)
                 cropBoxSetup()
                 saveButtonSetup(withFontSize: 20.0, height: 60, andTopConstant: 80)
             
             // iPad 9.7 inch and mini
             } else {
                 
-                scrollViewSetup(withWidth: 200, andTopConstant: 60)
+                scrollViewSetup(withWidth: 300, andTopConstant: 80)
                 cropBoxSetup()
-                saveButtonSetup(withFontSize: 20, height: 50, andTopConstant: 80)
+                saveButtonSetup(withFontSize: 20, height: 60, andTopConstant: 80)
                 
             }
             
@@ -168,28 +168,28 @@ class CropImageViewController: UIViewController {
             // iPhone 5 Size
             if ScreenSize.SCREEN_MAX_LENGTH == 568.0 {
                 
-                scrollViewSetup(withWidth: 170, andTopConstant: 40)
+                scrollViewSetup(withWidth: 200, andTopConstant: 80)
                 cropBoxSetup()
                 saveButtonSetup(withFontSize: 14, height: 40, andTopConstant: 60)
             
             // iPhone 6 Size
             } else if ScreenSize.SCREEN_MAX_LENGTH == 667.0 {
                 
-                scrollViewSetup(withWidth: 220, andTopConstant: 40)
+                scrollViewSetup(withWidth: 240, andTopConstant: 80)
                 cropBoxSetup()
-                saveButtonSetup(withFontSize: 16, height: 40, andTopConstant: 80)
+                saveButtonSetup(withFontSize: 16, height: 40, andTopConstant: 60)
                 
             // iPhone X Size
             } else if ScreenSize.SCREEN_MAX_LENGTH == 812.0 {
                 
-                scrollViewSetup(withWidth: 240, andTopConstant: 80)
+                scrollViewSetup(withWidth: 280, andTopConstant: 80)
                 cropBoxSetup()
-                saveButtonSetup(withFontSize: 18, height: 40, andTopConstant: 40)
+                saveButtonSetup(withFontSize: 18, height: 40, andTopConstant: 120)
         
             // iPhone Plus Size
             } else {
                 
-                scrollViewSetup(withWidth: 240, andTopConstant: 80)
+                scrollViewSetup(withWidth: 280, andTopConstant: 80)
                 cropBoxSetup()
                 saveButtonSetup(withFontSize: 18, height: 40, andTopConstant: 120)
                 
@@ -295,6 +295,7 @@ extension CropImageViewController {
         }
         
         self.dismiss(animated: true, completion: nil)
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
         
     }
     

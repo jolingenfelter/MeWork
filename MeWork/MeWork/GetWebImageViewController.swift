@@ -142,7 +142,7 @@ class GetWebImageViewController: UIViewController {
     
     func navBarSetup() {
         
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelPressed))
         navigationItem.rightBarButtonItem = cancelButton
         let helpButton = UIBarButtonItem(title: "Help", style: .plain, target: self, action: #selector(helpPressed))
         navigationItem.leftBarButtonItem = helpButton
@@ -247,7 +247,7 @@ class GetWebImageViewController: UIViewController {
 
 extension GetWebImageViewController {
     
-    @objc func donePressed() {
+    @objc func cancelPressed() {
         self.dismiss(animated: true, completion: nil)
     }
     

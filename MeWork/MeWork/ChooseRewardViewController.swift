@@ -26,7 +26,6 @@ class ChooseRewardViewController: UIViewController {
     lazy var rewardImageView: UIImageView = {
         
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
@@ -234,9 +233,11 @@ class ChooseRewardViewController: UIViewController {
     
     func checkForRewardImage() {
         if let rewardImage = rewardImage {
+            rewardImageView.contentMode = .scaleAspectFit
             rewardImageView.image = rewardImage
         } else {
             let noImage = UIImage(named: "NoImage")!
+            rewardImageView.contentMode = .scaleToFill
             rewardImageView.image = noImage
         }
     }
