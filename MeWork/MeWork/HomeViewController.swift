@@ -58,6 +58,13 @@ class HomeViewController: UIViewController {
         
     }()
     
+    lazy var tokenBoardListPopover: TokenBoardListPopover = {
+        let popover = TokenBoardListPopover()
+        popover.delegate = self
+        
+        return popover
+    }()
+    
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
@@ -160,7 +167,56 @@ extension HomeViewController {
     
     @objc func selectTokenBoardPressed() {
         
+        if tokenBoardListPopover.dataSource.fetchedResultsController.fetchedObjects?.count == 0 {
+            
+            self.showAlert(withTitle: "Oops!", andMessage: "There are no saved token boards.")
+            
+        } else {
+            
+            tokenBoardListPopover.preferredContentSize = CGSize(width: 150, height: 150)
+            tokenBoardListPopover.modalPresentationStyle = .popover
+            
+            let popoverPresentationController = tokenBoardListPopover.popoverPresentationController! as UIPopoverPresentationController
+            popoverPresentationController.permittedArrowDirections = [.left, .right]
+            popoverPresentationController.delegate = self
+            popoverPresentationController.sourceView = selectTokenBoardButton
+            let sourceRect = CGRect(x: selectTokenBoardButton.frame.width, y: selectTokenBoardButton.frame.height/2, width: 0, height: 0)
+            popoverPresentationController.sourceRect = sourceRect
+            
+            present(tokenBoardListPopover, animated: true, completion: nil)
+        }
+        
     }
     
 }
+
+// MARK: - TokenBoardListPopoverDelegate
+extension HomeViewController: TokenBoardListPopoverDelegate {
+    
+    func didSelect(tokenBoard: TokenBoard) {
+        
+        let tokenBoardViewController = TokenBoardViewController(tokenBoard: tokenBoard)
+        
+        tokenBoardListPopover.dismiss(animated: true, completion: nil)
+        present(tokenBoardViewController, animated: true, completion: nil)
+    }
+}
+
+// MARK: - UIPopoverPresentationControllerDelegate
+
+extension HomeViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle
+    {
+        switch UIDevice.current.userInterfaceIdiom {
+        case .pad: return UIModalPresentationStyle.popover
+        default: return UIModalPresentationStyle.none
+        }
+    }
+}
+
+
+
+
+
+
 

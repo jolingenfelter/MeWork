@@ -20,6 +20,9 @@
 		638FE2CA1FB9FA2F004957CA /* TokenLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638FE2C91FB9FA2F004957CA /* TokenLibraryViewController.swift */; };
 		638FE2CE1FBA0373004957CA /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638FE2CD1FBA0373004957CA /* Token.swift */; };
 		63A7E2A41FB89AA400D23252 /* MediaPickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A7E2A31FB89AA400D23252 /* MediaPickerManager.swift */; };
+		63B362591FCB6B960094FD5B /* TokenBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B362581FCB6B960094FD5B /* TokenBoardViewController.swift */; };
+		63B3625B1FCB70050094FD5B /* TokenBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3625A1FCB70050094FD5B /* TokenBoardViewModel.swift */; };
+		63B3625D1FCB71410094FD5B /* TokenBoardError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3625C1FCB71410094FD5B /* TokenBoardError.swift */; };
 		63B58E251FB3A2D100C2320A /* ScrollAndCropImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B58E241FB3A2D100C2320A /* ScrollAndCropImageView.swift */; };
 		63B58E271FB3A2FC00C2320A /* ImageCroppingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B58E261FB3A2FC00C2320A /* ImageCroppingError.swift */; };
 		63DA79131FAA9BD700F7B54D /* CropBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA79121FAA9BD700F7B54D /* CropBox.swift */; };
@@ -61,6 +64,9 @@
 		638FE2CB1FBA01E6004957CA /* MeWork 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MeWork 2.xcdatamodel"; sourceTree = "<group>"; };
 		638FE2CD1FBA0373004957CA /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		63A7E2A31FB89AA400D23252 /* MediaPickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPickerManager.swift; sourceTree = "<group>"; };
+		63B362581FCB6B960094FD5B /* TokenBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenBoardViewController.swift; sourceTree = "<group>"; };
+		63B3625A1FCB70050094FD5B /* TokenBoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenBoardViewModel.swift; sourceTree = "<group>"; };
+		63B3625C1FCB71410094FD5B /* TokenBoardError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenBoardError.swift; sourceTree = "<group>"; };
 		63B58E241FB3A2D100C2320A /* ScrollAndCropImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollAndCropImageView.swift; sourceTree = "<group>"; };
 		63B58E261FB3A2FC00C2320A /* ImageCroppingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCroppingError.swift; sourceTree = "<group>"; };
 		63DA79121FAA9BD700F7B54D /* CropBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropBox.swift; sourceTree = "<group>"; };
@@ -164,6 +170,16 @@
 			name = ManageTokens;
 			sourceTree = "<group>";
 		};
+		63B362571FCB6B670094FD5B /* TokenBoards */ = {
+			isa = PBXGroup;
+			children = (
+				63B362581FCB6B960094FD5B /* TokenBoardViewController.swift */,
+				63B3625A1FCB70050094FD5B /* TokenBoardViewModel.swift */,
+				63B3625C1FCB71410094FD5B /* TokenBoardError.swift */,
+			);
+			name = TokenBoards;
+			sourceTree = "<group>";
+		};
 		63DA79111FAA9BB500F7B54D /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +212,7 @@
 				9E0DCCE21EFC8C35001AB810 /* AppDelegate.swift */,
 				9E0DCCE41EFC8C35001AB810 /* HomeViewController.swift */,
 				9EF20FF51EFEFCB4008D7F8C /* TokenBoardList */,
+				63B362571FCB6B670094FD5B /* TokenBoards */,
 				9EC7E6941F000805008093E8 /* CreateTokenBoard */,
 				6310E6811FC3536E009B0B68 /* Libraries */,
 				9E0FC9141F103BEC003985C0 /* GetImages */,
@@ -413,8 +430,10 @@
 			files = (
 				6353EEFB1FBF2D7F00AC9E84 /* ManageTokensViewController.swift in Sources */,
 				9E9903191F184DD3003F7FCB /* CropImageViewController.swift in Sources */,
+				63B3625B1FCB70050094FD5B /* TokenBoardViewModel.swift in Sources */,
 				9E0FC9161F103C58003985C0 /* GetWebImageViewController.swift in Sources */,
 				630C5CC91FC3A46C001CA8E5 /* ChooseRewardViewController.swift in Sources */,
+				63B3625D1FCB71410094FD5B /* TokenBoardError.swift in Sources */,
 				637447671FC222B1009BAA08 /* ManageTokensMenu.swift in Sources */,
 				63B58E271FB3A2FC00C2320A /* ImageCroppingError.swift in Sources */,
 				637447691FC23C3E009BAA08 /* TokenBoardListPopover.swift in Sources */,
@@ -436,6 +455,7 @@
 				9EEC8BD71F016BC600491A9E /* NumberOfTokensViewController.swift in Sources */,
 				9EF20FF21EFEFC80008D7F8C /* TokenBoardFetchedResultsController.swift in Sources */,
 				9EC7E6981F000876008093E8 /* EnterChildNameViewController.swift in Sources */,
+				63B362591FCB6B960094FD5B /* TokenBoardViewController.swift in Sources */,
 				9EF20FF01EFEF853008D7F8C /* TokenBoardListViewController.swift in Sources */,
 				9EFBD84C1F06A431002BFF1A /* BackgroundColorViewController.swift in Sources */,
 				63A7E2A41FB89AA400D23252 /* MediaPickerManager.swift in Sources */,
