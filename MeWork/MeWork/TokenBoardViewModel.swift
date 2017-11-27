@@ -11,6 +11,8 @@ import UIKit
 
 @objc public protocol TokenBoardModelView {
     @objc optional var rewardImageView: UIImageView { get }
+    @objc optional var tokenBoardView: TokenBoardView { get }
+    @objc optional var tokenCountLabel: UILabel { get }
 }
 
 public final class TokenBoardViewModel {
