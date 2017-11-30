@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class TokenBoardView: UIView {
+class TokenBoardView: UIView {
 
     let tokenNumber: Int
     let tokenImage: UIImage
@@ -266,7 +266,7 @@ private extension TokenBoardView {
                 stackView1.centerXAnchor.constraint(equalTo: self.centerXAnchor),
                 stackView1.topAnchor.constraint(equalTo: self.topAnchor),
                 stackView1.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-                stackView1.widthAnchor.constraint(equalToConstant: self.frame.width/4
+                stackView1.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width/4
                 )])
             
         } else {

@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 @objc public protocol TokenBoardModelView {
-    @objc optional var rewardImageView: UIImageView { get }
-    @objc optional var tokenBoardView: TokenBoardView { get }
+    @objc optional var titleLabel: UILabel { get }
+    @objc optional var imageView: UIImageView { get }
     @objc optional var tokenCountLabel: UILabel { get }
 }
 
@@ -21,6 +21,7 @@ public final class TokenBoardViewModel {
     var backgroundColor: UIColor?
     var childName: String?
     var tokenNumber: Int?
+    var tokensEarned = 0
     var rewardImage: UIImage?
     var tokenImage: UIImage?
     
@@ -56,12 +57,38 @@ public final class TokenBoardViewModel {
 extension TokenBoardViewModel {
     
     func configureView(_ view: TokenBoardModelView) {
-        
+        rewardImageViewSetup(view: view)
+        tokenCountLabelSetup(view: view)
+        titleLabelSetup(view: view)
     }
     
 }
 
-
+private extension TokenBoardViewModel {
+    
+    func rewardImageViewSetup(view: TokenBoardModelView) {
+        view.imageView?.contentMode = .scaleAspectFill
+        view.imageView?.clipsToBounds = true
+        view.imageView?.layer.masksToBounds = true
+        view.imageView?.layer.borderColor = UIColor.white.cgColor
+        view.imageView?.layer.cornerRadius = 10
+        view.imageView?.layer.borderWidth = 1.5
+    }
+    
+    func tokenCountLabelSetup(view: TokenBoardModelView) {
+        if let tokenNumber = tokenNumber {
+            view.tokenCountLabel?.text = "0\(tokenNumber)"
+        }
+        view.tokenCountLabel?.textColor = .lightGray
+        view.tokenCountLabel?.textAlignment = .center
+    }
+    
+    func titleLabelSetup(view: TokenBoardModelView) {
+        view.titleLabel?.text = "I am working for..."
+        view.titleLabel?.textAlignment = .center
+        view.titleLabel?.textColor = .white
+    }
+}
 
 
 

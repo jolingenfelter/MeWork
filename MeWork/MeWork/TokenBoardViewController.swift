@@ -11,9 +11,20 @@ import UIKit
 class TokenBoardViewController: UIViewController {
     
     let tokenBoardViewModel: TokenBoardViewModel
+    var tokenBoardView: TokenBoardView
     
-    init(tokenBoard: TokenBoard) {
+    var workingForLabel = UILabel()
+    var countLabel = UILabel()
+    var rewardImageView = UIImageView()
+    
+    init?(tokenBoard: TokenBoard) {
+        
+        guard let tokenNumberString = tokenBoard.tokenNumber, let tokenNumber = Int(tokenNumberString), let token = tokenBoard.token, let tokenImageName = token.fileName, let tokenImage = UIImage(named: tokenImageName) else {
+            return nil
+        }
         self.tokenBoardViewModel = TokenBoardViewModel(tokenBoard: tokenBoard)
+        self.tokenBoardView = TokenBoardView(tokenNumber: tokenNumber, tokenImage: tokenImage, frame: CGRect.zero)
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -23,13 +34,25 @@ class TokenBoardViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        view.addSubview(workingForLabel)
+        workingForLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(rewardImageView)
+        rewardImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(tokenBoardView)
+        tokenBoardView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(countLabel)
+        countLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-
-        // Do any additional setup after loading the view.
+        tokenBoardViewModel.configureView(self)
+        self.title = tokenBoardViewModel.childName
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,6 +60,21 @@ class TokenBoardViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+}
+
+extension TokenBoardViewController: TokenBoardModelView {
+    
+    var imageView: UIImageView {
+        return rewardImageView
+    }
+    
+    var tokenCountLabel: UILabel {
+        return countLabel
+    }
+    
+    var titleLabel: UILabel {
+        return workingForLabel
+    }
 }
 
 
